@@ -13,25 +13,28 @@ window.addEventListener("load", () => {
 
 const products = [
     {
-        name: "Prodotto 1",
+        name: "Articolo 1",
         category: "Novità",
         status: "Disponibile",
-        description: "Descrizione breve del prodotto.",
-        tag: "Top"
+        description: "Scheda articolo ufficiale BPFAM.",
+        tag: "Top",
+        image: "logo.jpg.PNG",
+        formats: {
+            "Small": "Info in chat",
+            "Medium": "Info in chat",
+            "Large": "Info in chat"
+        }
     },
     {
-        name: "Prodotto 2",
-        category: "Limited",
-        status: "Disponibile",
-        description: "Descrizione breve del prodotto.",
-        tag: "Limited"
-    },
-    {
-        name: "Prodotto VIP",
+        name: "Articolo VIP",
         category: "VIP",
         status: "Su richiesta",
-        description: "Prodotto riservato agli utenti VIP.",
-        tag: "VIP"
+        description: "Articolo riservato agli utenti VIP.",
+        tag: "VIP",
+        image: "logo.jpg.PNG",
+        formats: {
+            "VIP": "Accesso riservato"
+        }
     }
 ];
 
@@ -73,17 +76,32 @@ function showVetrina(category){
         ? products
         : products.filter(product => product.category === category || product.tag === category);
 
-    let productHTML = filteredProducts.map(product => `
-        <div class="product-card">
-            <h3>${product.name}</h3>
-            <p>${product.description}</p>
-            <div class="product-meta">
-                <span>${product.status}</span>
-                <span>${product.tag}</span>
+    let productHTML = filteredProducts.map((product, index) => {
+        const options = Object.keys(product.formats).map(format => `
+            <option value="${format}">${format}</option>
+        `).join("");
+
+        return `
+            <div class="product-card">
+                <img src="${product.image}" class="product-img" alt="${product.name}">
+
+                <h3>${product.name}</h3>
+                <p>${product.description}</p>
+
+                <label class="format-label">Formato</label>
+                <select class="format-select" onchange="updatePrice(${index}, this.value)">
+                    ${options}
+                </select>
+
+                <div class="product-meta">
+                    <span>${product.status}</span>
+                    <span id="price-${index}">${Object.values(product.formats)[0]}</span>
+                </div>
+
+                <a class="contact-btn" href="#">Richiedi info</a>
             </div>
-            <a class="contact-btn" href="#">Richiedi info</a>
-        </div>
-    `).join("");
+        `;
+    }).join("");
 
     content.innerHTML = `
         <h2>📸 Vetrina</h2>
@@ -99,4 +117,9 @@ function showVetrina(category){
 
         ${productHTML}
     `;
+}
+
+function updatePrice(index, format){
+    const priceBox = document.getElementById(`price-${index}`);
+    priceBox.textContent = products[index].formats[format];
 }
