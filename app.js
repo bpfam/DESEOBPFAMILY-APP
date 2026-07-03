@@ -116,7 +116,15 @@ function showVetrina(category){
         return `
             <div class="product-card">
                 <img src="${product.image || "logo.jpg.PNG"}" class="product-img" alt="${product.name}">
+
                 <h3>${product.name}</h3>
+
+                ${product.rating ? `
+                    <div class="product-rating">
+                        ⭐ ${product.rating}
+                    </div>
+                ` : ""}
+
                 <p>${product.category || ""}</p>
 
                 <label class="format-label">Formato</label>
@@ -442,7 +450,15 @@ function searchProducts(){
         ${results.map(product => `
             <div class="product-card">
                 <img src="${product.image || "logo.jpg.PNG"}" class="product-img">
+
                 <h3>${product.name}</h3>
+
+                ${product.rating ? `
+                    <div class="product-rating">
+                        ⭐ ${product.rating}
+                    </div>
+                ` : ""}
+
                 <p>${product.category}</p>
             </div>
         `).join("") || "<p>Nessun risultato trovato.</p>"}
