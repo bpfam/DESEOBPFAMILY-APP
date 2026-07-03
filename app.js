@@ -63,7 +63,7 @@ function openSection(section){
         case "info":
             content.innerHTML = `
                 <h2>ℹ️ Informazioni</h2>
-                <p>Delivery, spedizioni, FAQ e aggiornamenti ufficiali.</p>
+                <p>Solo per maggiorenni. Servizio disponibile esclusivamente dove consentito dalla legge locale.</p>
             `;
         break;
 
@@ -100,31 +100,37 @@ function showVetrina(category){
         return;
     }
 
+    const categories = ["Tutti", ...new Set(products.map(p => p.category))];
+
     const filteredProducts = category === "Tutti"
         ? products
-        : products.filter(product => product.category === category || product.tag === category);
+        : products.filter(product => product.category === category);
 
-    let productHTML = filteredProducts.map((product, index) => {
+    let categoryHTML = categories.map(cat => `
+        <button class="category-pill" onclick="showVetrina('${cat}')">${cat}</button>
+    `).join("");
+
+    let productHTML = filteredProducts.map((product) => {
         const realIndex = products.indexOf(product);
 
-        const options = Object.keys(product.formats).map(format => `
-            <option value="${format}">${format}</option>
+        const options = product.variants.map((variant, variantIndex) => `
+            <option value="${variantIndex}">${variant.size}</option>
         `).join("");
 
         return `
             <div class="product-card">
                 <img src="${product.image}" class="product-img" alt="${product.name}">
                 <h3>${product.name}</h3>
-                <p>${product.description}</p>
+                <p>${product.category}</p>
 
                 <label class="format-label">Formato</label>
-                <select class="format-select" id="format-${realIndex}" onchange="updatePrice(${realIndex}, this.value)">
+                <select class="format-select" id="variant-${realIndex}" onchange="updatePrice(${realIndex}, this.value)">
                     ${options}
                 </select>
 
                 <div class="product-meta">
-                    <span>${product.status}</span>
-                    <span id="price-${realIndex}">${Object.values(product.formats)[0]}</span>
+                    <span>Disponibile</span>
+                    <span id="price-${realIndex}">€${product.variants[0].price}</span>
                 </div>
 
                 <button class="contact-btn" onclick="addToCart(${realIndex})">🛒 Aggiungi al carrello</button>
@@ -138,33 +144,33 @@ function showVetrina(category){
         <p>Catalogo ufficiale BPFAM.</p>
 
         <div class="category-row">
-            <button class="category-pill" onclick="showVetrina('Tutti')">Tutti</button>
-            <button class="category-pill" onclick="showVetrina('Novità')">Novità</button>
-            <button class="category-pill" onclick="showVetrina('Top')">Top</button>
-            <button class="category-pill" onclick="showVetrina('Limited')">Limited</button>
-            <button class="category-pill" onclick="showVetrina('VIP')">VIP</button>
+            ${categoryHTML}
         </div>
 
         ${productHTML}
     `;
 }
 
-function updatePrice(index, format){
+function updatePrice(index, variantIndex){
     const priceBox = document.getElementById(`price-${index}`);
+    const selectedVariant = products[index].variants[variantIndex];
+
     if(priceBox){
-        priceBox.textContent = products[index].formats[format];
+        priceBox.textContent = `€${selectedVariant.price}`;
     }
 }
 
 function addToCart(index){
     const product = products[index];
-    const formatSelect = document.getElementById(`format-${index}`);
-    const selectedFormat = formatSelect ? formatSelect.value : Object.keys(product.formats)[0];
+    const variantSelect = document.getElementById(`variant-${index}`);
+    const selectedIndex = variantSelect ? variantSelect.value : 0;
+    const selectedVariant = product.variants[selectedIndex];
 
     cart.push({
         name: product.name,
-        format: selectedFormat,
-        price: product.formats[selectedFormat]
+        category: product.category,
+        size: selectedVariant.size,
+        price: selectedVariant.price
     });
 
     updateCartCount();
@@ -189,12 +195,15 @@ function showCart(){
         return;
     }
 
+    const total = cart.reduce((sum, item) => sum + Number(item.price), 0);
+
     const cartHTML = cart.map((item, index) => `
         <div class="product-card">
             <h3>${item.name}</h3>
-            <p>Formato: ${item.format}</p>
+            <p>${item.category}</p>
+            <p>Formato: ${item.size}</p>
             <div class="product-meta">
-                <span>${item.price}</span>
+                <span>€${item.price}</span>
                 <button onclick="removeFromCart(${index})">Rimuovi</button>
             </div>
         </div>
@@ -203,6 +212,10 @@ function showCart(){
     content.innerHTML = `
         <h2>🛒 Carrello</h2>
         ${cartHTML}
+        <div class="product-card">
+            <h3>Totale</h3>
+            <p>€${total}</p>
+        </div>
         <a class="contact-btn" href="${contacts.telegram}" target="_blank">Invia richiesta</a>
     `;
 }
@@ -216,7 +229,6 @@ function removeFromCart(index){
 function searchProducts(){
     const input = document.getElementById("searchInput");
     const query = input.value.toLowerCase();
-
     const content = document.getElementById("content");
 
     if(query.length < 2){
@@ -225,15 +237,14 @@ function searchProducts(){
 
     const results = products.filter(product =>
         product.name.toLowerCase().includes(query) ||
-        product.category.toLowerCase().includes(query) ||
-        product.tag.toLowerCase().includes(query)
+        product.category.toLowerCase().includes(query)
     );
 
-    let resultHTML = results.map((product) => `
+    let resultHTML = results.map(product => `
         <div class="product-card">
             <img src="${product.image}" class="product-img" alt="${product.name}">
             <h3>${product.name}</h3>
-            <p>${product.description}</p>
+            <p>${product.category}</p>
         </div>
     `).join("");
 
