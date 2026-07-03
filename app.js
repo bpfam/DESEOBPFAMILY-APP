@@ -7,50 +7,40 @@ if ("serviceWorker" in navigator) {
 window.addEventListener("load", () => {
     setTimeout(() => {
         const splash = document.getElementById("splash");
-        if (splash) {
-            splash.style.display = "none";
-        }
+        if (splash) splash.style.display = "none";
     }, 2200);
 });
 
-function openSection(section){
+const products = [
+    {
+        name: "Prodotto 1",
+        category: "Novità",
+        status: "Disponibile",
+        description: "Descrizione breve del prodotto.",
+        tag: "Top"
+    },
+    {
+        name: "Prodotto 2",
+        category: "Limited",
+        status: "Disponibile",
+        description: "Descrizione breve del prodotto.",
+        tag: "Limited"
+    },
+    {
+        name: "Prodotto VIP",
+        category: "VIP",
+        status: "Su richiesta",
+        description: "Prodotto riservato agli utenti VIP.",
+        tag: "VIP"
+    }
+];
 
+function openSection(section){
     const content = document.getElementById("content");
 
     switch(section){
-
         case "vetrina":
-            content.innerHTML = `
-                <h2>📸 Vetrina</h2>
-                <p>Catalogo ufficiale BPFAM.</p>
-
-                <div class="category-row">
-                    <span class="category-pill">Novità</span>
-                    <span class="category-pill">Top</span>
-                    <span class="category-pill">Limited</span>
-                    <span class="category-pill">VIP</span>
-                </div>
-
-                <div class="product-card">
-                    <h3>Prodotto 1</h3>
-                    <p>Descrizione breve del prodotto.</p>
-                    <div class="product-meta">
-                        <span>Disponibile</span>
-                        <span>Info in chat</span>
-                    </div>
-                    <a class="contact-btn" href="#">Richiedi info</a>
-                </div>
-
-                <div class="product-card">
-                    <h3>Prodotto 2</h3>
-                    <p>Descrizione breve del prodotto.</p>
-                    <div class="product-meta">
-                        <span>Disponibile</span>
-                        <span>Info in chat</span>
-                    </div>
-                    <a class="contact-btn" href="#">Richiedi info</a>
-                </div>
-            `;
+            showVetrina("Tutti");
         break;
 
         case "recensioni":
@@ -74,4 +64,39 @@ function openSection(section){
             `;
         break;
     }
+}
+
+function showVetrina(category){
+    const content = document.getElementById("content");
+
+    const filteredProducts = category === "Tutti"
+        ? products
+        : products.filter(product => product.category === category || product.tag === category);
+
+    let productHTML = filteredProducts.map(product => `
+        <div class="product-card">
+            <h3>${product.name}</h3>
+            <p>${product.description}</p>
+            <div class="product-meta">
+                <span>${product.status}</span>
+                <span>${product.tag}</span>
+            </div>
+            <a class="contact-btn" href="#">Richiedi info</a>
+        </div>
+    `).join("");
+
+    content.innerHTML = `
+        <h2>📸 Vetrina</h2>
+        <p>Catalogo ufficiale BPFAM.</p>
+
+        <div class="category-row">
+            <button class="category-pill" onclick="showVetrina('Tutti')">Tutti</button>
+            <button class="category-pill" onclick="showVetrina('Novità')">Novità</button>
+            <button class="category-pill" onclick="showVetrina('Top')">Top</button>
+            <button class="category-pill" onclick="showVetrina('Limited')">Limited</button>
+            <button class="category-pill" onclick="showVetrina('VIP')">VIP</button>
+        </div>
+
+        ${productHTML}
+    `;
 }
