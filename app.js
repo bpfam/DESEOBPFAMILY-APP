@@ -29,7 +29,7 @@ async function loadProducts(){
         products = await response.json();
         console.log("Prodotti caricati:", products);
     }catch(error){
-        console.error("Errore caricamento prodotti:", error);
+        console.error("Errore prodotti:", error);
         products = [];
     }
 }
@@ -37,91 +37,58 @@ async function loadProducts(){
 function openSection(section){
     const content = document.getElementById("content");
 
-    switch(section){
-        case "vetrina":
-            showVetrina("Tutti");
-        break;
-
-        case "recensioni":
-            content.innerHTML = `
-                <h2>⭐ Recensioni</h2>
-                <p>Qui compariranno foto, video e feedback dei clienti.</p>
-            `;
-        break;
-
-        case "vip":
-            content.innerHTML = `
-                <h2>👑 VIP Access</h2>
-                <p>Area riservata in preparazione.</p>
-            `;
-        break;
-
-        case "contatti":
-            showContatti();
-        break;
-
-        case "info":
-            content.innerHTML = `
-                <h2>ℹ️ Informazioni</h2>
-                <p>Solo per maggiorenni. Servizio disponibile esclusivamente dove consentito dalla legge locale.</p>
-            `;
-        break;
-
-        case "carrello":
-            showCart();
-        break;
-    }
+    if(section === "vetrina") showVetrina("Tutti");
+    if(section === "recensioni") content.innerHTML = `<h2>⭐ Recensioni</h2><p>Foto, video e feedback clienti.</p>`;
+    if(section === "vip") content.innerHTML = `<h2>👑 VIP Access</h2><p>Area riservata in preparazione.</p>`;
+    if(section === "contatti") showContatti();
+    if(section === "info") content.innerHTML = `<h2>ℹ️ Informazioni</h2><p>Solo per maggiorenni. Disponibile dove consentito dalla legge locale.</p>`;
+    if(section === "carrello") showCart();
 }
 
-function showContatti(){
-    const content = document.getElementById("content");
+function getVariants(product){
+    if(product.variants) return product.variants;
 
-    content.innerHTML = `
-        <h2>📞 Contatti ufficiali</h2>
-        <p>Scegli dove contattarci.</p>
+    if(product.formats){
+        return Object.entries(product.formats).map(([size, price]) => ({
+            size: size,
+            price: price
+        }));
+    }
 
-        <div class="contact-list">
-            <a class="contact-link" href="${contacts.telegram}" target="_blank">💬 Telegram</a>
-            <a class="contact-link" href="${contacts.instagram}" target="_blank">📸 Instagram</a>
-            <a class="contact-link" href="${contacts.whatsapp}" target="_blank">🟢 WhatsApp</a>
-            <a class="contact-link" href="${contacts.signal}" target="_blank">🔐 Signal</a>
-        </div>
-    `;
+    return [{ size: "Info", price: "Info in chat" }];
 }
 
 function showVetrina(category){
     const content = document.getElementById("content");
 
     if(products.length === 0){
-        content.innerHTML = `
-            <h2>📸 Vetrina</h2>
-            <p>Caricamento catalogo...</p>
-        `;
+        content.innerHTML = `<h2>📸 Vetrina</h2><p>Caricamento catalogo...</p>`;
         return;
     }
 
-    const categories = ["Tutti", ...new Set(products.map(p => p.category))];
+    const categories = ["Tutti", ...new Set(products.map(p => p.category || "Altro"))];
 
     const filteredProducts = category === "Tutti"
         ? products
         : products.filter(product => product.category === category);
 
-    let categoryHTML = categories.map(cat => `
-        <button class="category-pill" onclick="showVetrina('${cat}')">${cat}</button>
+    const categoryHTML = categories.map(cat => `
+        <button class="category-pill" onclick="showVetrina('${cat.replace(/'/g, "\\'")}')">${cat}</button>
     `).join("");
 
-    let productHTML = filteredProducts.map((product) => {
+    const productHTML = filteredProducts.map(product => {
         const realIndex = products.indexOf(product);
+        const variants = getVariants(product);
 
-        const options = product.variants.map((variant, variantIndex) => `
+        const options = variants.map((variant, variantIndex) => `
             <option value="${variantIndex}">${variant.size}</option>
         `).join("");
 
         return `
             <div class="product-card">
-                <img src="${product.image}" class="product-img" alt="${product.name}">
+                <img src="${product.image || "logo.jpg.PNG"}" class="product-img" alt="${product.name}">
                 <h3>${product.name}</h3>
-                <p>${product.category}</p>
+                <p>${product.category || ""}</p>
 
                 <label class="format-label">Formato</label>
                 <select class="format-select" id="variant-${realIndex}" onchange="updatePrice(${realIndex}, this.value)">
@@ -130,7 +97,7 @@ function showVetrina(category){
 
                 <div class="product-meta">
                     <span>Disponibile</span>
-                    <span id="price-${realIndex}">€${product.variants[0].price}</span>
+                    <span id="price-${realIndex}">€${variants[0].price}</span>
                 </div>
 
                 <button class="contact-btn" onclick="addToCart(${realIndex})">🛒 Aggiungi al carrello</button>
@@ -142,35 +109,26 @@ function showVetrina(category){
     content.innerHTML = `
         <h2>📸 Vetrina</h2>
         <p>Catalogo ufficiale BPFAM.</p>
-
-        <div class="category-row">
-            ${categoryHTML}
-        </div>
-
+        <div class="category-row">${categoryHTML}</div>
         ${productHTML}
     `;
 }
 
 function updatePrice(index, variantIndex){
-    const priceBox = document.getElementById(`price-${index}`);
-    const selectedVariant = products[index].variants[variantIndex];
-
-    if(priceBox){
-        priceBox.textContent = `€${selectedVariant.price}`;
-    }
+    const variants = getVariants(products[index]);
+    document.getElementById(`price-${index}`).textContent = `€${variants[variantIndex].price}`;
 }
 
 function addToCart(index){
     const product = products[index];
-    const variantSelect = document.getElementById(`variant-${index}`);
-    const selectedIndex = variantSelect ? variantSelect.value : 0;
-    const selectedVariant = product.variants[selectedIndex];
+    const variants = getVariants(product);
+    const select = document.getElementById(`variant-${index}`);
+    const selected = variants[select ? select.value : 0];
 
     cart.push({
         name: product.name,
-        category: product.category,
-        size: selectedVariant.size,
-        price: selectedVariant.price
+        size: selected.size,
+        price: selected.price
     });
 
     updateCartCount();
@@ -179,28 +137,22 @@ function addToCart(index){
 
 function updateCartCount(){
     const cartCount = document.getElementById("cartCount");
-    if(cartCount){
-        cartCount.textContent = cart.length;
-    }
+    if(cartCount) cartCount.textContent = cart.length;
 }
 
 function showCart(){
     const content = document.getElementById("content");
 
     if(cart.length === 0){
-        content.innerHTML = `
-            <h2>🛒 Carrello</h2>
-            <p>Il carrello è vuoto.</p>
-        `;
+        content.innerHTML = `<h2>🛒 Carrello</h2><p>Il carrello è vuoto.</p>`;
         return;
     }
 
-    const total = cart.reduce((sum, item) => sum + Number(item.price), 0);
+    const total = cart.reduce((sum, item) => sum + Number(item.price || 0), 0);
 
     const cartHTML = cart.map((item, index) => `
         <div class="product-card">
             <h3>${item.name}</h3>
-            <p>${item.category}</p>
             <p>Formato: ${item.size}</p>
             <div class="product-meta">
                 <span>€${item.price}</span>
@@ -216,7 +168,6 @@ function showCart(){
             <h3>Totale</h3>
             <p>€${total}</p>
         </div>
-        <a class="contact-btn" href="${contacts.telegram}" target="_blank">Invia richiesta</a>
     `;
 }
 
@@ -226,30 +177,39 @@ function removeFromCart(index){
     showCart();
 }
 
+function showContatti(){
+    document.getElementById("content").innerHTML = `
+        <h2>📞 Contatti ufficiali</h2>
+        <p>Scegli dove contattarci.</p>
+        <div class="contact-list">
+            <a class="contact-link" href="${contacts.telegram}" target="_blank">💬 Telegram</a>
+            <a class="contact-link" href="${contacts.instagram}" target="_blank">📸 Instagram</a>
+            <a class="contact-link" href="${contacts.whatsapp}" target="_blank">🟢 WhatsApp</a>
+            <a class="contact-link" href="${contacts.signal}" target="_blank">🔐 Signal</a>
+        </div>
+    `;
+}
+
 function searchProducts(){
     const input = document.getElementById("searchInput");
-    const query = input.value.toLowerCase();
-    const content = document.getElementById("content");
+    if(!input) return;
 
-    if(query.length < 2){
-        return;
-    }
+    const query = input.value.toLowerCase();
+    if(query.length < 2) return;
 
     const results = products.filter(product =>
         product.name.toLowerCase().includes(query) ||
         product.category.toLowerCase().includes(query)
     );
 
-    let resultHTML = results.map(product => `
-        <div class="product-card">
-            <img src="${product.image}" class="product-img" alt="${product.name}">
-            <h3>${product.name}</h3>
-            <p>${product.category}</p>
-        </div>
-    `).join("");
-
-    content.innerHTML = `
+    document.getElementById("content").innerHTML = `
         <h2>🔍 Risultati ricerca</h2>
-        ${resultHTML || "<p>Nessun risultato trovato.</p>"}
+        ${results.map(product => `
+            <div class="product-card">
+                <img src="${product.image || "logo.jpg.PNG"}" class="product-img">
+                <h3>${product.name}</h3>
+                <p>${product.category}</p>
+            </div>
+        `).join("") || "<p>Nessun risultato trovato.</p>"}
     `;
 }
