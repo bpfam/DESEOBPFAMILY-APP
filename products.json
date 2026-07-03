@@ -138,18 +138,21 @@
     ]
   },
   {
-    "category": "Weed 🇪🇸🇳🇱🇨🇦",
-    "name": "AMNESIA HAZE",
-    "image": "https://i.postimg.cc/8cZwv3yf/IMG-1983.jpg",
-    "variants": [
-      { "size": "5g", "price": 30 },
-      { "size": "25g", "price": 125 },
-      { "size": "50g", "price": 220 },
-      { "size": "100g", "price": 380 },
-      { "size": "500g", "price": 1750 },
-      { "size": "1kg", "price": 3200 }
-    ]
-  },
+  "name": "Nome prodotto",
+  "category": "Categoria",
+  "rating": "8/10",
+  "quality": "Premium",
+  "origin": "USA 🇺🇸",
+  "status": "Disponibile",
+  "badge": "HOT",
+  "image": "immagine.jpg",
+  "variants": [
+    {
+      "size": "Formato",
+      "price": 0
+    }
+  ]
+}
   
   {
     "category": "Weed 🇪🇸🇳🇱🇨🇦",
