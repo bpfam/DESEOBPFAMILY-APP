@@ -30,7 +30,6 @@ async function loadProducts(){
         const response = await fetch("products.json");
         products = await response.json();
     }catch(error){
-        console.error("Errore prodotti:", error);
         products = [];
     }
 }
@@ -40,7 +39,6 @@ async function loadReviews(){
         const response = await fetch("reviews.json");
         reviews = await response.json();
     }catch(error){
-        console.error("Errore recensioni:", error);
         reviews = [];
     }
 }
@@ -64,22 +62,20 @@ function showReviews(){
         return;
     }
 
-    const reviewHTML = reviews.map(review => `
-        <div class="product-card">
-            ${review.type === "video"
-                ? `<video class="product-img" controls src="${review.media}"></video>`
-                : `<img src="${review.media}" class="product-img" alt="${review.title}">`
-            }
-            <h3>${review.title}</h3>
-            <p>${"⭐".repeat(review.rating || 5)}</p>
-            <p>${review.text}</p>
-        </div>
-    `).join("");
-
     content.innerHTML = `
         <h2>⭐ Recensioni</h2>
         <p>Feedback e contenuti verificati.</p>
-        ${reviewHTML}
+        ${reviews.map(review => `
+            <div class="product-card">
+                ${review.type === "video"
+                    ? `<video class="product-img" controls src="${review.media}"></video>`
+                    : `<img src="${review.media}" class="product-img" alt="${review.title}">`
+                }
+                <h3>${review.title}</h3>
+                <p>${"⭐".repeat(review.rating || 5)}</p>
+                <p>${review.text}</p>
+            </div>
+        `).join("")}
     `;
 }
 
@@ -222,11 +218,13 @@ function showCart(){
         </div>
 
         <label class="format-label">Metodo ordine</label>
-        <select class="format-select" id="orderMethod">
+        <select class="format-select" id="orderMethod" onchange="showOrderFields()">
             <option value="Meet Up">📍 Meet Up</option>
             <option value="Delivery">🚚 Delivery</option>
             <option value="Spedizione">📦 Spedizione</option>
         </select>
+
+        <div id="orderFields"></div>
 
         <label class="format-label">Metodo pagamento</label>
         <select class="format-select" id="paymentMethod">
@@ -244,6 +242,111 @@ function showCart(){
 
         <button class="contact-btn" onclick="sendOrder()">Invia richiesta</button>
     `;
+
+    showOrderFields();
+}
+
+function showOrderFields(){
+    const method = document.getElementById("orderMethod")?.value;
+    const box = document.getElementById("orderFields");
+    if(!box) return;
+
+    if(method === "Spedizione"){
+        box.innerHTML = `
+            <label class="format-label">Nome e Cognome</label>
+            <input class="format-select" id="fullName" placeholder="Nome e Cognome">
+
+            <label class="format-label">Paese</label>
+            <input class="format-select" id="country" placeholder="Paese">
+
+            <label class="format-label">Regione / Stato</label>
+            <input class="format-select" id="region" placeholder="Regione / Stato">
+
+            <label class="format-label">Città</label>
+            <input class="format-select" id="city" placeholder="Città">
+
+            <label class="format-label">CAP</label>
+            <input class="format-select" id="zip" placeholder="CAP">
+
+            <label class="format-label">Via e numero civico</label>
+            <input class="format-select" id="address" placeholder="Via e numero civico">
+
+            <label class="format-label">Email</label>
+            <input class="format-select" id="email" placeholder="Email">
+
+            <label class="format-label">Telefono</label>
+            <input class="format-select" id="phone" placeholder="Telefono">
+
+            <label class="format-label">Corriere preferito</label>
+            <select class="format-select" id="courier">
+                <option value="UPS">UPS</option>
+                <option value="DHL">DHL</option>
+                <option value="FedEx">FedEx</option>
+                <option value="Bartolini">Bartolini</option>
+                <option value="InPost">InPost</option>
+                <option value="Altro">Altro</option>
+            </select>
+
+            <label class="format-label">Note</label>
+            <textarea class="format-select" id="notes" placeholder="Note"></textarea>
+        `;
+    }
+
+    if(method === "Delivery"){
+        box.innerHTML = `
+            <label class="format-label">Nome e Cognome</label>
+            <input class="format-select" id="fullName" placeholder="Nome e Cognome">
+
+            <label class="format-label">Paese</label>
+            <input class="format-select" id="country" placeholder="Paese">
+
+            <label class="format-label">Regione / Stato</label>
+            <input class="format-select" id="region" placeholder="Regione / Stato">
+
+            <label class="format-label">Città</label>
+            <input class="format-select" id="city" placeholder="Città">
+
+            <label class="format-label">Indirizzo</label>
+            <input class="format-select" id="address" placeholder="Indirizzo">
+
+            <label class="format-label">Telefono</label>
+            <input class="format-select" id="phone" placeholder="Telefono">
+
+            <label class="format-label">Data desiderata</label>
+            <input class="format-select" id="date" placeholder="Es. Martedì">
+
+            <label class="format-label">Fascia oraria</label>
+            <input class="format-select" id="time" placeholder="Es. 15:00 - 18:00">
+
+            <label class="format-label">Note</label>
+            <textarea class="format-select" id="notes" placeholder="Note"></textarea>
+        `;
+    }
+
+    if(method === "Meet Up"){
+        box.innerHTML = `
+            <label class="format-label">Nome</label>
+            <input class="format-select" id="fullName" placeholder="Nome">
+
+            <label class="format-label">Paese</label>
+            <input class="format-select" id="country" placeholder="Paese">
+
+            <label class="format-label">Città</label>
+            <input class="format-select" id="city" placeholder="Città">
+
+            <label class="format-label">Zona incontro</label>
+            <input class="format-select" id="zone" placeholder="Zona">
+
+            <label class="format-label">Data</label>
+            <input class="format-select" id="date" placeholder="Es. Martedì">
+
+            <label class="format-label">Orario preferito</label>
+            <input class="format-select" id="time" placeholder="Es. 18:30">
+
+            <label class="format-label">Note</label>
+            <textarea class="format-select" id="notes" placeholder="Note"></textarea>
+        `;
+    }
 }
 
 function changeQuantity(index, amount){
@@ -259,6 +362,10 @@ function removeFromCart(index){
     showCart();
 }
 
+function getValue(id){
+    return document.getElementById(id)?.value || "";
+}
+
 function buildOrderMessage(){
     let message = "Ciao, vorrei informazioni per questo ordine:%0A%0A";
 
@@ -269,12 +376,28 @@ function buildOrderMessage(){
         message += `Totale articolo: €${item.price * item.quantity}%0A%0A`;
     });
 
-    const orderMethod = document.getElementById("orderMethod")?.value || "Non specificato";
-    const paymentMethod = document.getElementById("paymentMethod")?.value || "Non specificato";
     const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const orderMethod = getValue("orderMethod");
+    const paymentMethod = getValue("paymentMethod");
 
     message += `Metodo ordine: ${orderMethod}%0A`;
     message += `Metodo pagamento: ${paymentMethod}%0A%0A`;
+
+    message += `Dati ordine:%0A`;
+    message += `Nome: ${getValue("fullName")}%0A`;
+    message += `Paese: ${getValue("country")}%0A`;
+    message += `Regione/Stato: ${getValue("region")}%0A`;
+    message += `Città: ${getValue("city")}%0A`;
+    message += `CAP: ${getValue("zip")}%0A`;
+    message += `Indirizzo: ${getValue("address")}%0A`;
+    message += `Email: ${getValue("email")}%0A`;
+    message += `Telefono: ${getValue("phone")}%0A`;
+    message += `Corriere: ${getValue("courier")}%0A`;
+    message += `Zona: ${getValue("zone")}%0A`;
+    message += `Data: ${getValue("date")}%0A`;
+    message += `Orario: ${getValue("time")}%0A`;
+    message += `Note: ${getValue("notes")}%0A%0A`;
+
     message += `Totale: €${total}`;
 
     return message;
