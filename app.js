@@ -1,6 +1,14 @@
 console.log("BPFAM App avviata");
 
 let products = [];
+let cart = [];
+
+const contacts = {
+    telegram: "#",
+    instagram: "#",
+    whatsapp: "#",
+    signal: "#"
+};
 
 if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("service-worker.js");
@@ -14,13 +22,6 @@ window.addEventListener("load", () => {
         if (splash) splash.style.display = "none";
     }, 2200);
 });
-
-const contacts = {
-    telegram: "#",
-    instagram: "#",
-    whatsapp: "#",
-    signal: "#"
-};
 
 async function loadProducts(){
     try{
@@ -48,6 +49,13 @@ function openSection(section){
             `;
         break;
 
+        case "vip":
+            content.innerHTML = `
+                <h2>👑 VIP Access</h2>
+                <p>Area riservata in preparazione.</p>
+            `;
+        break;
+
         case "contatti":
             showContatti();
         break;
@@ -55,8 +63,12 @@ function openSection(section){
         case "info":
             content.innerHTML = `
                 <h2>ℹ️ Informazioni</h2>
-                <p>Orari, delivery, spedizioni e FAQ.</p>
+                <p>Delivery, spedizioni, FAQ e aggiornamenti ufficiali.</p>
             `;
+        break;
+
+        case "carrello":
+            showCart();
         break;
     }
 }
@@ -93,6 +105,8 @@ function showVetrina(category){
         : products.filter(product => product.category === category || product.tag === category);
 
     let productHTML = filteredProducts.map((product, index) => {
+        const realIndex = products.indexOf(product);
+
         const options = Object.keys(product.formats).map(format => `
             <option value="${format}">${format}</option>
         `).join("");
@@ -104,16 +118,17 @@ function showVetrina(category){
                 <p>${product.description}</p>
 
                 <label class="format-label">Formato</label>
-                <select class="format-select" onchange="updatePrice(${index}, this.value)">
+                <select class="format-select" id="format-${realIndex}" onchange="updatePrice(${realIndex}, this.value)">
                     ${options}
                 </select>
 
                 <div class="product-meta">
                     <span>${product.status}</span>
-                    <span id="price-${index}">${Object.values(product.formats)[0]}</span>
+                    <span id="price-${realIndex}">${Object.values(product.formats)[0]}</span>
                 </div>
 
-                <a class="contact-btn" href="${contacts.telegram}" target="_blank">Richiedi info</a>
+                <button class="contact-btn" onclick="addToCart(${realIndex})">🛒 Aggiungi al carrello</button>
+                <a class="contact-btn" href="${contacts.telegram}" target="_blank">💬 Richiedi info</a>
             </div>
         `;
     }).join("");
@@ -136,5 +151,94 @@ function showVetrina(category){
 
 function updatePrice(index, format){
     const priceBox = document.getElementById(`price-${index}`);
-    priceBox.textContent = products[index].formats[format];
+    if(priceBox){
+        priceBox.textContent = products[index].formats[format];
+    }
+}
+
+function addToCart(index){
+    const product = products[index];
+    const formatSelect = document.getElementById(`format-${index}`);
+    const selectedFormat = formatSelect ? formatSelect.value : Object.keys(product.formats)[0];
+
+    cart.push({
+        name: product.name,
+        format: selectedFormat,
+        price: product.formats[selectedFormat]
+    });
+
+    updateCartCount();
+    alert("Aggiunto al carrello");
+}
+
+function updateCartCount(){
+    const cartCount = document.getElementById("cartCount");
+    if(cartCount){
+        cartCount.textContent = cart.length;
+    }
+}
+
+function showCart(){
+    const content = document.getElementById("content");
+
+    if(cart.length === 0){
+        content.innerHTML = `
+            <h2>🛒 Carrello</h2>
+            <p>Il carrello è vuoto.</p>
+        `;
+        return;
+    }
+
+    const cartHTML = cart.map((item, index) => `
+        <div class="product-card">
+            <h3>${item.name}</h3>
+            <p>Formato: ${item.format}</p>
+            <div class="product-meta">
+                <span>${item.price}</span>
+                <button onclick="removeFromCart(${index})">Rimuovi</button>
+            </div>
+        </div>
+    `).join("");
+
+    content.innerHTML = `
+        <h2>🛒 Carrello</h2>
+        ${cartHTML}
+        <a class="contact-btn" href="${contacts.telegram}" target="_blank">Invia richiesta</a>
+    `;
+}
+
+function removeFromCart(index){
+    cart.splice(index, 1);
+    updateCartCount();
+    showCart();
+}
+
+function searchProducts(){
+    const input = document.getElementById("searchInput");
+    const query = input.value.toLowerCase();
+
+    const content = document.getElementById("content");
+
+    if(query.length < 2){
+        return;
+    }
+
+    const results = products.filter(product =>
+        product.name.toLowerCase().includes(query) ||
+        product.category.toLowerCase().includes(query) ||
+        product.tag.toLowerCase().includes(query)
+    );
+
+    let resultHTML = results.map((product) => `
+        <div class="product-card">
+            <img src="${product.image}" class="product-img" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <p>${product.description}</p>
+        </div>
+    `).join("");
+
+    content.innerHTML = `
+        <h2>🔍 Risultati ricerca</h2>
+        ${resultHTML || "<p>Nessun risultato trovato.</p>"}
+    `;
 }
