@@ -1,6 +1,7 @@
 console.log("BPFAM App avviata");
 
 let products = [];
+let reviews = [];
 let cart = [];
 
 const contacts = {
@@ -16,6 +17,7 @@ if ("serviceWorker" in navigator) {
 
 window.addEventListener("load", () => {
     loadProducts();
+    loadReviews();
 
     setTimeout(() => {
         const splash = document.getElementById("splash");
@@ -33,27 +35,59 @@ async function loadProducts(){
     }
 }
 
+async function loadReviews(){
+    try{
+        const response = await fetch("reviews.json");
+        reviews = await response.json();
+    }catch(error){
+        console.error("Errore recensioni:", error);
+        reviews = [];
+    }
+}
+
 function openSection(section){
     const content = document.getElementById("content");
 
     if(section === "vetrina") showVetrina("Tutti");
-    if(section === "recensioni") content.innerHTML = `<h2>⭐ Recensioni</h2><p>Foto, video e feedback clienti.</p>`;
+    if(section === "recensioni") showReviews();
     if(section === "vip") content.innerHTML = `<h2>👑 VIP Access</h2><p>Area riservata in preparazione.</p>`;
     if(section === "contatti") showContatti();
     if(section === "info") content.innerHTML = `<h2>ℹ️ Informazioni</h2><p>Solo per maggiorenni. Disponibile dove consentito dalla legge locale.</p>`;
     if(section === "carrello") showCart();
 }
 
-function getVariants(product){
-    if(product.variants) return product.variants;
+function showReviews(){
+    const content = document.getElementById("content");
 
-    if(product.formats){
-        return Object.entries(product.formats).map(([size, price]) => ({
-            size: size,
-            price: price
-        }));
+    if(reviews.length === 0){
+        content.innerHTML = `<h2>⭐ Recensioni</h2><p>Nessuna recensione disponibile.</p>`;
+        return;
     }
 
+    const reviewHTML = reviews.map(review => `
+        <div class="product-card">
+            ${review.type === "video"
+                ? `<video class="product-img" controls src="${review.media}"></video>`
+                : `<img src="${review.media}" class="product-img" alt="${review.title}">`
+            }
+            <h3>${review.title}</h3>
+            <p>${"⭐".repeat(review.rating || 5)}</p>
+            <p>${review.text}</p>
+        </div>
+    `).join("");
+
+    content.innerHTML = `
+        <h2>⭐ Recensioni</h2>
+        <p>Feedback e contenuti verificati.</p>
+        ${reviewHTML}
+    `;
+}
+
+function getVariants(product){
+    if(product.variants) return product.variants;
+    if(product.formats){
+        return Object.entries(product.formats).map(([size, price]) => ({ size, price }));
+    }
     return [{ size: "Info", price: 0 }];
 }
 
@@ -125,9 +159,7 @@ function addToCart(index){
     const select = document.getElementById(`variant-${index}`);
     const selected = variants[select ? select.value : 0];
 
-    const existingItem = cart.find(item =>
-        item.name === product.name && item.size === selected.size
-    );
+    const existingItem = cart.find(item => item.name === product.name && item.size === selected.size);
 
     if(existingItem){
         existingItem.quantity += 1;
@@ -202,11 +234,7 @@ function showCart(){
 
 function changeQuantity(index, amount){
     cart[index].quantity += amount;
-
-    if(cart[index].quantity <= 0){
-        cart.splice(index, 1);
-    }
-
+    if(cart[index].quantity <= 0) cart.splice(index, 1);
     updateCartCount();
     showCart();
 }
@@ -237,17 +265,9 @@ function sendOrder(){
     const method = document.getElementById("checkoutContact").value;
     const message = buildOrderMessage();
 
-    if(method === "telegram"){
-        window.open(`${contacts.telegram}`, "_blank");
-    }
-
-    if(method === "whatsapp"){
-        window.open(`${contacts.whatsapp}?text=${message}`, "_blank");
-    }
-
-    if(method === "signal"){
-        window.open(`${contacts.signal}`, "_blank");
-    }
+    if(method === "telegram") window.open(`${contacts.telegram}`, "_blank");
+    if(method === "whatsapp") window.open(`${contacts.whatsapp}?text=${message}`, "_blank");
+    if(method === "signal") window.open(`${contacts.signal}`, "_blank");
 }
 
 function showContatti(){
