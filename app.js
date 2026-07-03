@@ -1,10 +1,14 @@
 console.log("BPFAM App avviata");
 
+let products = [];
+
 if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("service-worker.js");
 }
 
 window.addEventListener("load", () => {
+    loadProducts();
+
     setTimeout(() => {
         const splash = document.getElementById("splash");
         if (splash) splash.style.display = "none";
@@ -18,32 +22,16 @@ const contacts = {
     signal: "#"
 };
 
-const products = [
-    {
-        name: "Articolo 1",
-        category: "Novità",
-        status: "Disponibile",
-        description: "Scheda articolo ufficiale BPFAM.",
-        tag: "Top",
-        image: "logo.jpg.PNG",
-        formats: {
-            "Small": "Info in chat",
-            "Medium": "Info in chat",
-            "Large": "Info in chat"
-        }
-    },
-    {
-        name: "Articolo VIP",
-        category: "VIP",
-        status: "Su richiesta",
-        description: "Articolo riservato agli utenti VIP.",
-        tag: "VIP",
-        image: "logo.jpg.PNG",
-        formats: {
-            "VIP": "Accesso riservato"
-        }
+async function loadProducts(){
+    try{
+        const response = await fetch("products.json");
+        products = await response.json();
+        console.log("Prodotti caricati:", products);
+    }catch(error){
+        console.error("Errore caricamento prodotti:", error);
+        products = [];
     }
-];
+}
 
 function openSection(section){
     const content = document.getElementById("content");
@@ -91,6 +79,14 @@ function showContatti(){
 
 function showVetrina(category){
     const content = document.getElementById("content");
+
+    if(products.length === 0){
+        content.innerHTML = `
+            <h2>📸 Vetrina</h2>
+            <p>Caricamento catalogo...</p>
+        `;
+        return;
+    }
 
     const filteredProducts = category === "Tutti"
         ? products
