@@ -250,3 +250,29 @@ h1{
 @keyframes hideSplash{
     to{ opacity:0; visibility:hidden; }
 }
+/* ===== Contatti ===== */
+
+.contact-list{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    margin-top:20px;
+}
+
+.contact-link{
+    display:block;
+    width:100%;
+    padding:15px;
+    border-radius:14px;
+    background:#000;
+    border:1px solid #d4af37;
+    color:#d4af37;
+    text-decoration:none;
+    font-weight:bold;
+    text-align:center;
+}
+
+.contact-link:hover{
+    background:#d4af37;
+    color:#000;
+}
