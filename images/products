@@ -1,0 +1,15 @@
+[
+  {
+    "name": "Nome prodotto",
+    "category": "Novità",
+    "status": "Disponibile",
+    "description": "Descrizione breve.",
+    "tag": "Top",
+    "image": "images/products/prodotto1.jpg",
+    "formats": {
+      "Small": "Info in chat",
+      "Medium": "Info in chat",
+      "Large": "Info in chat"
+    }
+  }
+]
