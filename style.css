@@ -1,4 +1,124 @@
-/* ===== Vetrina avanzata ===== */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#000;
+    color:#fff;
+    min-height:100vh;
+}
+
+.app{
+    width:100%;
+    max-width:450px;
+    margin:auto;
+    padding:25px 20px 40px;
+}
+
+.hero{
+    text-align:center;
+    margin-top:20px;
+    margin-bottom:35px;
+}
+
+.logo{
+    width:180px;
+    border-radius:24px;
+    box-shadow:0 0 30px rgba(212,175,55,.25);
+    margin-bottom:20px;
+}
+
+h1{
+    color:#d4af37;
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    color:#bfbfbf;
+    font-size:15px;
+}
+
+.menu-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    margin-top:25px;
+}
+
+.menu-card{
+    background:#111;
+    border:1px solid #d4af37;
+    border-radius:20px;
+    color:#fff;
+    padding:22px 10px;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.menu-card:hover{
+    transform:translateY(-4px);
+    background:#181818;
+}
+
+.menu-card span{
+    display:block;
+    font-size:34px;
+    margin-bottom:10px;
+}
+
+.menu-card strong{
+    font-size:17px;
+}
+
+.content-card{
+    background:#111;
+    border:1px solid #2d2d2d;
+    border-radius:20px;
+    padding:22px;
+    margin-top:30px;
+    text-align:center;
+}
+
+.content-card h2{
+    color:#d4af37;
+    margin-bottom:12px;
+}
+
+.content-card p{
+    color:#bfbfbf;
+    line-height:1.5;
+}
+
+.category-row{
+    display:flex;
+    gap:10px;
+    overflow-x:auto;
+    margin:18px 0;
+    padding-bottom:5px;
+}
+
+.category-pill{
+    background:#000;
+    color:#d4af37;
+    border:1px solid #d4af37;
+    border-radius:999px;
+    padding:10px 14px;
+    font-size:14px;
+    white-space:nowrap;
+}
+
+.product-card{
+    background:#000;
+    border:1px solid #333;
+    border-radius:18px;
+    padding:16px;
+    margin-top:15px;
+    text-align:left;
+}
 
 .product-img{
     width:100%;
@@ -7,6 +127,16 @@
     border-radius:16px;
     margin-bottom:15px;
     border:1px solid #333;
+}
+
+.product-card h3{
+    color:#d4af37;
+    margin-bottom:8px;
+}
+
+.product-card p{
+    color:#bfbfbf;
+    font-size:14px;
 }
 
 .format-label{
@@ -26,4 +156,97 @@
     padding:13px;
     font-size:15px;
     outline:none;
+}
+
+.product-meta{
+    display:flex;
+    justify-content:space-between;
+    margin-top:14px;
+    color:#fff;
+    font-weight:bold;
+}
+
+.contact-btn{
+    display:block;
+    width:100%;
+    margin-top:15px;
+    padding:14px;
+    border-radius:14px;
+    background:#d4af37;
+    color:#000;
+    text-align:center;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.splash{
+    position:fixed;
+    inset:0;
+    background:#000;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    animation:hideSplash .8s ease forwards;
+    animation-delay:2s;
+}
+
+.splash-logo{
+    width:190px;
+    margin-bottom:20px;
+    animation:zoomLogo 1.2s ease;
+}
+
+.splash p{
+    color:#d4af37;
+    font-size:18px;
+    letter-spacing:1px;
+}
+
+.update-box{
+    position:fixed;
+    left:20px;
+    right:20px;
+    bottom:20px;
+    background:#111;
+    border:2px solid #d4af37;
+    border-radius:18px;
+    padding:18px;
+    text-align:center;
+    display:none;
+    z-index:99999;
+    box-shadow:0 0 25px rgba(212,175,55,.25);
+}
+
+.update-box h3{
+    color:#d4af37;
+    margin-bottom:10px;
+}
+
+.update-box p{
+    color:#d0d0d0;
+    margin-bottom:15px;
+    line-height:1.4;
+}
+
+.update-box button{
+    width:100%;
+    background:#d4af37;
+    color:#000;
+    border:none;
+    border-radius:12px;
+    padding:15px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+@keyframes zoomLogo{
+    from{ transform:scale(.7); opacity:0; }
+    to{ transform:scale(1); opacity:1; }
+}
+
+@keyframes hideSplash{
+    to{ opacity:0; visibility:hidden; }
 }
