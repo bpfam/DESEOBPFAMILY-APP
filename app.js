@@ -27,7 +27,6 @@ async function loadProducts(){
     try{
         const response = await fetch("products.json");
         products = await response.json();
-        console.log("Prodotti caricati:", products);
     }catch(error){
         console.error("Errore prodotti:", error);
         products = [];
@@ -55,7 +54,7 @@ function getVariants(product){
         }));
     }
 
-    return [{ size: "Info", price: "Info in chat" }];
+    return [{ size: "Info", price: 0 }];
 }
 
 function showVetrina(category){
@@ -116,7 +115,8 @@ function showVetrina(category){
 
 function updatePrice(index, variantIndex){
     const variants = getVariants(products[index]);
-    document.getElementById(`price-${index}`).textContent = `€${variants[variantIndex].price}`;
+    const priceBox = document.getElementById(`price-${index}`);
+    if(priceBox) priceBox.textContent = `€${variants[variantIndex].price}`;
 }
 
 function addToCart(index){
@@ -125,11 +125,21 @@ function addToCart(index){
     const select = document.getElementById(`variant-${index}`);
     const selected = variants[select ? select.value : 0];
 
-    cart.push({
-        name: product.name,
-        size: selected.size,
-        price: selected.price
-    });
+    const existingItem = cart.find(item =>
+        item.name === product.name && item.size === selected.size
+    );
+
+    if(existingItem){
+        existingItem.quantity += 1;
+    }else{
+        cart.push({
+            name: product.name,
+            category: product.category,
+            size: selected.size,
+            price: Number(selected.price || 0),
+            quantity: 1
+        });
+    }
 
     updateCartCount();
     alert("Aggiunto al carrello");
@@ -137,7 +147,8 @@ function addToCart(index){
 
 function updateCartCount(){
     const cartCount = document.getElementById("cartCount");
-    if(cartCount) cartCount.textContent = cart.length;
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    if(cartCount) cartCount.textContent = totalItems;
 }
 
 function showCart(){
@@ -148,15 +159,23 @@ function showCart(){
         return;
     }
 
-    const total = cart.reduce((sum, item) => sum + Number(item.price || 0), 0);
+    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
     const cartHTML = cart.map((item, index) => `
         <div class="product-card">
             <h3>${item.name}</h3>
+            <p>${item.category || ""}</p>
             <p>Formato: ${item.size}</p>
+
+            <div class="qty-row">
+                <button onclick="changeQuantity(${index}, -1)">−</button>
+                <span>${item.quantity}</span>
+                <button onclick="changeQuantity(${index}, 1)">+</button>
+            </div>
+
             <div class="product-meta">
-                <span>€${item.price}</span>
-                <button onclick="removeFromCart(${index})">Rimuovi</button>
+                <span>€${item.price * item.quantity}</span>
+                <button class="remove-btn" onclick="removeFromCart(${index})">Rimuovi</button>
             </div>
         </div>
     `).join("");
@@ -164,17 +183,71 @@ function showCart(){
     content.innerHTML = `
         <h2>🛒 Carrello</h2>
         ${cartHTML}
+
         <div class="product-card">
             <h3>Totale</h3>
-            <p>€${total}</p>
+            <p class="total-price">€${total}</p>
         </div>
+
+        <label class="format-label">Metodo contatto</label>
+        <select class="format-select" id="checkoutContact">
+            <option value="telegram">Telegram</option>
+            <option value="whatsapp">WhatsApp</option>
+            <option value="signal">Signal</option>
+        </select>
+
+        <button class="contact-btn" onclick="sendOrder()">Invia richiesta</button>
     `;
+}
+
+function changeQuantity(index, amount){
+    cart[index].quantity += amount;
+
+    if(cart[index].quantity <= 0){
+        cart.splice(index, 1);
+    }
+
+    updateCartCount();
+    showCart();
 }
 
 function removeFromCart(index){
     cart.splice(index, 1);
     updateCartCount();
     showCart();
+}
+
+function buildOrderMessage(){
+    let message = "Ciao, vorrei informazioni per questo ordine:%0A%0A";
+
+    cart.forEach((item, index) => {
+        message += `${index + 1}. ${item.name}%0A`;
+        message += `Formato: ${item.size}%0A`;
+        message += `Quantità: ${item.quantity}%0A`;
+        message += `Totale articolo: €${item.price * item.quantity}%0A%0A`;
+    });
+
+    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    message += `Totale: €${total}`;
+
+    return message;
+}
+
+function sendOrder(){
+    const method = document.getElementById("checkoutContact").value;
+    const message = buildOrderMessage();
+
+    if(method === "telegram"){
+        window.open(`${contacts.telegram}`, "_blank");
+    }
+
+    if(method === "whatsapp"){
+        window.open(`${contacts.whatsapp}?text=${message}`, "_blank");
+    }
+
+    if(method === "signal"){
+        window.open(`${contacts.signal}`, "_blank");
+    }
 }
 
 function showContatti(){
