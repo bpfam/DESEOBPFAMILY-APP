@@ -93,6 +93,64 @@ h1{
     line-height:1.5;
 }
 
+.category-row{
+    display:flex;
+    gap:10px;
+    overflow-x:auto;
+    margin:18px 0;
+    padding-bottom:5px;
+}
+
+.category-pill{
+    background:#000;
+    color:#d4af37;
+    border:1px solid #d4af37;
+    border-radius:999px;
+    padding:10px 14px;
+    font-size:14px;
+    white-space:nowrap;
+}
+
+.product-card{
+    background:#000;
+    border:1px solid #333;
+    border-radius:18px;
+    padding:16px;
+    margin-top:15px;
+    text-align:left;
+}
+
+.product-card h3{
+    color:#d4af37;
+    margin-bottom:8px;
+}
+
+.product-card p{
+    color:#bfbfbf;
+    font-size:14px;
+}
+
+.product-meta{
+    display:flex;
+    justify-content:space-between;
+    margin-top:14px;
+    color:#fff;
+    font-weight:bold;
+}
+
+.contact-btn{
+    display:block;
+    width:100%;
+    margin-top:15px;
+    padding:14px;
+    border-radius:14px;
+    background:#d4af37;
+    color:#000;
+    text-align:center;
+    text-decoration:none;
+    font-weight:bold;
+}
+
 .splash{
     position:fixed;
     inset:0;
@@ -119,19 +177,10 @@ h1{
 }
 
 @keyframes zoomLogo{
-    from{
-        transform:scale(.7);
-        opacity:0;
-    }
-    to{
-        transform:scale(1);
-        opacity:1;
-    }
+    from{ transform:scale(.7); opacity:0; }
+    to{ transform:scale(1); opacity:1; }
 }
 
 @keyframes hideSplash{
-    to{
-        opacity:0;
-        visibility:hidden;
-    }
+    to{ opacity:0; visibility:hidden; }
 }
