@@ -8,21 +8,26 @@
 body{
     background:#000;
     color:#fff;
-    display:flex;
-    justify-content:center;
-    align-items:center;
     min-height:100vh;
 }
 
 .app{
-    width:90%;
-    max-width:420px;
+    width:100%;
+    max-width:450px;
+    margin:auto;
+    padding:25px 20px 40px;
+}
+
+.hero{
     text-align:center;
+    margin-top:20px;
+    margin-bottom:35px;
 }
 
 .logo{
-    width:170px;
-    border-radius:20px;
+    width:180px;
+    border-radius:24px;
+    box-shadow:0 0 30px rgba(212,175,55,.25);
     margin-bottom:20px;
 }
 
@@ -34,28 +39,99 @@ h1{
 
 .subtitle{
     color:#bfbfbf;
-    margin-bottom:35px;
+    font-size:15px;
 }
 
-.buttons{
-    display:flex;
-    flex-direction:column;
-    gap:18px;
+.menu-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    margin-top:25px;
 }
 
-button{
-    background:#d4af37;
-    color:#000;
-    border:none;
-    border-radius:16px;
-    padding:18px;
-    font-size:18px;
-    font-weight:bold;
+.menu-card{
+    background:#111;
+    border:1px solid #d4af37;
+    border-radius:20px;
+    color:#fff;
+    padding:22px 10px;
     cursor:pointer;
     transition:.25s;
 }
 
-button:hover{
-    transform:scale(1.03);
-    background:#f0cf63;
+.menu-card:hover{
+    transform:translateY(-4px);
+    background:#181818;
+}
+
+.menu-card span{
+    display:block;
+    font-size:34px;
+    margin-bottom:10px;
+}
+
+.menu-card strong{
+    font-size:17px;
+}
+
+.content-card{
+    background:#111;
+    border:1px solid #2d2d2d;
+    border-radius:20px;
+    padding:22px;
+    margin-top:30px;
+    text-align:center;
+}
+
+.content-card h2{
+    color:#d4af37;
+    margin-bottom:12px;
+}
+
+.content-card p{
+    color:#bfbfbf;
+    line-height:1.5;
+}
+
+.splash{
+    position:fixed;
+    inset:0;
+    background:#000;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    animation:hideSplash .8s ease forwards;
+    animation-delay:2s;
+}
+
+.splash-logo{
+    width:190px;
+    margin-bottom:20px;
+    animation:zoomLogo 1.2s ease;
+}
+
+.splash p{
+    color:#d4af37;
+    font-size:18px;
+    letter-spacing:1px;
+}
+
+@keyframes zoomLogo{
+    from{
+        transform:scale(.7);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+@keyframes hideSplash{
+    to{
+        opacity:0;
+        visibility:hidden;
+    }
 }
