@@ -1,26 +1,178 @@
 [
   {
-    "name": "Articolo 1",
-    "category": "Novità",
-    "status": "Disponibile",
-    "description": "Scheda articolo ufficiale BPFAM.",
-    "tag": "Top",
-    "image": "logo.jpg.PNG",
-    "formats": {
-      "Small": "Info in chat",
-      "Medium": "Info in chat",
-      "Large": "Info in chat"
-    }
+    "category": "❄️📦 Neve",
+    "name": "Boliviana 🇧🇴",
+    "image": "https://i.postimg.cc/PxkVFsFh/IMG-2037.jpg",
+    "variants": [
+      { "size": "1g", "price": 60 },
+      { "size": "5g", "price": 200 },
+      { "size": "10g", "price": 375 },
+      { "size": "50g", "price": 1600 },
+      { "size": "100g", "price": 2850 },
+      { "size": "500g", "price": 13000 },
+      { "size": "1kg", "price": 24000 }
+    ]
   },
   {
-    "name": "Articolo VIP",
-    "category": "VIP",
-    "status": "Su richiesta",
-    "description": "Articolo riservato agli utenti VIP.",
-    "tag": "VIP",
-    "image": "logo.jpg.PNG",
-    "formats": {
-      "VIP": "Accesso riservato"
-    }
+    "category": "Cali Hash Direct 🇺🇸",
+    "name": "Hashski Dry",
+    "image": "https://i.postimg.cc/rFpRNbWq/IMG-1725.jpg",
+    "variants": [
+      { "size": "1g", "price": 20 },
+      { "size": "25g", "price": 470 },
+      { "size": "50g", "price": 900 },
+      { "size": "100g", "price": 1750 },
+      { "size": "250g", "price": 4100 }
+    ]
+  },
+  {
+    "category": "Cali Hash Direct 🇺🇸",
+    "name": "CALI PLATE Frozen Sift",
+    "image": "https://i.postimg.cc/sfJHKSp5/IMG-1732.jpg",
+    "variants": [
+      { "size": "1g", "price": 20 },
+      { "size": "25g", "price": 470 },
+      { "size": "50g", "price": 900 },
+      { "size": "100g", "price": 1750 },
+      { "size": "250g", "price": 4100 }
+    ]
+  },
+  {
+    "category": "Cali Hash Direct 🇺🇸",
+    "name": "CALI PLATES Frozen Sift Single Source",
+    "image": "https://i.postimg.cc/j5mHkzjm/IMG-2035.png",
+    "variants": [
+      { "size": "1g", "price": 20 },
+      { "size": "25g", "price": 470 },
+      { "size": "50g", "price": 900 },
+      { "size": "100g", "price": 1750 },
+      { "size": "250g", "price": 4100 }
+    ]
+  },
+  {
+    "category": "Cali Hash Direct 🇺🇸",
+    "name": "Hashski Static Sift",
+    "image": "https://i.postimg.cc/Gmy2M1pT/IMG-1724.jpg",
+    "variants": [
+      { "size": "1g", "price": 30 },
+      { "size": "10g", "price": 280 },
+      { "size": "25g", "price": 675 },
+      { "size": "50g", "price": 1250 }
+    ]
+  },
+  {
+    "category": "Cali Hash Direct 🇺🇸",
+    "name": "STATIC ROOM Purple Label",
+    "image": "https://i.postimg.cc/PqLNV08n/IMG-1979.jpg",
+    "variants": [
+      { "size": "1g", "price": 50 },
+      { "size": "5g", "price": 200 },
+      { "size": "10g", "price": 375 },
+      { "size": "25g", "price": 880 }
+    ]
+  },
+  {
+    "category": "Cali Hash Direct 🇺🇸",
+    "name": "DRY Premium Gold",
+    "image": "https://LINK-IMMAGINE.jpg",
+    "variants": [
+      { "size": "10g", "price": 175 },
+      { "size": "25g", "price": 420 },
+      { "size": "50g", "price": 750 },
+      { "size": "100g", "price": 1400 }
+    ]
+  },
+  {
+    "category": "Hash Direct 🇲🇦",
+    "name": "BPFAM Static Sift",
+    "image": "https://i.postimg.cc/0QR5Wjs4/IMG-1972.jpg",
+    "variants": [
+      { "size": "10g", "price": 140 },
+      { "size": "50g", "price": 650 },
+      { "size": "100g", "price": 1250 },
+      { "size": "250g", "price": 3000 },
+      { "size": "500g", "price": 5500 }
+    ]
+  },
+  {
+    "category": "Hash Direct 🇲🇦",
+    "name": "LOONEY FARM Frozen Sift",
+    "image": "https://i.postimg.cc/mZ1r5M3Y/IMG-2033.jpg",
+    "variants": [
+      { "size": "5g", "price": 50 },
+      { "size": "50g", "price": 450 },
+      { "size": "100g", "price": 850 },
+      { "size": "500g", "price": 3850 }
+    ]
+  },
+  {
+    "category": "Hash Direct 🇲🇦",
+    "name": "BPFAM Dry Sift",
+    "image": "https://i.postimg.cc/ZqJZYvy6/IMG-1963.jpg",
+    "variants": [
+      { "size": "5g", "price": 25 },
+      { "size": "50g", "price": 200 },
+      { "size": "100g", "price": 300 },
+      { "size": "500g", "price": 1350 },
+      { "size": "1kg", "price": 2550 }
+    ]
+  },
+  {
+    "category": "Cali Weed 🇺🇸",
+    "name": "LIMITED EDITION Bags/Jars",
+    "image": "https://i.postimg.cc/TY9v7Ys2/IMG-2030.jpg",
+    "variants": [
+      { "size": "3.5g", "price": 90 },
+      { "size": "14g", "price": 340 },
+      { "size": "28g", "price": 600 }
+    ]
+  },
+  {
+    "category": "Weed 🇪🇸🇳🇱🇨🇦",
+    "name": "CALI SPAIN Top Shelf Bags",
+    "image": "https://i.postimg.cc/JnwF79FF/415AB6BE-90C8-4218-B42E-7A278B3565AA.jpg",
+    "variants": [
+      { "size": "3.5g", "price": 60 },
+      { "size": "14g", "price": 220 },
+      { "size": "28g", "price": 400 }
+    ]
+  },
+  {
+    "category": "Weed 🇪🇸🇳🇱🇨🇦",
+    "name": "AMNESIA HAZE",
+    "image": "https://i.postimg.cc/8cZwv3yf/IMG-1983.jpg",
+    "variants": [
+      { "size": "5g", "price": 30 },
+      { "size": "25g", "price": 125 },
+      { "size": "50g", "price": 220 },
+      { "size": "100g", "price": 380 },
+      { "size": "500g", "price": 1750 },
+      { "size": "1kg", "price": 3200 }
+    ]
+  },
+  
+  {
+    "category": "Weed 🇪🇸🇳🇱🇨🇦",
+    "name": "CALI SPAIN TOP SHELF",
+    "image": "https://i.postimg.cc/15TX1jM1/415AB6BE-90C8-4218-B42E-7A278B3565AA.jpg",
+    "variants": [
+      { "size": "1.5g", "price": 10 },
+      { "size": "50g", "price": 300 },
+      { "size": "100g", "price": 550 },
+      { "size": "500g", "price": 2350 },
+      { "size": "1kg", "price": 4500 }
+    ]
+  },
+  
+  {
+    "category": "Profesional 👩‍💻🤖🌐",
+    "name": "Sito Web / Bot TG",
+    "image": "https://LINK-IMMAGINE.jpg",
+    "variants": [
+      { "size": "Base", "price": 300 },
+      { "size": "Premium", "price": 750 },
+      { "size": "Premium Pro", "price": 1000 }
+      
+    ]
   }
 ]
