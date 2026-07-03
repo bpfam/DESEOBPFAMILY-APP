@@ -3,15 +3,16 @@
   "short_name": "BPFAM",
   "description": "DESEO BP FAMILY App",
   "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#000000",
-  "theme_color": "#d4af37",
+  "theme_color": "#000000",
   "orientation": "portrait",
   "icons": [
     {
-      "src": "logo.jpg.PNG"
+      "src": "logo.jpg.PNG",
       "sizes": "512x512",
-      "type": "image/jpeg"
+      "type": "image/png"
     }
   ]
 }
