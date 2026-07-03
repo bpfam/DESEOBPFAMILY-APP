@@ -4,7 +4,6 @@ if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("service-worker.js");
 }
 
-// Splash Screen
 window.addEventListener("load", () => {
     setTimeout(() => {
         const splash = document.getElementById("splash");
@@ -14,7 +13,6 @@ window.addEventListener("load", () => {
     }, 2200);
 });
 
-// Cambia contenuto della Home
 function openSection(section){
 
     const content = document.getElementById("content");
@@ -23,15 +21,42 @@ function openSection(section){
 
         case "vetrina":
             content.innerHTML = `
-                <h2> 📸Vetrina</h2>
-                <p>Qui verranno mostrati prodotti, categorie e novità.</p>
+                <h2>📸 Vetrina</h2>
+                <p>Catalogo ufficiale BPFAM.</p>
+
+                <div class="category-row">
+                    <span class="category-pill">Novità</span>
+                    <span class="category-pill">Top</span>
+                    <span class="category-pill">Limited</span>
+                    <span class="category-pill">VIP</span>
+                </div>
+
+                <div class="product-card">
+                    <h3>Prodotto 1</h3>
+                    <p>Descrizione breve del prodotto.</p>
+                    <div class="product-meta">
+                        <span>Disponibile</span>
+                        <span>Info in chat</span>
+                    </div>
+                    <a class="contact-btn" href="#">Richiedi info</a>
+                </div>
+
+                <div class="product-card">
+                    <h3>Prodotto 2</h3>
+                    <p>Descrizione breve del prodotto.</p>
+                    <div class="product-meta">
+                        <span>Disponibile</span>
+                        <span>Info in chat</span>
+                    </div>
+                    <a class="contact-btn" href="#">Richiedi info</a>
+                </div>
             `;
         break;
 
         case "recensioni":
             content.innerHTML = `
                 <h2>⭐ Recensioni</h2>
-                <p>Qui compariranno foto, video e recensioni dei clienti.</p>
+                <p>Qui compariranno foto, video e feedback dei clienti.</p>
             `;
         break;
 
@@ -48,7 +73,5 @@ function openSection(section){
                 <p>Orari, Point attivi, Delivery e FAQ.</p>
             `;
         break;
-
     }
-
 }
