@@ -46,9 +46,16 @@
       </div>
 
       <div class="promo-banner">
-        <strong>🔥 BPFAM 2.0</strong>
-        <p>Vetrina, contatti, recensioni e area VIP in un’unica app.</p>
+        <strong>🔥 Novità della settimana</strong>
+        <p>Scopri gli ultimi arrivi e le sezioni aggiornate.</p>
+        <button onclick="openSection('vetrina')">Vai alla Vetrina</button>
       </div>
+    </section>
+
+    <section class="quick-actions">
+      <button onclick="openSection('vetrina')">🛍️ Ultimi arrivi</button>
+      <button onclick="openSection('recensioni')">⭐ Recensioni</button>
+      <button onclick="openSection('vip')">👑 VIP</button>
     </section>
 
     <section class="menu-grid">
@@ -84,8 +91,9 @@
     </section>
 
     <section id="content" class="content-card">
-      <h2>Benvenuto in BPFAM</h2>
-      <p>Seleziona una sezione per continuare.</p>
+      <h2>Prodotti in evidenza</h2>
+      <p>Apri la vetrina per vedere catalogo, formati e disponibilità.</p>
+      <button class="contact-btn" onclick="openSection('vetrina')">Apri Vetrina</button>
     </section>
   </main>
 
