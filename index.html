@@ -8,37 +8,56 @@
 
   <link rel="stylesheet" href="style.css">
   <link rel="manifest" href="manifest.json">
-
-  <!-- Icone -->
   <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-  <!-- Colori -->
   <meta name="theme-color" content="#000000">
-
-  <!-- iPhone -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="BPFAM">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
-  <!-- Android -->
   <meta name="mobile-web-app-capable" content="yes">
 </head>
 
 <body>
 
+  <div id="splash" class="splash">
+    <img src="logo.jpg.PNG" class="splash-logo" alt="BPFAM Logo">
+    <p>Quality. Style. Respect.</p>
+  </div>
+
   <main class="app">
-    <img src="logo.jpg.PNG" class="logo" alt="BPFAM Logo">
+    <section class="hero">
+      <img src="logo.jpg.PNG" class="logo" alt="BPFAM Logo">
+      <h1>DESEO BP FAMILY</h1>
+      <p class="subtitle">Official Network</p>
+    </section>
 
-    <h1>DESEO BP FAMILY</h1>
-    <p class="subtitle">Quality. Style. Respect.</p>
+    <section class="menu-grid">
+      <button class="menu-card" onclick="openSection('vetrina')">
+        <span>🛍️</span>
+        <strong>Vetrina</strong>
+      </button>
 
-    <div class="buttons">
-      <button>Vetrina</button>
-      <button>Recensioni</button>
-      <button>Contatti</button>
-      <button>Info</button>
-    </div>
+      <button class="menu-card" onclick="openSection('recensioni')">
+        <span>⭐</span>
+        <strong>Recensioni</strong>
+      </button>
+
+      <button class="menu-card" onclick="openSection('contatti')">
+        <span>📞</span>
+        <strong>Contatti</strong>
+      </button>
+
+      <button class="menu-card" onclick="openSection('info')">
+        <span>ℹ️</span>
+        <strong>Info</strong>
+      </button>
+    </section>
+
+    <section id="content" class="content-card">
+      <h2>Benvenuto in BPFAM</h2>
+      <p>Seleziona una sezione per continuare.</p>
+    </section>
   </main>
 
   <script src="app.js"></script>
