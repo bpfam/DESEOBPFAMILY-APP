@@ -1,0 +1,17 @@
+{
+  "name": "BPFAM",
+  "short_name": "BPFAM",
+  "description": "DESEO BP FAMILY App",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#d4af37",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}
