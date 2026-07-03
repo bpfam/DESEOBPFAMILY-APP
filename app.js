@@ -221,6 +221,20 @@ function showCart(){
             <p class="total-price">€${total}</p>
         </div>
 
+        <label class="format-label">Metodo ordine</label>
+        <select class="format-select" id="orderMethod">
+            <option value="Meet Up">📍 Meet Up</option>
+            <option value="Delivery">🚚 Delivery</option>
+            <option value="Spedizione">📦 Spedizione</option>
+        </select>
+
+        <label class="format-label">Metodo pagamento</label>
+        <select class="format-select" id="paymentMethod">
+            <option value="Contanti">💵 Contanti</option>
+            <option value="Crypto">₿ Crypto</option>
+            <option value="Da concordare">💬 Da concordare</option>
+        </select>
+
         <label class="format-label">Metodo contatto</label>
         <select class="format-select" id="checkoutContact">
             <option value="telegram">Telegram</option>
@@ -255,7 +269,12 @@ function buildOrderMessage(){
         message += `Totale articolo: €${item.price * item.quantity}%0A%0A`;
     });
 
+    const orderMethod = document.getElementById("orderMethod")?.value || "Non specificato";
+    const paymentMethod = document.getElementById("paymentMethod")?.value || "Non specificato";
     const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+    message += `Metodo ordine: ${orderMethod}%0A`;
+    message += `Metodo pagamento: ${paymentMethod}%0A%0A`;
     message += `Totale: €${total}`;
 
     return message;
