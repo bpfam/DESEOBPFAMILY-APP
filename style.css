@@ -508,3 +508,13 @@ textarea.format-select{
     font-weight:bold;
     box-shadow:0 0 12px rgba(212,175,55,.18);
 }
+.format-select{
+    appearance:none;
+    -webkit-appearance:none;
+    background-image:linear-gradient(45deg, transparent 50%, #d4af37 50%),
+                     linear-gradient(135deg, #d4af37 50%, transparent 50%);
+    background-position:calc(100% - 22px) 50%, calc(100% - 14px) 50%;
+    background-size:8px 8px, 8px 8px;
+    background-repeat:no-repeat;
+    padding-right:45px;
+}
