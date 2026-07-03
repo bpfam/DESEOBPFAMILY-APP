@@ -11,6 +11,13 @@ window.addEventListener("load", () => {
     }, 2200);
 });
 
+const contacts = {
+    telegram: "#",
+    instagram: "#",
+    whatsapp: "#",
+    signal: "#"
+};
+
 const products = [
     {
         name: "Articolo 1",
@@ -54,19 +61,32 @@ function openSection(section){
         break;
 
         case "contatti":
-            content.innerHTML = `
-                <h2>📞 Contatti</h2>
-                <p>Telegram<br>Instagram<br>Signal</p>
-            `;
+            showContatti();
         break;
 
         case "info":
             content.innerHTML = `
                 <h2>ℹ️ Informazioni</h2>
-                <p>Orari, Point attivi, Delivery e FAQ.</p>
+                <p>Orari, delivery, spedizioni e FAQ.</p>
             `;
         break;
     }
+}
+
+function showContatti(){
+    const content = document.getElementById("content");
+
+    content.innerHTML = `
+        <h2>📞 Contatti ufficiali</h2>
+        <p>Scegli dove contattarci.</p>
+
+        <div class="contact-list">
+            <a class="contact-link" href="${contacts.telegram}" target="_blank">💬 Telegram</a>
+            <a class="contact-link" href="${contacts.instagram}" target="_blank">📸 Instagram</a>
+            <a class="contact-link" href="${contacts.whatsapp}" target="_blank">🟢 WhatsApp</a>
+            <a class="contact-link" href="${contacts.signal}" target="_blank">🔐 Signal</a>
+        </div>
+    `;
 }
 
 function showVetrina(category){
@@ -84,7 +104,6 @@ function showVetrina(category){
         return `
             <div class="product-card">
                 <img src="${product.image}" class="product-img" alt="${product.name}">
-
                 <h3>${product.name}</h3>
                 <p>${product.description}</p>
 
@@ -98,7 +117,7 @@ function showVetrina(category){
                     <span id="price-${index}">${Object.values(product.formats)[0]}</span>
                 </div>
 
-                <a class="contact-btn" href="#">Richiedi info</a>
+                <a class="contact-btn" href="${contacts.telegram}" target="_blank">Richiedi info</a>
             </div>
         `;
     }).join("");
