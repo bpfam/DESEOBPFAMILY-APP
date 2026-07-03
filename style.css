@@ -494,3 +494,17 @@ textarea.format-select{
     min-height:90px;
     resize:vertical;
 }
+.product-rating{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    margin:10px 0;
+    padding:8px 14px;
+    background:#111;
+    border:1px solid #d4af37;
+    border-radius:999px;
+    color:#d4af37;
+    font-size:14px;
+    font-weight:bold;
+    box-shadow:0 0 12px rgba(212,175,55,.18);
+}
