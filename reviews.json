@@ -1,0 +1,16 @@
+[
+  {
+    "type": "image",
+    "title": "Recensione 1",
+    "text": "Feedback cliente verificato.",
+    "media": "logo.jpg.PNG",
+    "rating": 5
+  },
+  {
+    "type": "image",
+    "title": "Recensione 2",
+    "text": "Esperienza positiva.",
+    "media": "logo.jpg.PNG",
+    "rating": 5
+  }
+]
