@@ -1,9 +1,11 @@
-const CACHE_NAME = "bpfam-app-v7";
+const CACHE_NAME = "bpfam-app-v8";
+
 const FILES_TO_CACHE = [
   "./",
   "./index.html",
   "./style.css",
   "./app.js",
+  "./products.json",
   "./manifest.json",
   "./logo.jpg.PNG",
   "./icon-192.png",
