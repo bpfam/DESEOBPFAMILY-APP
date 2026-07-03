@@ -26,10 +26,29 @@
   </div>
 
   <main class="app">
+
+    <header class="top-bar">
+      <div>
+        <p class="small-title">Official Network</p>
+        <h1>DESEO BP FAMILY</h1>
+      </div>
+
+      <button class="cart-btn" onclick="openSection('carrello')">
+        🛒 <span id="cartCount">0</span>
+      </button>
+    </header>
+
     <section class="hero">
       <img src="logo.jpg.PNG" class="logo" alt="BPFAM Logo">
-      <h1>DESEO BP FAMILY</h1>
-      <p class="subtitle">Official Network</p>
+
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Cerca nella vetrina..." oninput="searchProducts()">
+      </div>
+
+      <div class="promo-banner">
+        <strong>🔥 BPFAM 2.0</strong>
+        <p>Vetrina, contatti, recensioni e area VIP in un’unica app.</p>
+      </div>
     </section>
 
     <section class="menu-grid">
@@ -43,6 +62,11 @@
         <strong>Recensioni</strong>
       </button>
 
+      <button class="menu-card" onclick="openSection('vip')">
+        <span>👑</span>
+        <strong>VIP Access</strong>
+      </button>
+
       <button class="menu-card" onclick="openSection('contatti')">
         <span>📞</span>
         <strong>Contatti</strong>
@@ -51,6 +75,11 @@
       <button class="menu-card" onclick="openSection('info')">
         <span>ℹ️</span>
         <strong>Info</strong>
+      </button>
+
+      <button class="menu-card" onclick="openSection('carrello')">
+        <span>🛒</span>
+        <strong>Carrello</strong>
       </button>
     </section>
 
