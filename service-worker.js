@@ -1,4 +1,4 @@
-const CACHE_NAME = "bpfam-app-v26";
+const CACHE_NAME = "bpfam-app-v27";
 const FILES_TO_CACHE = [
   "./",
   "./index.html",
