@@ -27,80 +27,126 @@
 
   <main class="app">
 
-    <header class="top-bar">
-      <div>
-        <p class="small-title">Official Network</p>
-        <h1>DESEO BP FAMILY</h1>
-      </div>
+    <!-- HOME -->
+    <div id="homeView">
 
-      <button class="cart-btn" onclick="openSection('carrello')">
-        🛒 <span id="cartCount">0</span>
-      </button>
-    </header>
+      <header class="top-bar">
+        <div>
+          <p class="small-title">Official Network</p>
+          <h1>DESEO BP FAMILY</h1>
+        </div>
 
-    <section class="hero">
-      <img src="logo.jpg.PNG" class="logo" alt="BPFAM Logo">
+        <button class="cart-btn" onclick="openSection('carrello')">
+          🛒 <span id="cartCount">0</span>
+        </button>
+      </header>
 
-      <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Cerca nella vetrina..." oninput="searchProducts()">
-      </div>
+      <section class="hero">
+        <img src="logo.jpg.PNG" class="logo" alt="BPFAM Logo">
 
-      <div class="promo-banner">
-        <strong>🔥 Novità della settimana</strong>
-        <p>Scopri gli ultimi arrivi e le sezioni aggiornate.</p>
-        <button onclick="openSection('vetrina')">Vai alla Vetrina</button>
-      </div>
-    </section>
+        <div class="search-box">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Cerca nella vetrina..."
+            oninput="searchProducts()"
+          >
+        </div>
 
-    <section class="quick-actions">
-      <button onclick="openSection('vetrina')">🛍️ Ultimi arrivi</button>
-      <button onclick="openSection('recensioni')">⭐ Recensioni</button>
-      <button onclick="openSection('vip')">👑 VIP</button>
-    </section>
+        <div class="promo-banner">
+          <strong>🔥 Novità della settimana</strong>
+          <p>Scopri gli ultimi arrivi e le sezioni aggiornate.</p>
+          <button onclick="openSection('vetrina')">
+            Vai alla Vetrina
+          </button>
+        </div>
+      </section>
 
-    <section class="menu-grid">
-      <button class="menu-card" onclick="openSection('vetrina')">
-        <span>🛍️</span>
-        <strong>Vetrina</strong>
-      </button>
+      <section class="quick-actions">
+        <button onclick="openSection('vetrina')">
+          🛍️ Ultimi arrivi
+        </button>
 
-      <button class="menu-card" onclick="openSection('recensioni')">
-        <span>⭐</span>
-        <strong>Recensioni</strong>
-      </button>
+        <button onclick="openSection('recensioni')">
+          ⭐ Recensioni
+        </button>
 
-      <button class="menu-card" onclick="openSection('vip')">
-        <span>👑</span>
-        <strong>VIP Access</strong>
-      </button>
+        <button onclick="openSection('vip')">
+          👑 VIP
+        </button>
+      </section>
 
-      <button class="menu-card" onclick="openSection('contatti')">
-        <span>📞</span>
-        <strong>Contatti</strong>
-      </button>
+      <section class="menu-grid">
+        <button class="menu-card" onclick="openSection('vetrina')">
+          <span>🛍️</span>
+          <strong>Vetrina</strong>
+        </button>
 
-      <button class="menu-card" onclick="openSection('info')">
-        <span>ℹ️</span>
-        <strong>Info</strong>
-      </button>
+        <button class="menu-card" onclick="openSection('recensioni')">
+          <span>⭐</span>
+          <strong>Recensioni</strong>
+        </button>
 
-      <button class="menu-card" onclick="openSection('carrello')">
-        <span>🛒</span>
-        <strong>Carrello</strong>
-      </button>
-    </section>
+        <button class="menu-card" onclick="openSection('vip')">
+          <span>👑</span>
+          <strong>VIP Access</strong>
+        </button>
 
-    <section id="content" class="content-card">
-      <h2>Prodotti in evidenza</h2>
-      <p>Apri la vetrina per vedere catalogo, formati e disponibilità.</p>
-      <button class="contact-btn" onclick="openSection('vetrina')">Apri Vetrina</button>
-    </section>
+        <button class="menu-card" onclick="openSection('contatti')">
+          <span>📞</span>
+          <strong>Contatti</strong>
+        </button>
+
+        <button class="menu-card" onclick="openSection('info')">
+          <span>ℹ️</span>
+          <strong>Info</strong>
+        </button>
+
+        <button class="menu-card" onclick="openSection('carrello')">
+          <span>🛒</span>
+          <strong>Carrello</strong>
+        </button>
+      </section>
+
+      <section class="content-card">
+        <h2>Prodotti in evidenza</h2>
+        <p>Apri la vetrina per vedere catalogo, formati e disponibilità.</p>
+
+        <button class="contact-btn" onclick="openSection('vetrina')">
+          Apri Vetrina
+        </button>
+      </section>
+
+    </div>
+
+    <!-- SEZIONE APERTA -->
+    <div id="sectionView" class="section-view" hidden>
+
+      <header class="section-header">
+        <button class="back-btn" onclick="goHome()">
+          ← Home
+        </button>
+
+        <button class="cart-btn" onclick="openSection('carrello')">
+          🛒 <span id="sectionCartCount">0</span>
+        </button>
+      </header>
+
+      <section id="content" class="content-card section-content">
+        <h2>Caricamento...</h2>
+      </section>
+
+    </div>
+
   </main>
 
   <div id="updateBox" class="update-box">
     <h3>🚀 Nuova versione disponibile</h3>
     <p>Aggiorna BPFAM per vedere le ultime modifiche.</p>
-    <button onclick="updateApp()">Aggiorna ora</button>
+
+    <button onclick="updateApp()">
+      Aggiorna ora
+    </button>
   </div>
 
   <script src="app.js"></script>
