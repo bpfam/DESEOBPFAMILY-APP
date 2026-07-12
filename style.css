@@ -505,3 +505,23 @@ button{
         visibility:hidden;
     }
 }
+.format-label{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+}
+
+.format-hint{
+    color:#9f9f9f;
+    font-size:12px;
+    font-weight:normal;
+}
+
+.format-select{
+    cursor:pointer;
+    box-shadow:0 0 0 1px rgba(255,255,255,.04);
+}
+
+.format-select:focus{
+    box-shadow:0 0 0 3px rgba(212,175,55,.20);
+}
