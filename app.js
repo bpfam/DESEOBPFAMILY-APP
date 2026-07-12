@@ -332,9 +332,10 @@ function showVetrina(category) {
                     ${product.category || "Altro"}
                 </p>
 
-                <label class="format-label">
-                    Formato
-                </label>
+              <label class="format-label">
+    Formato
+    <span class="format-hint">Tocca per vedere altri formati</span>
+</label>
 
                 <select
                     class="format-select"
