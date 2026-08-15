@@ -64,13 +64,8 @@ function openSection(section) {
     const sectionView = document.getElementById("sectionView");
     const content = document.getElementById("content");
 
-    if (homeView) {
-        homeView.hidden = true;
-    }
-
-    if (sectionView) {
-        sectionView.hidden = false;
-    }
+    if (homeView) homeView.hidden = true;
+    if (sectionView) sectionView.hidden = false;
 
     window.scrollTo({
         top: 0,
@@ -119,13 +114,8 @@ function goHome() {
     const homeView = document.getElementById("homeView");
     const sectionView = document.getElementById("sectionView");
 
-    if (sectionView) {
-        sectionView.hidden = true;
-    }
-
-    if (homeView) {
-        homeView.hidden = false;
-    }
+    if (sectionView) sectionView.hidden = true;
+    if (homeView) homeView.hidden = false;
 
     window.scrollTo({
         top: 0,
@@ -157,8 +147,10 @@ function showReviews() {
                     review.type === "video"
                         ? `
                             <video
-                                class="product-img"
+                                class="product-video"
                                 controls
+                                playsinline
+                                preload="metadata"
                                 src="${review.media}"
                             ></video>
                         `
@@ -244,6 +236,7 @@ function showVetrina(category) {
             );
 
     const categoryHTML = categories.map(item => {
+
         const safeCategory = String(item).replace(
             /'/g,
             "\\'"
@@ -260,6 +253,7 @@ function showVetrina(category) {
     }).join("");
 
     const productHTML = filteredProducts.map(product => {
+
         const realIndex = products.indexOf(product);
         const variants = getVariants(product);
         const firstVariant = variants[0];
@@ -285,13 +279,54 @@ function showVetrina(category) {
                         : ""
                 }
 
-                <img
-                    src="${product.image || "logo.jpg.PNG"}"
-                    class="product-img"
-                    alt="${product.name || "Prodotto"}"
-                    loading="lazy"
-                    onerror="this.src='logo.jpg.PNG'"
-                >
+                ${
+                    product.image
+                        ? `
+                            <img
+                                src="${product.image}"
+                                class="product-img"
+                                alt="${product.name || "Prodotto"}"
+                                loading="lazy"
+                                onerror="this.src='logo.jpg.PNG'"
+                            >
+                        `
+                        : `
+                            <img
+                                src="logo.jpg.PNG"
+                                class="product-img"
+                                alt="${product.name || "Prodotto"}"
+                            >
+                        `
+                }
+
+                ${
+                    product.video
+                        ? `
+                            <div class="product-video-box">
+
+                                <div class="video-label">
+                                    ▶️ Video prodotto
+                                </div>
+
+                                <video
+                                    class="product-video"
+                                    controls
+                                    playsinline
+                                    preload="metadata"
+                                    poster="${product.image || "logo.jpg.PNG"}"
+                                >
+                                    <source
+                                        src="${product.video}"
+                                        type="video/mp4"
+                                    >
+
+                                    Il tuo dispositivo non supporta il video.
+                                </video>
+
+                            </div>
+                        `
+                        : ""
+                }
 
                 <h3>${product.name || "Prodotto"}</h3>
 
@@ -332,10 +367,13 @@ function showVetrina(category) {
                     ${product.category || "Altro"}
                 </p>
 
-              <label class="format-label">
-    Formato
-    <span class="format-hint">Tocca per vedere altri formati</span>
-</label>
+                <label class="format-label">
+                    Formato
+
+                    <span class="format-hint">
+                        Tocca per vedere altri formati
+                    </span>
+                </label>
 
                 <select
                     class="format-select"
@@ -346,6 +384,7 @@ function showVetrina(category) {
                 </select>
 
                 <div class="product-meta">
+
                     <span>
                         ${product.status || "Disponibile"}
                     </span>
@@ -353,6 +392,7 @@ function showVetrina(category) {
                     <span id="price-${realIndex}">
                         €${firstVariant.price}
                     </span>
+
                 </div>
 
                 <button
@@ -370,12 +410,14 @@ function showVetrina(category) {
                 >
                     💬 Richiedi info
                 </a>
+
             </div>
         `;
     }).join("");
 
     content.innerHTML = `
         <h2>📸 Vetrina</h2>
+
         <p>Catalogo ufficiale BPFAM.</p>
 
         <div class="category-row">
@@ -398,42 +440,41 @@ async function retryProducts() {
     `;
 
     await loadProducts();
+
     showVetrina("Tutti");
 }
 
 function updatePrice(index, variantIndex) {
+
     const product = products[index];
 
-    if (!product) {
-        return;
-    }
+    if (!product) return;
 
     const variants = getVariants(product);
+
     const selectedVariant =
         variants[Number(variantIndex)];
 
-    const priceBox = document.getElementById(
-        `price-${index}`
-    );
+    const priceBox =
+        document.getElementById(`price-${index}`);
 
     if (priceBox && selectedVariant) {
+
         priceBox.textContent =
             `€${selectedVariant.price}`;
     }
 }
 
 function addToCart(index) {
+
     const product = products[index];
 
-    if (!product) {
-        return;
-    }
+    if (!product) return;
 
     const variants = getVariants(product);
 
-    const select = document.getElementById(
-        `variant-${index}`
-    );
+    const select =
+        document.getElementById(`variant-${index}`);
 
     const selectedIndex =
         select ? Number(select.value) : 0;
@@ -447,8 +488,11 @@ function addToCart(index) {
     );
 
     if (existingItem) {
+
         existingItem.quantity += 1;
+
     } else {
+
         cart.push({
             name: product.name,
             category: product.category || "",
@@ -459,10 +503,12 @@ function addToCart(index) {
     }
 
     updateCartCount();
+
     alert("Aggiunto al carrello");
 }
 
 function updateCartCount() {
+
     const totalItems = cart.reduce(
         (sum, item) =>
             sum + Number(item.quantity || 0),
@@ -476,21 +522,31 @@ function updateCartCount() {
         document.getElementById("sectionCartCount");
 
     if (homeCartCount) {
-        homeCartCount.textContent = totalItems;
+
+        homeCartCount.textContent =
+            totalItems;
     }
 
     if (sectionCartCount) {
-        sectionCartCount.textContent = totalItems;
+
+        sectionCartCount.textContent =
+            totalItems;
     }
 }
 
 function showCart() {
-    const content = document.getElementById("content");
+
+    const content =
+        document.getElementById("content");
 
     if (cart.length === 0) {
+
         content.innerHTML = `
             <h2>🛒 Carrello</h2>
-            <p>Il carrello è vuoto.</p>
+
+            <p>
+                Il carrello è vuoto.
+            </p>
 
             <button
                 class="contact-btn"
@@ -499,6 +555,7 @@ function showCart() {
                 Apri la Vetrina
             </button>
         `;
+
         return;
     }
 
@@ -516,29 +573,36 @@ function showCart() {
 
                 <h3>${item.name}</h3>
 
-                <p>${item.category || ""}</p>
+                <p>
+                    ${item.category || ""}
+                </p>
 
                 <p>
                     Formato: ${item.size}
                 </p>
 
                 <div class="qty-row">
+
                     <button
                         onclick="changeQuantity(${index}, -1)"
                     >
                         −
                     </button>
 
-                    <span>${item.quantity}</span>
+                    <span>
+                        ${item.quantity}
+                    </span>
 
                     <button
                         onclick="changeQuantity(${index}, 1)"
                     >
                         +
                     </button>
+
                 </div>
 
                 <div class="product-meta">
+
                     <span>
                         €${item.price * item.quantity}
                     </span>
@@ -549,7 +613,9 @@ function showCart() {
                     >
                         Rimuovi
                     </button>
+
                 </div>
+
             </div>
         `
     ).join("");
@@ -568,11 +634,15 @@ function showCart() {
         </button>
 
         <div class="product-card">
-            <h3>Totale</h3>
+
+            <h3>
+                Totale
+            </h3>
 
             <p class="total-price">
                 €${total}
             </p>
+
         </div>
 
         <label class="format-label">
@@ -653,17 +723,17 @@ function showCart() {
 }
 
 function showOrderFields() {
+
     const method =
         document.getElementById("orderMethod")?.value;
 
     const box =
         document.getElementById("orderFields");
 
-    if (!box) {
-        return;
-    }
+    if (!box) return;
 
     if (method === "Spedizione") {
+
         box.innerHTML = `
             <label class="format-label">
                 Nome e Cognome
@@ -755,15 +825,26 @@ function showOrderFields() {
                 class="format-select"
                 id="courier"
             >
-                <option value="UPS">UPS</option>
-                <option value="DHL">DHL</option>
-                <option value="FedEx">FedEx</option>
+                <option value="UPS">
+                    UPS
+                </option>
+
+                <option value="DHL">
+                    DHL
+                </option>
+
+                <option value="FedEx">
+                    FedEx
+                </option>
+
                 <option value="Bartolini">
                     Bartolini
                 </option>
+
                 <option value="InPost">
                     InPost
                 </option>
+
                 <option value="Altro">
                     Altro
                 </option>
@@ -782,6 +863,7 @@ function showOrderFields() {
     }
 
     if (method === "Delivery") {
+
         box.innerHTML = `
             <label class="format-label">
                 Nome e Cognome
@@ -877,6 +959,7 @@ function showOrderFields() {
     }
 
     if (method === "Meet Up") {
+
         box.innerHTML = `
             <label class="format-label">
                 Nome
@@ -952,46 +1035,62 @@ function showOrderFields() {
 }
 
 function changeQuantity(index, amount) {
-    if (!cart[index]) {
-        return;
-    }
+
+    if (!cart[index]) return;
 
     cart[index].quantity += amount;
 
     if (cart[index].quantity <= 0) {
+
         cart.splice(index, 1);
     }
 
     updateCartCount();
+
     showCart();
 }
 
 function removeFromCart(index) {
+
     cart.splice(index, 1);
+
     updateCartCount();
+
     showCart();
 }
 
 function clearCart() {
+
     cart = [];
+
     updateCartCount();
+
     showCart();
 }
 
 function getValue(id) {
+
     return (
         document.getElementById(id)?.value.trim() || ""
     );
 }
 
 function buildOrderMessage() {
+
     let message =
         "Ciao, vorrei informazioni per questo ordine:\n\n";
 
     cart.forEach((item, index) => {
-        message += `${index + 1}. ${item.name}\n`;
-        message += `Formato: ${item.size}\n`;
-        message += `Quantità: ${item.quantity}\n`;
+
+        message +=
+            `${index + 1}. ${item.name}\n`;
+
+        message +=
+            `Formato: ${item.size}\n`;
+
+        message +=
+            `Quantità: ${item.quantity}\n`;
+
         message +=
             `Totale articolo: €${item.price * item.quantity}\n\n`;
     });
@@ -1004,49 +1103,85 @@ function buildOrderMessage() {
         0
     );
 
-    const orderMethod = getValue("orderMethod");
-    const paymentMethod = getValue("paymentMethod");
+    const orderMethod =
+        getValue("orderMethod");
 
-    message += `Metodo ordine: ${orderMethod}\n`;
+    const paymentMethod =
+        getValue("paymentMethod");
+
+    message +=
+        `Metodo ordine: ${orderMethod}\n`;
+
     message +=
         `Metodo pagamento: ${paymentMethod}\n\n`;
 
     message += "Dati ordine:\n";
-    message += `Nome: ${getValue("fullName")}\n`;
-    message += `Paese: ${getValue("country")}\n`;
+
+    message +=
+        `Nome: ${getValue("fullName")}\n`;
+
+    message +=
+        `Paese: ${getValue("country")}\n`;
+
     message +=
         `Regione/Stato: ${getValue("region")}\n`;
-    message += `Città: ${getValue("city")}\n`;
-    message += `CAP: ${getValue("zip")}\n`;
+
+    message +=
+        `Città: ${getValue("city")}\n`;
+
+    message +=
+        `CAP: ${getValue("zip")}\n`;
+
     message +=
         `Indirizzo: ${getValue("address")}\n`;
-    message += `Email: ${getValue("email")}\n`;
-    message += `Telefono: ${getValue("phone")}\n`;
+
+    message +=
+        `Email: ${getValue("email")}\n`;
+
+    message +=
+        `Telefono: ${getValue("phone")}\n`;
+
     message +=
         `Corriere: ${getValue("courier")}\n`;
-    message += `Zona: ${getValue("zone")}\n`;
-    message += `Data: ${getValue("date")}\n`;
-    message += `Orario: ${getValue("time")}\n`;
-    message += `Note: ${getValue("notes")}\n\n`;
-    message += `Totale: €${total}`;
+
+    message +=
+        `Zona: ${getValue("zone")}\n`;
+
+    message +=
+        `Data: ${getValue("date")}\n`;
+
+    message +=
+        `Orario: ${getValue("time")}\n`;
+
+    message +=
+        `Note: ${getValue("notes")}\n\n`;
+
+    message +=
+        `Totale: €${total}`;
 
     return message;
 }
 
 function sendOrder() {
+
     if (cart.length === 0) {
+
         alert("Il carrello è vuoto.");
+
         return;
     }
 
     const method =
         document.getElementById("checkoutContact")?.value;
 
-    const message = buildOrderMessage();
+    const message =
+        buildOrderMessage();
+
     const encodedMessage =
         encodeURIComponent(message);
 
     if (method === "telegram") {
+
         window.open(
             contacts.telegram,
             "_blank"
@@ -1054,6 +1189,7 @@ function sendOrder() {
     }
 
     if (method === "whatsapp") {
+
         const separator =
             contacts.whatsapp.includes("?")
                 ? "&"
@@ -1066,6 +1202,7 @@ function sendOrder() {
     }
 
     if (method === "signal") {
+
         window.open(
             contacts.signal,
             "_blank"
@@ -1074,12 +1211,16 @@ function sendOrder() {
 }
 
 function showContatti() {
+
     const content =
         document.getElementById("content");
 
     content.innerHTML = `
         <h2>📞 Contatti ufficiali</h2>
-        <p>Scegli dove contattarci.</p>
+
+        <p>
+            Scegli dove contattarci.
+        </p>
 
         <div class="contact-list">
 
@@ -1124,19 +1265,16 @@ function showContatti() {
 }
 
 function searchProducts() {
+
     const input =
         document.getElementById("searchInput");
 
-    if (!input) {
-        return;
-    }
+    if (!input) return;
 
     const query =
         input.value.trim().toLowerCase();
 
-    if (query.length < 2) {
-        return;
-    }
+    if (query.length < 2) return;
 
     const homeView =
         document.getElementById("homeView");
@@ -1145,22 +1283,28 @@ function searchProducts() {
         document.getElementById("sectionView");
 
     if (homeView) {
+
         homeView.hidden = true;
     }
 
     if (sectionView) {
+
         sectionView.hidden = false;
     }
 
-    const results = products.filter(product =>
-        String(product.name || "")
-            .toLowerCase()
-            .includes(query) ||
+    const results =
+        products.filter(product =>
 
-        String(product.category || "")
-            .toLowerCase()
-            .includes(query)
-    );
+            String(product.name || "")
+                .toLowerCase()
+                .includes(query)
+
+            ||
+
+            String(product.category || "")
+                .toLowerCase()
+                .includes(query)
+        );
 
     document.getElementById("content").innerHTML = `
         <h2>🔍 Risultati ricerca</h2>
@@ -1173,13 +1317,38 @@ function searchProducts() {
             results.map(product => `
                 <div class="product-card">
 
-                    <img
-                        src="${product.image || "logo.jpg.PNG"}"
-                        class="product-img"
-                        alt="${product.name || "Prodotto"}"
-                        loading="lazy"
-                        onerror="this.src='logo.jpg.PNG'"
-                    >
+                    ${
+                        product.image
+                            ? `
+                                <img
+                                    src="${product.image}"
+                                    class="product-img"
+                                    alt="${product.name || "Prodotto"}"
+                                    loading="lazy"
+                                    onerror="this.src='logo.jpg.PNG'"
+                                >
+                            `
+                            : ""
+                    }
+
+                    ${
+                        product.video
+                            ? `
+                                <video
+                                    class="product-video"
+                                    controls
+                                    playsinline
+                                    preload="metadata"
+                                    poster="${product.image || "logo.jpg.PNG"}"
+                                >
+                                    <source
+                                        src="${product.video}"
+                                        type="video/mp4"
+                                    >
+                                </video>
+                            `
+                            : ""
+                    }
 
                     <h3>
                         ${product.name || "Prodotto"}
@@ -1232,7 +1401,8 @@ function searchProducts() {
                     </p>
 
                 </div>
-            `).join("") ||
+            `).join("")
+            ||
             "<p>Nessun risultato trovato.</p>"
         }
     `;
