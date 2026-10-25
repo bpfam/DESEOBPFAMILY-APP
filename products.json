@@ -60,7 +60,7 @@
       { "size": "5g", "price": 180},
       { "size": "10g", "price": 300 },
       { "size": "50g", "price": 1450 },
-       { "size": "100g", "price": 2800 },
+       { "size": "100g", "price": 2800 }
     ]
   },
   {
