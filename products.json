@@ -4,94 +4,96 @@
     "name": "Boliviana 🇧🇴",
     "image": "https://i.postimg.cc/PxkVFsFh/IMG-2037.jpg",
     "variants": [
-      { "size": "1g", "price": 60 },
+      { "size": "0.3g", "price": 20},
+       { "size": "1g", "price": 50 },
       { "size": "5g", "price": 200 },
-      { "size": "10g", "price": 375 },
-      { "size": "50g", "price": 1600 },
-      { "size": "100g", "price": 2850 },
-      { "size": "500g", "price": 13000 },
-      { "size": "1kg", "price": 24000 }
+      { "size": "10g", "price": 350 },
+      { "size": "50g", "price": 1350},
+      { "size": "100g", "price": 2400},
+      { "size": "500g", "price": 11250},
+      { "size": "1kg", "price": 21500 }
     ]
   },
   {
     "category": "Cali Hash Direct 🇺🇸",
-    "name": "S.N.O.B.S",
+    "name": "S.N.O.B.S (wpff live water hash)",
     "image": "https://i.postimg.cc/qR5t5cMZ/5440CD2B-2F0C-46DC-933F-0AFDC0185041.jpg",
-    "variants": [
-      { "size": "1g", "price": 20 },
-      { "size": "25g", "price": 470 },
-      { "size": "50g", "price": 900 },
-      { "size": "100g", "price": 1750 },
-      { "size": "250g", "price": 4100 }
+    "variants": "grape gas",
+    [
+      { "size": "1g", "price": 70},
+      { "size": "5g", "price": 325 },
+       { "size": "10", "price": 600 },
+      { "size": "25", "price": 1375 },
+      { "size": "50", "price": 2500 },
     ]
   },
   {
     "category": "Cali Hash Direct 🇺🇸",
-    "name": "CALI PLATE Frozen Sift",
+    "name": ",GOLDEN HEADS WARRIORS ( fresh frozen static sift 25gr plates)",
     "image": "https://i.postimg.cc/sfJHKSp5/IMG-1732.jpg",
     "variants": [
-      { "size": "1g", "price": 20 },
-      { "size": "25g", "price": 470 },
-      { "size": "50g", "price": 900 },
-      { "size": "100g", "price": 1750 },
-      { "size": "250g", "price": 4100 }
+      { "size": "1g", "price": 80 },
+      { "size": "5g", "price": 375 },
+      { "size": "10g", "price": 650 },
+      { "size": "25g", "price": 1500 },
+      { "size": "50g", "price": 2750 }
     ]
   },
   {
     "category": "Cali Hash Direct 🇺🇸",
-    "name": "CALI PLATES Frozen Sift Single Source",
+    "name": "GOLDEN HEADS WARRIORS nine weeks collab 28gr plates",
     "image": "https://i.postimg.cc/j5mHkzjm/IMG-2035.png",
     "variants": [
-      { "size": "1g", "price": 20 },
-      { "size": "25g", "price": 470 },
-      { "size": "50g", "price": 900 },
-      { "size": "100g", "price": 1750 },
-      { "size": "250g", "price": 4100 }
+      { "size": "1g", "price": 60 },
+      { "size": "5g", "price": 325 },
+      { "size": "10g", "price": 600 },
+      { "size": "28g", "price": 1540 },
+      { "size": "56", "price": 2800 }
     ]
   },
   {
     "category": "Cali Hash Direct 🇺🇸",
-    "name": "Hashski Static Sift",
+    "name": "GOLDEN HEADS WARRIORS ( static sift Full melt)",
     "image": "https://i.postimg.cc/Gmy2M1pT/IMG-1724.jpg",
     "variants": [
-      { "size": "1g", "price": 30 },
-      { "size": "10g", "price": 280 },
-      { "size": "25g", "price": 675 },
-      { "size": "50g", "price": 1250 }
+      { "size": "1g", "price": 40},
+      { "size": "5g", "price": 180},
+      { "size": "10g", "price": 300 },
+      { "size": "50g", "price": 1450 }
+       { "size": "100g", "price": 2800 },
     ]
   },
   {
     "category": "Cali Hash Direct 🇺🇸",
-    "name": "STATIC ROOM Purple Label",
+    "name": "KARMA CARTEL X STATIC LABZ ( premium collab wpff static & ultra filtered static plates 50gr)",
     "image": "https://i.postimg.cc/PqLNV08n/IMG-1979.jpg",
     "variants": [
-      { "size": "1g", "price": 50 },
-      { "size": "5g", "price": 200 },
-      { "size": "10g", "price": 375 },
-      { "size": "25g", "price": 880 }
+      { "size": "1g", "price": 40 },
+      { "size": "5g", "price": 180 },
+      { "size": "10g", "price": 325 },
+      { "size": "25g", "price": 750} 
+      { "size": "50g", "price": 1450}   
     ]
   },
   {
     "category": "Cali Hash Direct 🇺🇸",
-    "name": "DRY Premium Gold",
+    "name": "VICE CITY ( static sift ",
     "image": "https://LINK-IMMAGINE.jpg",
     "variants": [
-      { "size": "10g", "price": 175 },
-      { "size": "25g", "price": 420 },
-      { "size": "50g", "price": 750 },
-      { "size": "100g", "price": 1400 }
+      { "size": "10g", "price": 250 },
+      { "size": "25g", "price": 575 },
+      { "size": "50g", "price": 1100 },
     ]
-  },
+ },
   {
-    "category": "Hash Direct 🇲🇦",
-    "name": "BPFAM Static Sift",
-    "image": "https://i.postimg.cc/0QR5Wjs4/IMG-1972.jpg",
+    "category": "
+    "name": "
+    "image": 
     "variants": [
       { "size": "10g", "price": 140 },
-      { "size": "50g", "price": 650 },
-      { "size": "100g", "price": 1250 },
-      { "size": "250g", "price": 3000 },
-      { "size": "500g", "price": 5500 }
+      { "size": "50g", "price": 600 },
+      { "size": "100g", "price": 1100},
+      { "size": "500g", "price": 5000 }
     ]
   },
   {
