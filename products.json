@@ -16,10 +16,9 @@
   },
   {
     "category": "Cali Hash Direct 🇺🇸",
-    "name": "S.N.O.B.S wpff live water hash",
+    "name": "S N O B S wpff live water hash",
     "image": "https://i.postimg.cc/qR5t5cMZ/5440CD2B-2F0C-46DC-933F-0AFDC0185041.jpg",
-    "variants": "grape gas",
-    [
+    "variants": [
       { "size": "1g", "price": 70},
       { "size": "5g", "price": 325 },
        { "size": "10", "price": 600 },
