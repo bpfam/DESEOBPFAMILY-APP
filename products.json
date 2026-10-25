@@ -18,12 +18,13 @@
     "category": "Cali Hash Direct 🇺🇸",
     "name": "S N O B S wpff live water hash",
     "image": "https://i.postimg.cc/qR5t5cMZ/5440CD2B-2F0C-46DC-933F-0AFDC0185041.jpg",
-    "variants": [
+    "variants": 
+    [
       { "size": "1g", "price": 70},
       { "size": "5g", "price": 325 },
        { "size": "10", "price": 600 },
       { "size": "25", "price": 1375 },
-      { "size": "50", "price": 2500 },
+      { "size": "50", "price": 2500 }
     ]
   },
   {
@@ -58,7 +59,7 @@
       { "size": "1g", "price": 40},
       { "size": "5g", "price": 180},
       { "size": "10g", "price": 300 },
-      { "size": "50g", "price": 1450 }
+      { "size": "50g", "price": 1450 },
        { "size": "100g", "price": 2800 },
     ]
   },
@@ -70,7 +71,7 @@
       { "size": "1g", "price": 40 },
       { "size": "5g", "price": 180 },
       { "size": "10g", "price": 325 },
-      { "size": "25g", "price": 750} 
+      { "size": "25g", "price": 750}, 
       { "size": "50g", "price": 1450}   
     ]
   },
@@ -81,13 +82,13 @@
     "variants": [
       { "size": "10g", "price": 250 },
       { "size": "25g", "price": 575 },
-      { "size": "50g", "price": 1100 },
+      { "size": "50g", "price": 1100 }
     ]
  },
   {
     "category": " Cali Hash Direct 🇺🇸",
-    "name": "boo",
-    "image": 
+    "name": " boo ",
+    "image": "",
     "variants": [
       { "size": "10g", "price": 140 },
       { "size": "50g", "price": 600 },
