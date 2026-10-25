@@ -4,7 +4,7 @@
     "name": "Boliviana 🇧🇴",
     "image": "https://i.postimg.cc/PxkVFsFh/IMG-2037.jpg",
     "strain": "body",
-    "variants":[
+    "variants": [
       { "size": "0.3g", "price": 20},
        { "size": "1g", "price": 50 },
       { "size": "5g", "price": 200 },
