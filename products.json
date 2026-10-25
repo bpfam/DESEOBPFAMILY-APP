@@ -3,6 +3,7 @@
     "category": "❄️📦 Neve",
     "name": "Boliviana 🇧🇴",
     "image": "https://i.postimg.cc/PxkVFsFh/IMG-2037.jpg",
+    "strain": "body",
     "variants": [
       { "size": "0.3g", "price": 20},
        { "size": "1g", "price": 50 },
@@ -29,7 +30,7 @@
   },
   {
     "category": "Cali Hash Direct 🇺🇸",
-    "name": ",GOLDEN HEADS WARRIORS  fresh frozen static sift 25gr plates",
+    "name": "GOLDEN HEADS WARRIORS  fresh frozen static sift 25gr plates",
     "image": "https://i.postimg.cc/sfJHKSp5/IMG-1732.jpg",
     "variants": [
       { "size": "1g", "price": 80 },
