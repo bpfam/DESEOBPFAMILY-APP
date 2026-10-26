@@ -1412,3 +1412,37 @@ function searchProducts() {
         behavior: "smooth"
     });
 }
+function renderVideo(url) {
+    if (!url) return "";
+
+    const videoUrl = String(url).trim();
+
+    if (/^https:\/\/streamable\.com\/(?:e\/)?[a-zA-Z0-9]+$/.test(videoUrl)) {
+        const videoId = videoUrl.split("/").pop();
+
+        return `
+            <iframe
+                src="https://streamable.com/e/${videoId}"
+                title="Video"
+                style="width:100%;aspect-ratio:16/9;border:0;"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowfullscreen
+                loading="lazy"
+            ></iframe>
+        `;
+    }
+
+    if (/^https:\/\//.test(videoUrl)) {
+        return `
+            <video
+                controls
+                playsinline
+                preload="metadata"
+                style="width:100%;"
+                src="${videoUrl}"
+            ></video>
+        `;
+    }
+
+    return "";
+}
