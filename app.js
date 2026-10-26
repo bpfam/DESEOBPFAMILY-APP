@@ -1417,24 +1417,29 @@ function renderVideo(url) {
 
     const videoUrl = String(url).trim();
 
-    if (/^https:\/\/streamable\.com\/(?:e\/)?[a-zA-Z0-9]+$/.test(videoUrl)) {
-        const videoId = videoUrl.split("/").pop();
+    const match = videoUrl.match(
+        /^https:\/\/(?:www\.)?streamable\.com\/(?:e\/)?([a-zA-Z0-9]+)\/?(?:\?.*)?$/
+    );
 
+    if (match) {
         return `
-            <iframe
-                src="https://streamable.com/e/${videoId}"
-                title="Video"
-                style="width:100%;aspect-ratio:16/9;border:0;"
-                allow="autoplay; fullscreen; picture-in-picture"
-                allowfullscreen
-                loading="lazy"
-            ></iframe>
+            <div class="product-video-box">
+                <iframe
+                    src="https://streamable.com/e/${match[1]}"
+                    title="Video"
+                    style="width:100%;aspect-ratio:16/9;border:0;border-radius:12px;"
+                    allow="fullscreen; picture-in-picture"
+                    allowfullscreen
+                    loading="lazy"
+                ></iframe>
+            </div>
         `;
     }
 
-    if (/^https:\/\//.test(videoUrl)) {
+    if (/^https:\/\/[^\s"'<>]+\.mp4(?:\?[^\s"'<>]*)?$/i.test(videoUrl)) {
         return `
             <video
+                class="product-video"
                 controls
                 playsinline
                 preload="metadata"
