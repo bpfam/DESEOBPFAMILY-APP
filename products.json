@@ -79,7 +79,7 @@
   },
   {
     "category": "Cali Hash Direct 🇺🇸",
-    "name": "VICE CITY static sift ",
+    "name": "VICE CITY static sift",
     "image": "https://LINK-IMMAGINE.jpg",
     "variants": [
       { "size": "10g", "price": 250 },
@@ -89,56 +89,62 @@
  },
   {
     "category": "Cali Hash Direct 🇺🇸",
-    "name": " boo ",
+    "name": "HUMBOLDT HASH Whole plant static sift",
     "image": "",
     "variants": [
-      { "size": "10g", "price": 140 },
-      { "size": "50g", "price": 600 },
-      { "size": "100g", "price": 1100},
-      { "size": "500g", "price": 5000 }
+      { "size": "5g", "price": 190 },
+      { "size": "10g", "price": 350 },
+      { "size": "50g", "price": 1600},
+      { "size": "100g", "price": 3100 }
     ]
   },
   {
-    "category": "Hash Direct 🇲🇦",
-    "name": "LOONEY FARM Frozen Sift",
+    "category": "Cali Hash Direct🇺🇸",
+    "name": "HUMBOLDT HASH Static Sift premium",
     "image": "https://i.postimg.cc/mZ1r5M3Y/IMG-2033.jpg",
     "variants": [
-      { "size": "5g", "price": 50 },
-      { "size": "50g", "price": 450 },
-      { "size": "100g", "price": 850 },
-      { "size": "500g", "price": 3850 }
+      { "size": "5g", "price": 135 },
+      { "size": "10g", "price": 240 },
+      { "size": "50g", "price": 1150},
+      { "size": "100g", "price": 2150 }
     ]
   },
   {
-    "category": "Hash Direct 🇲🇦",
-    "name": "BPFAM Dry Sift",
-    "image": "https://i.postimg.cc/ZqJZYvy6/IMG-1963.jpg",
+    "category": "Cali Hash Direct 🇺🇸",
+    "name": "SUMMER 6 STAR WPFF duo trio collor",
+    "image": " ",
     "variants": [
-      { "size": "5g", "price": 25 },
-      { "size": "50g", "price": 200 },
-      { "size": "100g", "price": 300 },
-      { "size": "500g", "price": 1350 },
-      { "size": "1kg", "price": 2550 }
+      { "size": "5g", "price": 200},
+      { "size": "10g", "price": 380 },
+      { "size": "50g", "price": 1800 },
+      { "size": "100g", "price": 3300 }
     ]
   },
   {
-    "category": "Cali Weed 🇺🇸",
-    "name": "LIMITED EDITION Bags/Jars",
+    "category": "Cali Hash Direct 🇺🇸",
+    "name": "CALIMELTS Static Sift Premium new seasion",
     "image": "https://i.postimg.cc/TY9v7Ys2/IMG-2030.jpg",
     "variants": [
-      { "size": "3.5g", "price": 90 },
-      { "size": "14g", "price": 340 },
-      { "size": "28g", "price": 600 }
+      { "size": "5g", "price": 150 },
+      { "size": "10g", "price": 280 },
+       { "size": "25g", "price": 660 },
+       { "size": "50g", "price": 1225 },
+      { "size": "100g", "price": 2350 },
+       { "size": "500g", "price": 11000 }
     ]
   },
   {
-    "category": "Weed 🇪🇸🇳🇱🇨🇦",
-    "name": "CALI SPAIN Top Shelf Bags",
+    "category": "Cali Hash Direct 🇺🇸",
+    "name": "CALIMELTS Static Sift new seasion",
     "image": "https://i.postimg.cc/JnwF79FF/415AB6BE-90C8-4218-B42E-7A278B3565AA.jpg",
     "variants": [
-      { "size": "3.5g", "price": 60 },
-      { "size": "14g", "price": 220 },
-      { "size": "28g", "price": 400 }
+      { "size": "5g", "price": 130},
+      { "size": "10g", "price": 240 },
+       { "size": "25", "price": 580},
+      { "size": "50g", "price": 1100 },
+      { "size": "100g", "price": 2100 }
+       { "size": "250g", "price": 4880 },
+      { "size": "500g", "price": 9300 }
     ]
   },
   {
@@ -159,15 +165,14 @@
 },
   
   {
-    "category": "Weed 🇪🇸🇳🇱🇨🇦",
-    "name": "CALI SPAIN TOP SHELF",
+    "category": " Cali Weed 🇺🇸",
+    "name": "CALI Usa Mids",
     "image": "https://i.postimg.cc/15TX1jM1/415AB6BE-90C8-4218-B42E-7A278B3565AA.jpg",
     "variants": [
-      { "size": "1.5g", "price": 10 },
       { "size": "50g", "price": 300 },
       { "size": "100g", "price": 550 },
-      { "size": "500g", "price": 2350 },
-      { "size": "1kg", "price": 4500 }
+      { "size": "250g", "price": 1150 },
+      { "size": "500g", "price": 2000 }
     ]
   },
   
