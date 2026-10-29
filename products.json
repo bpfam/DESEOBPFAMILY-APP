@@ -177,14 +177,15 @@
   },
   
   {
-    "category": "Profesional 👩‍💻🤖🌐",
-    "name": "Sito Web / Bot TG",
+    "category": "Cali Weed 🇺🇸",
+    "name": "Cali Spain",
     "image": "https://LINK-IMMAGINE.jpg",
     "variants": [
-      { "size": "Base", "price": 300 },
-      { "size": "Premium", "price": 750 },
-      { "size": "Premium Pro", "price": 1000 }
-      
+      { "size": "50gr", "price": 250 },
+      { "size": "100", "price": 450 },
+      { "size": "500", "price": 4000 }
+       { "size": "1kg", "price": 3500 }
+           
     ]
   }
 ]
