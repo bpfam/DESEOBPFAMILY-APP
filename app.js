@@ -409,7 +409,10 @@ function showVetrina(category) {
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    💬 Richiedi info
+                    <a href="https://bpfam.github.io/Video-bpfam/"
+   class="contact-btn">
+    🎬 CLICCA QUI PER I VIDEO
+</a>
                 </a>
 
             </div>
