@@ -546,3 +546,23 @@ button{
     background:#000;
     object-fit:cover;
 }
+
+.video-gallery-link {
+    display: block;
+    position: sticky;
+    top: 15px;
+    z-index: 100;
+
+    background: #d4af37;
+    color: #000;
+    padding: 17px;
+    margin: 15px auto;
+    max-width: 450px;
+    border-radius: 14px;
+
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+
+    box-shadow: 0 4px 18px rgba(0,0,0,0.5);
+}
