@@ -1421,14 +1421,15 @@ function renderVideo(url) {
     if (match) {
         return `
             <div class="product-video-box">
-                <iframe
-                    src="https://streamable.com/e/${match[1]}"
-                    title="Video"
-                    style="width:100%;aspect-ratio:16/9;border:0;border-radius:12px;"
-                    allow="fullscreen; picture-in-picture"
-                    allowfullscreen
-                    loading="lazy"
-                ></iframe>
+             <iframe
+  src="https://player.cloudinary.com/embed/?cloud_name=w7sxjd36&public_id=Heads_GHW"
+  width="640"
+  height="360" 
+  style="height: auto; width: 100%; aspect-ratio: 640 / 360;"
+  allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+  allowfullscreen
+  frameborder="0"
+></iframe>
             </div>
         `;
     }
