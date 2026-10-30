@@ -2,49 +2,232 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BPFAM | Video Gallery</title>
 
-    <title>BPFAM | Video</title>
+<style>
+* {
+    box-sizing: border-box;
+}
 
-    <style>
-        body {
-            margin: 0;
-            padding: 20px;
-            background: #050505;
-            color: #ffffff;
-            font-family: Arial, sans-serif;
-        }
+body {
+    margin: 0;
+    background: #050505;
+    color: white;
+    font-family: Arial, sans-serif;
+}
 
-        h1 {
-            color: #d4af37;
-            text-align: center;
-        }
+header {
+    text-align: center;
+    padding: 35px 15px 25px;
+    border-bottom: 1px solid #4a3913;
+}
 
-        .media-card {
-            background: #141414;
-            border: 1px solid #d4af37;
-            border-radius: 16px;
-            padding: 15px;
-            margin: 18px auto;
-            max-width: 600px;
-        }
+header h1 {
+    color: #d9b43c;
+    font-size: 34px;
+    margin: 0;
+    letter-spacing: 2px;
+}
 
-        .media-card h3 {
-            color: #d4af37;
-        }
-    </style>
+header p {
+    color: #aaa;
+    font-size: 14px;
+}
+
+main {
+    max-width: 1100px;
+    margin: auto;
+    padding: 22px 15px;
+}
+
+h2 {
+    color: #d9b43c;
+    font-size: 22px;
+    margin-bottom: 22px;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.video-card {
+    background: #111;
+    border: 1px solid #53431e;
+    border-radius: 15px;
+    overflow: hidden;
+    min-width: 0;
+}
+
+.video-player {
+    aspect-ratio: 16 / 9;
+    background: #000;
+}
+
+.video-player video,
+.video-player iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.video-info {
+    padding: 12px;
+}
+
+.video-info h3 {
+    font-size: 15px;
+    color: #d9b43c;
+    margin: 0 0 7px;
+    overflow-wrap: anywhere;
+}
+
+.video-info p {
+    color: #aaa;
+    font-size: 12px;
+    margin: 0;
+}
+
+.empty {
+    color: #aaa;
+    text-align: center;
+    padding: 40px 10px;
+}
+
+footer {
+    text-align: center;
+    color: #888;
+    padding: 30px;
+    font-size: 12px;
+}
+
+@media (max-width: 480px) {
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
 </head>
 
 <body>
-    <h1>💎 BPFAM</h1>
-    <h2>🎬 Video Gallery</h2>
 
-    <div id="mediaGallery">
+<header>
+    <h1>💎 BPFAM</h1>
+    <p>QUALITY • STYLE • RESPECT</p>
+</header>
+
+<main>
+    <h2>🎬 VIDEO GALLERY</h2>
+
+    <div id="gallery" class="gallery">
         Caricamento video...
     </div>
+</main>
 
-    <script src="vetrina-media.js"></script>
+<footer>
+    BPFAM © 2026
+</footer>
+
+<script>
+function escapeHTML(value) {
+    return String(value ?? "").replace(
+        /[&<>"']/g,
+        character => ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;"
+        })[character]
+    );
+}
+
+function videoPlayer(url) {
+    if (!url) return "";
+
+    const link = String(url).trim();
+
+    const streamable = link.match(
+        /^https:\/\/(?:www\.)?streamable\.com\/(?:e\/)?([a-z0-9]+)\/?(?:\?.*)?$/i
+    );
+
+    if (streamable) {
+        return `
+            <iframe
+                src="https://streamable.com/e/${streamable[1]}"
+                title="Video"
+                loading="lazy"
+                allow="fullscreen; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        `;
+    }
+
+    if (
+        /^https:\/\/[^\s"'<>]+\.mp4(?:\?[^\s"'<>]*)?$/i.test(link)
+    ) {
+        return `
+            <video
+                src="${escapeHTML(link)}"
+                controls
+                playsinline
+                preload="metadata">
+            </video>
+        `;
+    }
+
+    return "<p class='empty'>Link video non supportato.</p>";
+}
+
+async function loadGallery() {
+    const gallery = document.getElementById("gallery");
+
+    try {
+        const response = await fetch("media.json", {
+            cache: "no-store"
+        });
+
+        if (!response.ok) {
+            throw new Error("Impossibile caricare media.json");
+        }
+
+        const videos = await response.json();
+
+        if (!Array.isArray(videos)) {
+            throw new Error("Formato JSON non valido");
+        }
+
+        gallery.innerHTML = videos.map(item => `
+            <article class="video-card">
+                <div class="video-player">
+                    ${videoPlayer(item.video)}
+                </div>
+
+                <div class="video-info">
+                    <h3>${escapeHTML(item.name || "Video")}</h3>
+                    <p>${escapeHTML(item.category || "BPFAM")}</p>
+                </div>
+            </article>
+        `).join("") || `
+            <p class="empty">Nessun video disponibile.</p>
+        `;
+
+    } catch (error) {
+        console.error(error);
+        gallery.innerHTML = `
+            <p class="empty">
+                Errore nel caricamento dei video.
+            </p>
+        `;
+    }
+}
+
+loadGallery();
+</script>
+
 </body>
 </html>
