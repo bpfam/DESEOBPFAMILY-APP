@@ -419,7 +419,10 @@ function showVetrina(category) {
     content.innerHTML = `
         <h2>📸 Vetrina</h2>
 
-        <p>Catalogo ufficiale BPFAM.</p>
+        <p>Catalogo ufficiale BPFAM.</<a href="https://bpfam.github.io/Video-bpfam/"
+   class="video-gallery-link">
+    🎬 CLICCA QUI PER I VIDEO
+</a> 
 
         <div class="category-row">
             ${categoryHTML}
