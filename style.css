@@ -567,63 +567,6 @@ button{
     box-shadow: 0 4px 18px rgba(0,0,0,0.5);
 }
 
-/* HOME - CINQUE PULSANTI CENTRATI */
-
-#homeView .menu-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-  width: 100%;
-  max-width: 440px;
-  margin: 18px auto 30px;
-  padding: 0 12px;
-  box-sizing: border-box;
-}
-
-#homeView .menu-card {
-  width: 100%;
-  min-height: 105px;
-  padding: 15px 8px;
-  background: #111111;
-  color: #ffffff;
-  border: 1px solid #a88929;
-  border-radius: 18px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  text-align: center;
-  box-sizing: border-box;
-}
-
-#homeView .menu-card span {
-  font-size: 29px;
-}
-
-#homeView .menu-card strong {
-  font-size: 15px;
-  font-weight: 700;
-}
-
-#homeView .menu-card:last-child {
-  grid-column: 1 / -1;
-  width: calc(50% - 6px);
-  justify-self: center;
-}
-
-#homeView .hero {
-  text-align: center;
-}
-
-#homeView .hero .logo {
-  display: block;
-  max-width: 220px;
-  width: 65%;
-  height: auto;
-  margin: 15px auto 20px;
-}
-
 /* DESEO BP FAMILY - HOME COMPATTA */
 
 #homeView .hero {
