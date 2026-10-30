@@ -403,12 +403,6 @@ function showVetrina(category) {
                     🛒 Aggiungi al carrello
                 </button>
 
-                <a
-                    class="contact-btn"
-                    href="${contacts.telegram}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
                     <a href="https://bpfam.github.io/Video-bpfam/"
    class="contact-btn">
     🎬 CLICCA QUI PER I VIDEO
