@@ -140,9 +140,9 @@
     "variants": [
       { "size": "5g", "price": 130},
       { "size": "10g", "price": 240 },
-       { "size": "25", "price": 580},
+       { "size": "25g", "price": 580},
       { "size": "50g", "price": 1100 },
-      { "size": "100g", "price": 2100 }
+      { "size": "100g", "price": 2100 },
        { "size": "250g", "price": 4880 },
       { "size": "500g", "price": 9300 }
     ]
@@ -183,7 +183,7 @@
     "variants": [
       { "size": "50gr", "price": 250 },
       { "size": "100", "price": 450 },
-      { "size": "500", "price": 4000 }
+      { "size": "500", "price": 4000 },
        { "size": "1kg", "price": 3500 }
            
     ]
