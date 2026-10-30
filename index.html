@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>BPFAM App</title>
+  <title>DESEO BP FAMILY</title>
 
   <link rel="stylesheet" href="style.css">
   <link rel="manifest" href="manifest.json">
@@ -20,6 +21,7 @@
 
 <body>
 
+  <!-- SCHERMATA INIZIALE -->
   <div id="splash" class="splash">
     <img src="logo.jpg.PNG" class="splash-logo" alt="BPFAM Logo">
     <p>Quality. Style. Respect.</p>
@@ -41,8 +43,14 @@
         </button>
       </header>
 
+      <!-- LOGO E RICERCA -->
       <section class="hero">
-        <img src="logo.jpg.PNG" class="logo" alt="BPFAM Logo">
+
+        <img
+          src="logo.jpg.PNG"
+          class="logo"
+          alt="DESEO BP FAMILY Logo"
+        >
 
         <div class="search-box">
           <input
@@ -53,68 +61,51 @@
           >
         </div>
 
-        <div class="promo-banner">
-          <strong>🔥 Novità della settimana</strong>
-          <p>Scopri gli ultimi arrivi e le sezioni aggiornate.</p>
-          <button onclick="openSection('vetrina')">
-            Vai alla Vetrina
-          </button>
-        </div>
       </section>
 
-      <section class="quick-actions">
-        <button onclick="openSection('vetrina')">
-          🛍️ Ultimi arrivi
-        </button>
-
-        <button onclick="openSection('recensioni')">
-          ⭐ Recensioni
-        </button>
-
-        <button onclick="openSection('vip')">
-          👑 VIP
-        </button>
-      </section>
-
+      <!-- CINQUE PULSANTI PRINCIPALI -->
       <section class="menu-grid">
-        <button class="menu-card" onclick="openSection('vetrina')">
+
+        <button
+          class="menu-card"
+          onclick="openSection('vetrina')"
+        >
           <span>🛍️</span>
           <strong>Vetrina</strong>
         </button>
 
-        <button class="menu-card" onclick="openSection('recensioni')">
+        <button
+          class="menu-card"
+          onclick="openSection('recensioni')"
+        >
           <span>⭐</span>
           <strong>Recensioni</strong>
         </button>
 
-        <button class="menu-card" onclick="openSection('vip')">
-          <span>👑</span>
-          <strong>VIP Access</strong>
-        </button>
-
-        <button class="menu-card" onclick="openSection('contatti')">
+        <button
+          class="menu-card"
+          onclick="openSection('contatti')"
+        >
           <span>📞</span>
           <strong>Contatti</strong>
         </button>
 
-        <button class="menu-card" onclick="openSection('info')">
+        <button
+          class="menu-card"
+          onclick="openSection('carrello')"
+        >
+          <span>🛒</span>
+          <strong>Carrello</strong>
+        </button>
+
+        <button
+          class="menu-card"
+          onclick="openSection('info')"
+        >
           <span>ℹ️</span>
           <strong>Info</strong>
         </button>
 
-        <button class="menu-card" onclick="openSection('carrello')">
-          <span>🛒</span>
-          <strong>Carrello</strong>
-        </button>
-      </section>
-
-      <section class="content-card">
-        <h2>Prodotti in evidenza</h2>
-        <p>Apri la vetrina per vedere catalogo, formati e disponibilità.</p>
-
-        <button class="contact-btn" onclick="openSection('vetrina')">
-          Apri Vetrina
-        </button>
       </section>
 
     </div>
@@ -123,16 +114,27 @@
     <div id="sectionView" class="section-view" hidden>
 
       <header class="section-header">
-        <button class="back-btn" onclick="goHome()">
+
+        <button
+          class="back-btn"
+          onclick="goHome()"
+        >
           ← Home
         </button>
 
-        <button class="cart-btn" onclick="openSection('carrello')">
+        <button
+          class="cart-btn"
+          onclick="openSection('carrello')"
+        >
           🛒 <span id="sectionCartCount">0</span>
         </button>
+
       </header>
 
-      <section id="content" class="content-card section-content">
+      <section
+        id="content"
+        class="content-card section-content"
+      >
         <h2>Caricamento...</h2>
       </section>
 
@@ -140,21 +142,31 @@
 
   </main>
 
+  <!-- AGGIORNAMENTO APP -->
   <div id="updateBox" class="update-box">
+
     <h3>🚀 Nuova versione disponibile</h3>
-    <p>Aggiorna BPFAM per vedere le ultime modifiche.</p>
+
+    <p>
+      Aggiorna BPFAM per vedere le ultime modifiche.
+    </p>
 
     <button onclick="updateApp()">
       Aggiorna ora
     </button>
+
   </div>
-<a href="https://bpfam.github.io/Video-bpfam/"
-   class="video-gallery-link">
+
+  <!-- GALLERIA VIDEO -->
+  <a
+    href="https://bpfam.github.io/Video-bpfam/"
+    class="video-gallery-link"
+  >
     🎬 CLICCA QUI PER I VIDEO
-</a>
+  </a>
+
+  <!-- JAVASCRIPT -->
   <script src="app.js"></script>
+
 </body>
 </html>
-
-
-
