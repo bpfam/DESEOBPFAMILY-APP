@@ -413,7 +413,6 @@ function showVetrina(category) {
    class="contact-btn">
     🎬 CLICCA QUI PER I VIDEO
 </a>
-                </a>
 
             </div>
         `;
