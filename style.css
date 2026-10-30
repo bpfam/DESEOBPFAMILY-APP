@@ -624,3 +624,62 @@ button{
   margin: 15px auto 20px;
 }
 
+/* DESEO BP FAMILY - HOME COMPATTA */
+
+#homeView .hero {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#homeView .hero .logo {
+  display: block;
+  width: 58%;
+  max-width: 190px;
+  height: auto;
+  margin: 12px auto 18px;
+}
+
+#homeView .menu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
+  max-width: 440px;
+  margin: 12px auto 24px;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+#homeView .menu-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 100px;
+  padding: 12px 8px;
+  background: #111111;
+  color: white;
+  border: 1px solid #b89532;
+  border-radius: 17px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+#homeView .menu-card span {
+  font-size: 27px;
+}
+
+#homeView .menu-card strong {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+#homeView .menu-card:last-child {
+  grid-column: 1 / -1;
+  width: calc(50% - 6px);
+  justify-self: center;
+}
+
+
