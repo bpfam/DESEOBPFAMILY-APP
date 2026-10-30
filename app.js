@@ -1451,3 +1451,26 @@ function renderVideo(url) {
 
     return "";
 }
+
+<a
+    href="vetrina-media.html"
+    class="video-gallery-link"
+>
+    🎬 CLICCA QUI PER I VIDEO
+</a>
+
+<style>
+.video-gallery-link {
+    display: block;
+    margin: 20px auto;
+    padding: 16px;
+    max-width: 450px;
+    background: #d4af37;
+    color: #000;
+    border-radius: 12px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+}
+</style>
