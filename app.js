@@ -420,20 +420,6 @@ function showVetrina(category) {
         <h2>📸 Vetrina</h2>
 
         <p>Catalogo ufficiale BPFAM.</p>
-        
-<a href="vetrina-media.html"
-   style="display:block;
-          background:#d4af37;
-          color:#000;
-          padding:17px;
-          margin:20px 0;
-          border-radius:14px;
-          text-align:center;
-          text-decoration:none;
-          font-weight:bold;">
-    🎬 CLICCA QUI PER I VIDEO
-</a>
-
 
         <div class="category-row">
             ${categoryHTML}
