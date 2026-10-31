@@ -699,10 +699,6 @@ function showCart() {
                 Telegram
             </option>
 
-            <option value="whatsapp">
-                WhatsApp
-            </option>
-
             <option value="signal">
                 Signal
             </option>
@@ -719,145 +715,260 @@ function showCart() {
     showOrderFields();
 }
 
-function showOrderFields() {
 
-    const method =
-        document.getElementById("orderMethod")?.value;
+/* DESEO BP FAMILY
+   MODULO INFORMATIVO INDIPENDENTE
+   Nessun ordine o pagamento
+*/
 
-    const box =
-        document.getElementById("orderFields");
+(function () {
+  const root = document.getElementById("moduloLegale");
+  if (!root) return;
 
-    if (!box) return;
+  const localita = {
+    Italia: {
+      Puglia: [
+        "Bisceglie", "Bari", "Trani",
+        "Barletta", "Andria", "Molfetta",
+        "Foggia", "Lecce", "Taranto", "Brindisi"
+      ],
+      Basilicata: ["Potenza", "Matera"],
+      Calabria: ["Catanzaro", "Cosenza", "Reggio Calabria"],
+      Campania: ["Napoli", "Salerno", "Caserta"],
+      Lazio: ["Roma", "Latina", "Frosinone"],
+      Lombardia: ["Milano", "Bergamo", "Brescia"],
+      Piemonte: ["Torino", "Novara"],
+      Veneto: ["Venezia", "Verona", "Padova"],
+      Emilia_Romagna: ["Bologna", "Parma", "Modena"],
+      Toscana: ["Firenze", "Pisa", "Livorno"]
+    },
 
-    if (method === "Spedizione") {
+    Spagna: {
+      Catalogna: ["Barcellona", "Girona", "Tarragona"],
+      Valencia: ["Valencia", "Alicante", "Elche"],
+      Madrid: ["Madrid", "Alcalá de Henares"],
+      Andalusia: ["Siviglia", "Malaga", "Granada"]
+    },
 
-        box.innerHTML = `
-            <label class="format-label">
-                Nome e Cognome
-            </label>
+    Francia: {
+      "Île-de-France": ["Parigi", "Versailles"],
+      "Provenza-Alpi-Costa Azzurra": ["Marsiglia", "Nizza", "Cannes"],
+      "Alvernia-Rodano-Alpi": ["Lione", "Grenoble"]
+    },
 
-            <input
-                class="format-select"
-                id="fullName"
-                placeholder="Nome e Cognome"
-            >
+    Germania: {
+      Berlino: ["Berlino"],
+      Baviera: ["Monaco", "Norimberga"],
+      Assia: ["Francoforte", "Wiesbaden"],
+      Amburgo: ["Amburgo"]
+    },
 
-            <label class="format-label">
-                Paese
-            </label>
-
-            <input
-                class="format-select"
-                id="country"
-                placeholder="Paese"
-            >
-
-            <label class="format-label">
-                Regione / Stato
-            </label>
-
-            <input
-                class="format-select"
-                id="region"
-                placeholder="Regione / Stato"
-            >
-
-            <label class="format-label">
-                Città
-            </label>
-
-            <input
-                class="format-select"
-                id="city"
-                placeholder="Città"
-            >
-
-            <label class="format-label">
-                CAP
-            </label>
-
-            <input
-                class="format-select"
-                id="zip"
-                placeholder="CAP"
-            >
-
-            <label class="format-label">
-                Via e numero civico
-            </label>
-
-            <input
-                class="format-select"
-                id="address"
-                placeholder="Via e numero civico"
-            >
-
-            <label class="format-label">
-                Email
-            </label>
-
-            <input
-                class="format-select"
-                id="email"
-                type="email"
-                placeholder="Email"
-            >
-
-            <label class="format-label">
-                Telefono
-            </label>
-
-            <input
-                class="format-select"
-                id="phone"
-                type="tel"
-                placeholder="Telefono"
-            >
-
-            <label class="format-label">
-                Corriere preferito
-            </label>
-
-            <select
-                class="format-select"
-                id="courier"
-            >
-                <option value="UPS">
-                    UPS
-                </option>
-
-                <option value="DHL">
-                    DHL
-                </option>
-
-                <option value="FedEx">
-                    FedEx
-                </option>
-
-                <option value="Bartolini">
-                    Bartolini
-                </option>
-
-                <option value="InPost">
-                    InPost
-                </option>
-
-                <option value="Altro">
-                    Altro
-                </option>
-            </select>
-
-            <label class="format-label">
-                Note
-            </label>
-
-            <textarea
-                class="format-select"
-                id="notes"
-                placeholder="Note"
-            ></textarea>
-        `;
+    "Paesi Bassi": {
+      "Olanda Settentrionale": ["Amsterdam", "Haarlem"],
+      "Olanda Meridionale": ["Rotterdam", "L'Aia"],
+      Utrecht: ["Utrecht"],
+      "Brabante Settentrionale": ["Eindhoven"]
     }
+  };
+
+  root.innerHTML = `
+    <style>
+      #moduloLegale {
+        color: #fff;
+        font-family: Arial, sans-serif;
+        max-width: 480px;
+        margin: 20px auto;
+      }
+
+      #moduloLegale .ml-card {
+        background: #111;
+        border: 1px solid #b89532;
+        border-radius: 18px;
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+
+      #moduloLegale h2 {
+        color: #d4af37;
+        margin-bottom: 16px;
+        font-size: 21px;
+      }
+
+      #moduloLegale label {
+        display: block;
+        color: #d4af37;
+        font-weight: bold;
+        margin: 14px 0 7px;
+      }
+
+      #moduloLegale input,
+      #moduloLegale select,
+      #moduloLegale textarea {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 13px;
+        background: #181818;
+        color: white;
+        border: 1px solid #8e742b;
+        border-radius: 12px;
+        font-size: 15px;
+      }
+
+      #moduloLegale input[readonly] {
+        color: #ddd;
+        background: #222;
+      }
+
+      #moduloLegale p {
+        color: #ccc;
+        line-height: 1.5;
+        margin: 12px 0;
+      }
+
+      #moduloLegale .ml-hidden {
+        display: none;
+      }
+    </style>
+
+    <div class="ml-card">
+      <h2>📍 Meet Up — Informazioni</h2>
+
+      <label>Stato</label>
+      <input value="Italia" readonly>
+
+      <label>Regione</label>
+      <input value="Puglia" readonly>
+
+      <label>Città</label>
+      <input value="Bisceglie" readonly>
+
+      <label>CAP</label>
+      <input value="76011" readonly>
+
+      <p>Il luogo preciso viene concordato in chat.</p>
+    </div>
+
+    <div class="ml-card">
+      <h2>📦 Modulo indirizzo</h2>
+
+      <label for="mlName">Nome e cognome</label>
+      <input id="mlName" autocomplete="name"
+             placeholder="Nome e cognome">
+
+      <label for="mlCountry">🌍 Stato</label>
+      <select id="mlCountry">
+        <option value="">Seleziona lo Stato</option>
+      </select>
+
+      <label for="mlRegion">📍 Regione / Provincia</label>
+      <select id="mlRegion" disabled>
+        <option value="">Seleziona prima lo Stato</option>
+      </select>
+
+      <label for="mlCity">🏙️ Città</label>
+      <select id="mlCity" disabled>
+        <option value="">Seleziona prima la Regione</option>
+      </select>
+
+      <label for="mlOtherCity">Altra città</label>
+      <input id="mlOtherCity"
+             placeholder="Scrivi la città se non è nell'elenco"
+             class="ml-hidden">
+
+      <label for="mlZip">📮 CAP / Codice postale</label>
+      <input id="mlZip" autocomplete="postal-code"
+             placeholder="Codice postale">
+
+      <label for="mlAddress">🏠 Via e numero civico</label>
+      <input id="mlAddress" autocomplete="street-address"
+             placeholder="Via e numero civico">
+
+      <label for="mlPhone">📱 Numero di cellulare</label>
+      <input id="mlPhone" type="tel" autocomplete="tel"
+             placeholder="+39 ...">
+
+      <label for="mlEmail">✉️ Email</label>
+      <input id="mlEmail" type="email" autocomplete="email"
+             placeholder="email@esempio.com">
+
+      <label for="mlCourier">🚚 Corriere preferito</label>
+      <select id="mlCourier">
+        <option value="">Nessuna preferenza</option>
+        <option>UPS</option>
+        <option>DHL</option>
+        <option>FedEx</option>
+        <option>BRT</option>
+        <option>InPost</option>
+        <option>Altro</option>
+      </select>
+
+      <label for="mlNotes">📝 Note</label>
+      <textarea id="mlNotes" rows="3"
+                placeholder="Note facoltative"></textarea>
+
+      <p>Questo modulo è dimostrativo:
+         non invia né salva i dati inseriti.</p>
+    </div>
+  `;
+
+  const country = root.querySelector("#mlCountry");
+  const region = root.querySelector("#mlRegion");
+  const city = root.querySelector("#mlCity");
+  const otherCity = root.querySelector("#mlOtherCity");
+
+  function fillOptions(select, values, placeholder) {
+    select.innerHTML = "";
+    select.add(new Option(placeholder, ""));
+
+    values.forEach(value => {
+      const label = value.replaceAll("_", " ");
+      select.add(new Option(label, value));
+    });
+  }
+
+  fillOptions(
+    country,
+    Object.keys(localita),
+    "Seleziona lo Stato"
+  );
+
+  country.addEventListener("change", () => {
+    const regions = localita[country.value] || {};
+
+    fillOptions(
+      region,
+      Object.keys(regions),
+      "Seleziona la Regione"
+    );
+
+    region.disabled = !country.value;
+
+    fillOptions(city, [], "Seleziona prima la Regione");
+    city.disabled = true;
+    otherCity.classList.add("ml-hidden");
+    otherCity.value = "";
+  });
+
+  region.addEventListener("change", () => {
+    const cities =
+      localita[country.value]?.[region.value] || [];
+
+    fillOptions(city, cities, "Seleziona la Città");
+    city.add(new Option("Altra città...", "__other__"));
+    city.disabled = !region.value;
+
+    otherCity.classList.add("ml-hidden");
+    otherCity.value = "";
+  });
+
+  city.addEventListener("change", () => {
+    otherCity.classList.toggle(
+      "ml-hidden",
+      city.value !== "__other__"
+    );
+  });
+})();
 
     if (method === "Delivery") {
 
