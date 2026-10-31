@@ -9,7 +9,9 @@
   <title>Recensioni | DESEO BP FAMILY</title>
 
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
@@ -178,19 +180,26 @@
 
 </main>
 
-<div id="lightbox" class="lightbox"
-     role="dialog" aria-modal="true"
+<div id="lightbox"
+     class="lightbox"
+     role="dialog"
+     aria-modal="true"
      aria-label="Visualizzazione foto">
 
   <button id="chiudiFoto"
           class="close"
-          aria-label="Chiudi foto">×</button>
+          aria-label="Chiudi foto">
+    ×
+  </button>
 
   <img id="fotoGrande" alt="Foto ingrandita">
 
 </div>
 
 <script>
+
+  // CARICA I TESTI DAL FILE contenuto.txt
+
   async function caricaTesto() {
     const box =
       document.getElementById("testoRecensioni");
@@ -211,10 +220,18 @@
         "Nessun commento disponibile.";
 
     } catch (errore) {
+      console.error(
+        "Errore caricamento testo:",
+        errore
+      );
+
       box.textContent =
         "Commenti temporaneamente non disponibili.";
     }
   }
+
+
+  // CARICA AUTOMATICAMENTE LE FOTO DA GITHUB
 
   async function caricaFoto() {
     const galleria =
@@ -223,45 +240,67 @@
     const stato =
       document.getElementById("statoFoto");
 
+    const api =
+      "https://api.github.com/repos/" +
+      "bpfam/DESEOBPFAMILY-APP/" +
+      "contents/recensioni/foto";
+
     try {
-      const risposta = await fetch(
-        "./foto.json",
-        { cache: "no-store" }
-      );
+      const risposta = await fetch(api, {
+        cache: "no-store",
+        headers: {
+          "Accept": "application/vnd.github+json"
+        }
+      });
 
       if (!risposta.ok) {
-        throw new Error("Elenco foto non trovato");
+        throw new Error(
+          "Impossibile leggere le fotografie"
+        );
       }
 
-      const foto = await risposta.json();
+      const files = await risposta.json();
 
-      if (!Array.isArray(foto)) {
-        throw new Error("Formato elenco non valido");
+      if (!Array.isArray(files)) {
+        throw new Error(
+          "Elenco delle fotografie non valido"
+        );
       }
+
+      const foto = files.filter(file =>
+        file.type === "file" &&
+        /\.(jpg|jpeg|png|webp|gif)$/i.test(
+          file.name
+        )
+      );
+
+      foto.sort((a, b) =>
+        b.name.localeCompare(a.name)
+      );
 
       galleria.replaceChildren();
 
-      for (const nome of foto) {
-        if (
-          typeof nome !== "string" ||
-          !/^[a-zA-Z0-9_-]+\.(jpg|jpeg|png|webp)$/i
-            .test(nome)
-        ) {
-          continue;
-        }
-
+      for (const file of foto) {
         const img = document.createElement("img");
 
-        img.src = "./foto/" + nome;
+        img.src = "./foto/" +
+          encodeURIComponent(file.name);
+
         img.alt = "Fotografia della galleria";
+
         img.loading = "lazy";
 
         img.addEventListener("click", () => {
-          document.getElementById("fotoGrande").src =
-            img.src;
+          const fotoGrande =
+            document.getElementById(
+              "fotoGrande"
+            );
 
-          document.getElementById("lightbox")
-            .classList.add("open");
+          fotoGrande.src = img.src;
+
+          document.getElementById(
+            "lightbox"
+          ).classList.add("open");
         });
 
         img.addEventListener("error", () => {
@@ -276,37 +315,56 @@
         : "Tocca una foto per ingrandirla.";
 
     } catch (errore) {
+      console.error(
+        "Errore caricamento galleria:",
+        errore
+      );
+
       stato.textContent =
-        "Galleria temporaneamente non disponibile.";
+        "Fotografie temporaneamente non disponibili.";
     }
   }
 
-  function chiudiFoto() {
-    document.getElementById("lightbox")
-      .classList.remove("open");
 
-    document.getElementById("fotoGrande")
-      .removeAttribute("src");
+  // CHIUSURA FOTOGRAFIA INGRANDITA
+
+  function chiudiFoto() {
+    document.getElementById(
+      "lightbox"
+    ).classList.remove("open");
+
+    document.getElementById(
+      "fotoGrande"
+    ).removeAttribute("src");
   }
 
-  document.getElementById("chiudiFoto")
-    .addEventListener("click", chiudiFoto);
+  document.getElementById(
+    "chiudiFoto"
+  ).addEventListener("click", chiudiFoto);
 
-  document.getElementById("lightbox")
-    .addEventListener("click", event => {
-      if (event.target.id === "lightbox") {
-        chiudiFoto();
-      }
-    });
-
-  document.addEventListener("keydown", event => {
-    if (event.key === "Escape") {
+  document.getElementById(
+    "lightbox"
+  ).addEventListener("click", event => {
+    if (event.target.id === "lightbox") {
       chiudiFoto();
     }
   });
 
+  document.addEventListener(
+    "keydown",
+    event => {
+      if (event.key === "Escape") {
+        chiudiFoto();
+      }
+    }
+  );
+
+
+  // AVVIO AUTOMATICO
+
   caricaTesto();
   caricaFoto();
+
 </script>
 
 </body>
