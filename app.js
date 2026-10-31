@@ -853,67 +853,6 @@ if (method === "Spedizione") {
     `;
 }
 
-
-  `;
-
-  const country = root.querySelector("#mlCountry");
-  const region = root.querySelector("#mlRegion");
-  const city = root.querySelector("#mlCity");
-  const otherCity = root.querySelector("#mlOtherCity");
-
-  function fillOptions(select, values, placeholder) {
-    select.innerHTML = "";
-    select.add(new Option(placeholder, ""));
-
-    values.forEach(value => {
-      const label = value.replaceAll("_", " ");
-      select.add(new Option(label, value));
-    });
-  }
-
-  fillOptions(
-    country,
-    Object.keys(localita),
-    "Seleziona lo Stato"
-  );
-
-  country.addEventListener("change", () => {
-    const regions = localita[country.value] || {};
-
-    fillOptions(
-      region,
-      Object.keys(regions),
-      "Seleziona la Regione"
-    );
-
-    region.disabled = !country.value;
-
-    fillOptions(city, [], "Seleziona prima la Regione");
-    city.disabled = true;
-    otherCity.classList.add("ml-hidden");
-    otherCity.value = "";
-  });
-
-  region.addEventListener("change", () => {
-    const cities =
-      localita[country.value]?.[region.value] || [];
-
-    fillOptions(city, cities, "Seleziona la Città");
-    city.add(new Option("Altra città...", "__other__"));
-    city.disabled = !region.value;
-
-    otherCity.classList.add("ml-hidden");
-    otherCity.value = "";
-  });
-
-  city.addEventListener("change", () => {
-    otherCity.classList.toggle(
-      "ml-hidden",
-      city.value !== "__other__"
-    );
-  });
-})();
-
     if (method === "Delivery") {
 
         box.innerHTML = `
