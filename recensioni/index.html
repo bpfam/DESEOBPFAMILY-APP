@@ -1,0 +1,313 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+
+  <title>Recensioni | DESEO BP FAMILY</title>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
+
+    main {
+      max-width: 650px;
+      margin: auto;
+      padding: 24px 16px 60px;
+    }
+
+    .back {
+      display: inline-block;
+      padding: 12px 17px;
+      background: #111;
+      color: #d4af37;
+      border: 1px solid #b89532;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    h1 {
+      text-align: center;
+      color: #d4af37;
+      margin: 30px 0 10px;
+    }
+
+    .slogan {
+      color: #d4af37;
+      text-align: center;
+      font-size: 12px;
+      letter-spacing: 2px;
+      margin-bottom: 30px;
+    }
+
+    .box {
+      background: linear-gradient(
+        145deg, #17140f, #090909
+      );
+      border: 1px solid #b89532;
+      border-radius: 18px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+
+    .box h2 {
+      color: #d4af37;
+      margin-top: 0;
+    }
+
+    #testoRecensioni {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .gallery img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border: 1px solid #b89532;
+      border-radius: 12px;
+      cursor: zoom-in;
+    }
+
+    .empty {
+      color: #aaa;
+      line-height: 1.7;
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,.96);
+      align-items: center;
+      justify-content: center;
+      padding: 55px 12px 20px;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 100%;
+      max-height: 85vh;
+      object-fit: contain;
+    }
+
+    .close {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      background: #111;
+      border: 1px solid #d4af37;
+      color: #d4af37;
+      border-radius: 50%;
+      width: 42px;
+      height: 42px;
+      font-size: 25px;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      color: #d4af37;
+      margin-top: 40px;
+      font-size: 12px;
+      letter-spacing: 2px;
+    }
+  </style>
+</head>
+
+<body>
+
+<main>
+
+  <a href="../index.html" class="back">
+    ← Torna alla Home
+  </a>
+
+  <h1>⭐ RECENSIONI</h1>
+
+  <p class="slogan">
+    DESEO BP FAMILY • MADE DIFFERENT
+  </p>
+
+  <section class="box">
+    <h2>💬 Commenti e feedback</h2>
+
+    <div id="testoRecensioni">
+      Caricamento...
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>📸 Galleria fotografica</h2>
+
+    <div id="galleria" class="gallery"></div>
+
+    <p id="statoFoto" class="empty">
+      Caricamento fotografie...
+    </p>
+  </section>
+
+  <footer>
+    👑 DESEO BP FAMILY
+    <p>QUALITY • STYLE • RESPECT</p>
+  </footer>
+
+</main>
+
+<div id="lightbox" class="lightbox"
+     role="dialog" aria-modal="true"
+     aria-label="Visualizzazione foto">
+
+  <button id="chiudiFoto"
+          class="close"
+          aria-label="Chiudi foto">×</button>
+
+  <img id="fotoGrande" alt="Foto ingrandita">
+
+</div>
+
+<script>
+  async function caricaTesto() {
+    const box =
+      document.getElementById("testoRecensioni");
+
+    try {
+      const risposta = await fetch(
+        "./contenuto.txt",
+        { cache: "no-store" }
+      );
+
+      if (!risposta.ok) {
+        throw new Error("Testo non trovato");
+      }
+
+      const testo = await risposta.text();
+
+      box.textContent = testo.trim() ||
+        "Nessun commento disponibile.";
+
+    } catch (errore) {
+      box.textContent =
+        "Commenti temporaneamente non disponibili.";
+    }
+  }
+
+  async function caricaFoto() {
+    const galleria =
+      document.getElementById("galleria");
+
+    const stato =
+      document.getElementById("statoFoto");
+
+    try {
+      const risposta = await fetch(
+        "./foto.json",
+        { cache: "no-store" }
+      );
+
+      if (!risposta.ok) {
+        throw new Error("Elenco foto non trovato");
+      }
+
+      const foto = await risposta.json();
+
+      if (!Array.isArray(foto)) {
+        throw new Error("Formato elenco non valido");
+      }
+
+      galleria.replaceChildren();
+
+      for (const nome of foto) {
+        if (
+          typeof nome !== "string" ||
+          !/^[a-zA-Z0-9_-]+\.(jpg|jpeg|png|webp)$/i
+            .test(nome)
+        ) {
+          continue;
+        }
+
+        const img = document.createElement("img");
+
+        img.src = "./foto/" + nome;
+        img.alt = "Fotografia della galleria";
+        img.loading = "lazy";
+
+        img.addEventListener("click", () => {
+          document.getElementById("fotoGrande").src =
+            img.src;
+
+          document.getElementById("lightbox")
+            .classList.add("open");
+        });
+
+        img.addEventListener("error", () => {
+          img.remove();
+        });
+
+        galleria.appendChild(img);
+      }
+
+      stato.textContent = foto.length === 0
+        ? "Nessuna fotografia caricata."
+        : "Tocca una foto per ingrandirla.";
+
+    } catch (errore) {
+      stato.textContent =
+        "Galleria temporaneamente non disponibile.";
+    }
+  }
+
+  function chiudiFoto() {
+    document.getElementById("lightbox")
+      .classList.remove("open");
+
+    document.getElementById("fotoGrande")
+      .removeAttribute("src");
+  }
+
+  document.getElementById("chiudiFoto")
+    .addEventListener("click", chiudiFoto);
+
+  document.getElementById("lightbox")
+    .addEventListener("click", event => {
+      if (event.target.id === "lightbox") {
+        chiudiFoto();
+      }
+    });
+
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape") {
+      chiudiFoto();
+    }
+  });
+
+  caricaTesto();
+  caricaFoto();
+</script>
+
+</body>
+</html>
