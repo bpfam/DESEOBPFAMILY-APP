@@ -4,15 +4,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Info | DESEO BP FAMILY</title>
+
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
+      min-height: 100vh;
       background: #000;
       color: #fff;
-      font-family: Arial, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
     main {
@@ -21,23 +26,24 @@
       padding: 25px 18px 60px;
     }
 
-    h1, h2 { color: #d4af37; }
+    h1, h2 {
+      color: #d4af37;
+    }
 
-    h1 { text-align: center; }
-
-    .box {
-      background: #111;
-      border: 1px solid #b89532;
-      border-radius: 18px;
-      padding: 20px;
-      margin-top: 18px;
-      line-height: 1.7;
+    h1 {
+      text-align: center;
+      margin: 25px 0 10px;
     }
 
     .back {
       display: inline-block;
       color: #d4af37;
       text-decoration: none;
+      background: #111;
+      border: 1px solid #b89532;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-weight: bold;
       margin-bottom: 20px;
     }
 
@@ -46,27 +52,107 @@
       color: #d4af37;
       letter-spacing: 2px;
       font-size: 12px;
+      margin-bottom: 30px;
+    }
+
+    .box {
+      background: linear-gradient(145deg, #17140f, #090909);
+      border: 1px solid #b89532;
+      border-radius: 18px;
+      padding: 22px;
+      margin-top: 18px;
+      box-shadow: 0 5px 20px rgba(0,0,0,.35);
+    }
+
+    .box h2 {
+      margin-top: 0;
+      margin-bottom: 18px;
+      font-size: 21px;
+    }
+
+    #testoInfo {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      line-height: 1.9;
+      font-size: 16px;
+      color: #f1f1f1;
+    }
+
+    .footer {
+      text-align: center;
+      color: #d4af37;
+      letter-spacing: 2px;
+      font-size: 12px;
+      margin-top: 45px;
     }
   </style>
 </head>
+
 <body>
+
   <main>
-    <a class="back" href="../index.html">← Torna alla Home</a>
+
+    <a class="back" href="../index.html">
+      ← Torna alla Home
+    </a>
 
     <h1>👑 DESEO BP FAMILY</h1>
-    <p class="slogan">QUALITY • STYLE • RESPECT</p>
+
+    <p class="slogan">
+      QUALITY • STYLE • RESPECT
+    </p>
 
     <div class="box">
-      <h2>ℹ️ Informazioni</h2>
-      <p>Benvenuto nella nostra sezione ufficiale.</p>
-      <p>✨ Made Different.</p>
+
+      <h2>ℹ️ Informazioni ufficiali</h2>
+
+      <div id="testoInfo">
+        Caricamento informazioni...
+      </div>
+
     </div>
 
-    <div class="box">
-      <h2>📢 Comunicazioni</h2>
-      <p>📌 Qui puoi inserire i tuoi avvisi.</p>
-      <p>🌍 Qui puoi aggiungere informazioni e novità.</p>
+    <div class="footer">
+      👑 DESEO BP FAMILY
+      <p>MADE DIFFERENT</p>
     </div>
+
   </main>
+
+  <script>
+    async function caricaInformazioni() {
+      const contenitore =
+        document.getElementById("testoInfo");
+
+      try {
+        const risposta = await fetch(
+          "./contenuto.txt",
+          { cache: "no-store" }
+        );
+
+        if (!risposta.ok) {
+          throw new Error("File non trovato");
+        }
+
+        const testo = await risposta.text();
+
+        contenitore.textContent =
+          testo.trim() ||
+          "Nessuna informazione disponibile.";
+
+      } catch (errore) {
+        console.error(
+          "Errore caricamento informazioni:",
+          errore
+        );
+
+        contenitore.textContent =
+          "Informazioni temporaneamente non disponibili.";
+      }
+    }
+
+    caricaInformazioni();
+  </script>
+
 </body>
 </html>
