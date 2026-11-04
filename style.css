@@ -838,3 +838,38 @@ button{
     pointer-events: none;
     z-index: -1;
 }
+
+/* DESEO BP FAMILY - GRIGLIA VETRINA */
+
+.vetrina-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.vetrina-grid .media-card {
+    min-width: 0;
+    background: #111;
+    border: 1px solid #b89532;
+    border-radius: 14px;
+    padding: 7px;
+    overflow: hidden;
+}
+
+.vetrina-grid img,
+.vetrina-grid video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+@media (min-width: 900px) {
+    .vetrina-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
