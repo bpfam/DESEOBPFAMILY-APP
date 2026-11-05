@@ -39,7 +39,7 @@
     "origin": "USA 🇺🇸",
     "status": "Disponibile",
     "badge": "HOT",
-    "image": "immagine3.jpg",
+    "image": "https://i.postimg.cc/5xBmLdCG/IMG-3856.jpg",
     "variants": [
       { "size": "1 g", "price": 70 },
       { "size": "5 g", "price":  325 },
