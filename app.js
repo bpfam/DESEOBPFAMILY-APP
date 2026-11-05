@@ -1444,3 +1444,24 @@ function renderVideo(url) {
     return "";
 }
 
+async function copiaTesto(testo) {
+    if (!testo || !String(testo).trim()) {
+        alert("Nessun testo da copiare.");
+        return false;
+    }
+
+    try {
+        await navigator.clipboard.writeText(
+            String(testo)
+        );
+
+        alert("✅ Testo copiato!");
+        return true;
+
+    } catch (errore) {
+        console.error("Errore copia:", errore);
+        alert("Impossibile copiare il testo.");
+        return false;
+    }
+}
+
