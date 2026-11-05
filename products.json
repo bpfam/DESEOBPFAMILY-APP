@@ -19,7 +19,6 @@
   {
     "name": "Prodotto 2",
     "category": "Categoria",
-    "rating": "8/10",
     "quality": "Premium",
     "origin": "USA 🇺🇸",
     "status": "Disponibile",
@@ -37,7 +36,6 @@
   {
     "name": "Prodotto 3",
     "category": "Categoria",
-    "rating": "8/10",
     "quality": "Premium",
     "origin": "USA 🇺🇸",
     "status": "Disponibile",
@@ -55,7 +53,6 @@
   {
     "name": "Prodotto 4",
     "category": "Categoria",
-    "rating": "8/10",
     "quality": "Premium",
     "origin": "USA 🇺🇸",
     "status": "Disponibile",
@@ -73,7 +70,6 @@
   {
     "name": "Prodotto 5",
     "category": "Categoria",
-    "rating": "8/10",
     "quality": "Premium",
     "origin": "USA 🇺🇸",
     "status": "Disponibile",
@@ -91,7 +87,6 @@
   {
     "name": "Prodotto 6",
     "category": "Categoria",
-    "rating": "8/10",
     "quality": "Premium",
     "origin": "USA 🇺🇸",
     "status": "Disponibile",
@@ -109,7 +104,6 @@
   {
     "name": "Prodotto 7",
     "category": "Categoria",
-    "rating": "8/10",
     "quality": "Premium",
     "origin": "USA 🇺🇸",
     "status": "Disponibile",
@@ -127,7 +121,6 @@
   {
     "name": "Prodotto 8",
     "category": "Categoria",
-    "rating": "8/10",
     "quality": "Premium",
     "origin": "USA 🇺🇸",
     "status": "Disponibile",
@@ -145,7 +138,6 @@
   {
     "name": "Prodotto 9",
     "category": "Categoria",
-    "rating": "8/10",
     "quality": "Premium",
     "origin": "USA 🇺🇸",
     "status": "Disponibile",
@@ -163,7 +155,6 @@
   {
     "name": "Prodotto 10",
     "category": "Categoria",
-    "rating": "8/10",
     "quality": "Premium",
     "origin": "USA 🇺🇸",
     "status": "Disponibile",
@@ -181,7 +172,6 @@
   {
     "name": "Prodotto 11",
     "category": "Categoria",
-    "rating": "8/10",
     "quality": "Premium",
     "origin": "USA 🇺🇸",
     "status": "Disponibile",
@@ -199,7 +189,6 @@
   {
     "name": "Prodotto 12",
     "category": "Categoria",
-    "rating": "8/10",
     "quality": "Premium",
     "origin": "USA 🇺🇸",
     "status": "Disponibile",
@@ -217,7 +206,6 @@
   {
     "name": "Prodotto 13",
     "category": "Categoria",
-    "rating": "8/10",
     "quality": "Premium",
     "origin": "USA 🇺🇸",
     "status": "Disponibile",
@@ -235,7 +223,6 @@
   {
     "name": "Prodotto 14",
     "category": "Categoria",
-    "rating": "8/10",
     "quality": "Premium",
     "origin": "USA 🇺🇸",
     "status": "Disponibile",
@@ -253,7 +240,6 @@
   {
     "name": "Prodotto 15",
     "category": "Categoria",
-    "rating": "8/10",
     "quality": "Premium",
     "origin": "USA 🇺🇸",
     "status": "Disponibile",
