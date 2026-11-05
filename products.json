@@ -167,12 +167,13 @@
   {
     "category": "CALI FLOWER USA 🇺🇸",
     "name": " Mids Shelf PB & J RUNTZ",
-    "image": "https://i.postimg.cc/sx1Jmq7K/IMG-3755.jpg",
+    "image": "https://i.postimg.cc/X7LsWK7C/IMG-3558.jpg",
     "variants": [
-      { "size": "50g", "price": 300 },
-      { "size": "100g", "price": 550 },
-      { "size": "250g", "price": 1150 },
-      { "size": "500g", "price": 2000 }
+      { "size": "112g", "price":  675},
+      { "size": "224g", "price": 1235 },
+      { "size": "1lb", "price": 2270 },
+      { "size": "2lb", "price": 4100 },
+      { "size": "5lb", "price": 8700}
     ]
   },
   
