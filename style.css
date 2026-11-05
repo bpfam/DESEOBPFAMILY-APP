@@ -873,3 +873,76 @@ button{
     }
 }
 
+/* ========================================
+   DESEO BP FAMILY
+   VETRINA COMPATTA - SOLO GRAFICA
+   ======================================== */
+
+/* Attiva la griglia solo nella Vetrina */
+#content:has(> .category-row) {
+    display: grid;
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+    gap: 9px;
+    align-items: start;
+}
+
+/* Titolo e categorie a larghezza intera */
+#content:has(> .category-row) > h2,
+#content:has(> .category-row) > p,
+#content:has(> .category-row) > .category-row {
+    grid-column: 1 / -1;
+}
+
+/* Dimensioni delle schede */
+#content:has(> .category-row) > .product-card {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 7px;
+    border: 1px solid #b89532;
+    border-radius: 13px;
+    overflow: hidden;
+}
+
+/* Fotografie e video */
+#content:has(> .category-row) .product-img,
+#content:has(> .category-row) .product-video {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 9px;
+    margin-bottom: 7px;
+}
+
+/* Testi compatti */
+#content:has(> .category-row) .product-card h3 {
+    font-size: 12px;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+#content:has(> .category-row) .product-card p {
+    font-size: 10px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+/* Evita elementi troppo larghi */
+#content:has(> .category-row) .product-card select,
+#content:has(> .category-row) .product-card input,
+#content:has(> .category-row) .product-card button {
+    max-width: 100%;
+    min-width: 0;
+}
+
+/* Schermi grandi */
+@media (min-width: 900px) {
+    #content:has(> .category-row) {
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr));
+    }
+}
+
