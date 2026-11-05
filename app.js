@@ -1239,7 +1239,7 @@ function showContatti() {
                 target="_blank"
                 rel="noopener noreferrer"
             >
-                🟢 WhatsApp
+                📸 Instagram_Media
             </a>
 
             <a
