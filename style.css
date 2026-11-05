@@ -1029,3 +1029,53 @@ button{
         font-size: 11px;
     }
 }
+
+/* =========================================
+   DESEO BP FAMILY
+   RIFINITURA ESTETICA VETRINA
+   ========================================= */
+
+/* Schede uniformi */
+#content:has(> .category-row) > .product-card {
+    box-sizing: border-box;
+    min-width: 0;
+    border-radius: 18px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, .35);
+}
+
+/* Immagini sempre quadrate */
+#content:has(> .category-row) .product-img,
+#content:has(> .category-row) .product-video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    height: auto;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* Titoli con spazio uniforme */
+#content:has(> .category-row) .product-card h3 {
+    min-height: 42px;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    overflow-wrap: anywhere;
+}
+
+/* Testi più ordinati */
+#content:has(> .category-row) .product-card p {
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+/* Separazione visiva delle informazioni */
+#content:has(> .category-row) .product-meta {
+    border-top: 1px solid rgba(212,175,55,.2);
+    padding-top: 10px;
+}
+
+/* Spaziatura video */
+#content:has(> .category-row) .product-video-box {
+    margin: 8px 0 12px;
+}
+
