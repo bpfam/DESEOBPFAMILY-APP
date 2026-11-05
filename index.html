@@ -1,188 +1,202 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>DESEO BP FAMILY</title>
-
-  <link rel="stylesheet" href="style.css">
-  <link rel="manifest" href="manifest.json">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-
-  <meta name="theme-color" content="#000000">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="BPFAM">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="mobile-web-app-capable" content="yes">
+  <title>BPFAM</title>
+  <link rel="stylesheet" href="style.css?v=1000">
 </head>
 
 <body>
 
-  <!-- SCHERMATA INIZIALE -->
-  <div id="splash" class="splash">
-    <img src="logo.jpg.PNG" class="splash-logo" alt="BPFAM Logo">
-    <p>Quality. Style. Respect.</p>
+  <div id="ageGate" class="age-gate">
+    <div class="age-card">
+      <img class="gate-logo" src="https://i.postimg.cc/25G2Q3rw/IMG-1449.jpg" alt="BPFAM Logo">
+      <h1>BPFAM</h1>
+      <p>Accesso riservato a maggiorenni. Prodotti legali / CBD conforme.</p>
+
+      <label class="check-line">
+        <input type="checkbox" id="ageCheck">
+        Confermo di avere almeno 18 anni
+      </label>
+
+      <label class="check-line">
+        <input type="checkbox" id="termsCheck">
+        Accetto termini, privacy e condizioni d’uso
+      </label>
+
+      <button onclick="enterSite()">ENTRA NEL SITO</button>
+    </div>
   </div>
 
-  <main class="app">
+  <main id="siteContent" class="hidden">
 
-    <!-- HOME -->
-    <div id="homeView">
+    <header class="site-header">
+      <img class="main-logo" src="https://i.postimg.cc/25G2Q3rw/IMG-1449.jpg" alt="BPFAM Logo">
+      <h1>BPFAM</h1>
+      <p>OFFICIAL NETWORK</p>
+    </header>
 
-      <header class="top-bar">
-        <div>
-          <p class="small-title">Official Network</p>
-          <h1>DESEO BP FAMILY</h1>
+    <section id="homePage" class="page-section">
+
+      <div class="home-smoke-bg"></div>
+
+      <div class="app-grid">
+
+        <div class="app-card" onclick="showPage('vetrinaPage')">
+          <div class="app-icon">📸</div>
+          <h3>VETRINA</h3>
+          <p>Catalogo completo</p>
         </div>
 
-        <button class="cart-btn" onclick="openSection('carrello')">
-          🛒 <span id="cartCount">0</span>
-        </button>
-      </header>
+        <div class="app-card" onclick="showPage('checkoutPage')">
+          <div class="app-icon">🛒</div>
+          <h3>CHECKOUT</h3>
+          <p>Ordini e carrello</p>
+        </div>
 
-      <!-- LOGO -->
-      <section class="hero">
+        <div class="app-card" onclick="showPage('reviewsPage')">
+          <div class="app-icon">⭐</div>
+          <h3>RECENSIONI</h3>
+          <p>Feedback e novità</p>
+        </div>
 
-        <img
-          src="logo.jpg.PNG"
-          class="logo"
-          alt="DESEO BP FAMILY Logo"
-        >
+        <div class="app-card" onclick="showPage('contactsPage')">
+          <div class="app-icon">📲</div>
+          <h3>CONTATTI</h3>
+          <p>Canali ufficiali</p>
+        </div>
 
-      </section>
-
-      <!-- SLOGAN LUXURY -->
-      <div class="home-slogan">
-        QUALITY • STYLE • RESPECT
       </div>
 
-      <!-- CORONA DECORATIVA -->
-      <div class="home-divider">
-        ♛
-      </div>
+    </section>
 
-      <!-- CINQUE PULSANTI PRINCIPALI -->
-      <section class="menu-grid">
+    <section id="vetrinaPage" class="page-section hidden">
+      <button class="back-btn" onclick="showPage('homePage')">← TORNA HOME</button>
 
-        <button
-          class="menu-card"
-          onclick="openSection('vetrina')"
-        >
-          <span>🛍️</span>
-          <strong>Vetrina</strong>
-        </button>
-
-   
-<button
-  class="menu-card"
-  onclick="window.location.href='recensioni/index.html'"
->
-  <span>⭐</span>
-  <strong>Recensioni</strong>
-</button>
-
-        <button
-          class="menu-card"
-          onclick="openSection('contatti')"
-        >
-          <span>📞</span>
-          <strong>Contatti</strong>
-        </button>
-
-        <button
-          class="menu-card"
-          onclick="openSection('carrello')"
-        >
-          <span>🛒</span>
-          <strong>Carrello</strong>
-        </button>
-
-        <button
-          class="menu-card"
-          onclick="window.location.href='info/index.html'"
-        >
-          <span>ℹ️</span>
-          <strong>Info</strong>
-        </button>
-
+      <section id="vetrina" class="vetrina">
+        <h2>VETRINA</h2>
+        <div id="categories" class="categories-box"></div>
+        <div id="products" class="products-grid"></div>
       </section>
+    </section>
 
-      <!-- FOOTER LUXURY -->
-      <footer class="home-footer">
+    <section id="checkoutPage" class="page-section hidden">
+      <button class="back-btn" onclick="showPage('homePage')">← TORNA HOME</button>
 
-        <div class="footer-crown">♛</div>
+      <section id="checkout" class="checkout-section">
+        <h2>CARRELLO & CHECKOUT</h2>
 
-        <div class="footer-brand">
-          DESEO BP FAMILY
+        <div class="cart-box">
+          <h3>Carrello</h3>
+          <div id="cart-items"></div>
+          <h3 id="cart-total">Totale finale: €0</h3>
         </div>
 
-        <div class="footer-tagline">
-          MADE DIFFERENT
+        <div class="checkout-card">
+          <h3>Metodo ordine</h3>
+
+          <select id="orderMethod" onchange="showOrderFields()">
+            <option value="">Seleziona metodo</option>
+            <option value="Incontro di Persona">Incontro di Persona</option>
+            <option value="Delivery">Delivery</option>
+            <option value="Spedizione">Spedizione</option>
+          </select>
+
+          <h3>Metodo pagamento</h3>
+
+          <select id="paymentMethod">
+            <option value="">Seleziona pagamento</option>
+            <option value="Cash">Cash</option>
+            <option value="BTC">BTC</option>
+            <option value="USDT">USDT</option>
+          </select>
+
+          <div id="dynamicFields"></div>
+
+          <textarea id="orderNotes" placeholder="Note aggiuntive"></textarea>
+
+          <div class="checkout-buttons">
+            <button onclick="copyOrder()">COPIA DETTAGLI ORDINE</button>
+            <button onclick="checkoutTelegram()">INVIA SU TELEGRAM</button>
+            <button onclick="checkoutSignal()">INVIA SU SIGNAL</button>
+          </div>
         </div>
-
-      </footer>
-
-    </div>
-
-    <!-- SEZIONE APERTA -->
-    <div id="sectionView" class="section-view" hidden>
-
-      <header class="section-header">
-
-        <button
-          class="back-btn"
-          onclick="goHome()"
-        >
-          ← Home
-        </button>
-
-        <button
-          class="cart-btn"
-          onclick="openSection('carrello')"
-        >
-          🛒 <span id="sectionCartCount">0</span>
-        </button>
-
-      </header>
-
-      <section
-        id="content"
-        class="content-card section-content"
-      >
-        <h2>Caricamento...</h2>
       </section>
+    </section>
 
-    </div>
+    <section id="reviewsPage" class="page-section hidden">
+      <button class="back-btn" onclick="showPage('homePage')">← TORNA HOME</button>
+
+      <section class="contacts">
+        <h2>RECENSIONI</h2>
+        <p>Area recensioni in aggiornamento.</p>
+      </section>
+    </section>
+
+    <section id="contactsPage" class="page-section hidden">
+      <button class="back-btn" onclick="showPage('homePage')">← TORNA HOME</button>
+
+      <section id="contacts" class="contacts">
+        <h2>CONTATTI UFFICIALI</h2>
+
+        <div class="contact-buttons">
+
+          <a href="https://t.me/BPFAMPRIVATE_CLUB" target="_blank">
+            📢 TELEGRAM OFFICIALE
+          </a>
+
+          <a href="https://signal.me/#eu/oVw4zH1o2XV7hvoOVNnpQYfUIsUIVJZ-yVfherXcauUzT_aecLxDzL2g7fJsIsxZ" target="_blank">
+            📲 SIGNAL
+          </a>
+
+          <a href="https://t.me/streeetrree" target="_blank">
+            📍 DETTAGLIO
+          </a>
+
+          <a href="https://www.instagram.com/bpfamofficial?igsh=MWZoN2lzb2p3NG8zbA%3D%3D&utm_source=qr" target="_blank">
+            📸 INSTAGRAM OFFICIAL
+          </a>
+
+          <a href="https://www.instagram.com/bpfamofficial420backup?igsh=eXM5bXhzam5iYWQz" target="_blank">
+            📸 INSTAGRAM BACKUP
+          </a>
+
+          <a href="https://www.instagram.com/bpfam_network?igsh=MWRtYjV3bWdlMWE3MA==" target="_blank">
+            🌐 INSTAGRAM NETWORK
+          </a>
+
+        </div>
+      </section>
+    </section>
 
   </main>
 
-  <!-- AGGIORNAMENTO APP -->
-  <div id="updateBox" class="update-box">
+  <div class="bottom-nav">
 
-    <h3>🚀 Nuova versione disponibile</h3>
+    <button onclick="showPage('homePage')">
+      🏠
+      <span>Home</span>
+    </button>
 
-    <p>
-      Aggiorna BPFAM per vedere le ultime modifiche.
-    </p>
+    <button onclick="showPage('vetrinaPage')">
+      📸
+      <span>Vetrina</span>
+    </button>
 
-    <button onclick="updateApp()">
-      Aggiorna ora
+    <button onclick="showPage('checkoutPage')">
+      🛒
+      <span>Checkout</span>
+    </button>
+
+    <button onclick="showPage('contactsPage')">
+      📲
+      <span>Contatti</span>
     </button>
 
   </div>
 
-  <!-- GALLERIA VIDEO -->
-  <a
-    href="https://bpfam.github.io/Video-bpfam/"
-    class="video-gallery-link"
-  >
-    🎬 CLICCA QUI PER I VIDEO
-  </a>
+  <script src="script.js?v=1000"></script>
 
-  <!-- JAVASCRIPT -->
-  <script src="app.js"></script>
 </body>
 </html>
