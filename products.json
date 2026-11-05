@@ -1,192 +1,272 @@
 [
   {
-    "category": "WHITE ❄️",
-    "name": "BOLIVIANA 🇧🇴",
-    "image": "https://i.postimg.cc/PxkVFsFh/IMG-2037.jpg",
-    "variants": 
-    [
-      { "size": "0.3g", "price": 20},
-       { "size": "1g", "price": 50 },
-      { "size": "5g", "price": 200 },
-      { "size": "10g", "price": 350 },
-      { "size": "50g", "price": 1350},
-      { "size": "100g", "price": 2400},
-      { "size": "500g", "price": 11250},
-      { "size": "1kg", "price": 21500 }
+    "name": "Prodotto 1",
+    "category": "Categoria",
+    "rating": "8/10",
+    "quality": "Premium",
+    "origin": "USA 🇺🇸",
+    "status": "Disponibile",
+    "badge": "HOT",
+    "image": "immagine1.jpg",
+    "variants": [
+      { "size": "5 g", "price": 0 },
+      { "size": "10 g", "price": 0 },
+      { "size": "25 g", "price": 0 },
+      { "size": "50 g", "price": 0 },
+      { "size": "100 g", "price": 0 },
+      { "size": "500 g", "price": 0 }
     ]
   },
   {
-    "category": "HASH DIRECT USA 🇺🇸",
-    "name": "S N O B S Live Water Hash  ",
-    "image": "https://i.postimg.cc/qR5t5cMZ/5440CD2B-2F0C-46DC-933F-0AFDC0185041.jpg",
-    "variants": 
-    [
-      { "size": "1g", "price": 70},
-      { "size": "5g", "price": 325 },
-       { "size": "10", "price": 600 },
-      { "size": "25", "price": 1375 },
-      { "size": "50", "price": 2500 }
+    "name": "Prodotto 2",
+    "category": "Categoria",
+    "rating": "8/10",
+    "quality": "Premium",
+    "origin": "USA 🇺🇸",
+    "status": "Disponibile",
+    "badge": "HOT",
+    "image": "immagine2.jpg",
+    "variants": [
+      { "size": "5 g", "price": 0 },
+      { "size": "10 g", "price": 0 },
+      { "size": "25 g", "price": 0 },
+      { "size": "50 g", "price": 0 },
+      { "size": "100 g", "price": 0 },
+      { "size": "500 g", "price": 0 }
     ]
   },
   {
-    "category": "HASH DIRECT USA 🇺🇸",
-    "name": "GOLDEN HEADS WARRIORS Fresh Frozen Static Sift ",
-    "video": "https://streamable.com/9ok8iy",
-    "image": "",
+    "name": "Prodotto 3",
+    "category": "Categoria",
+    "rating": "8/10",
+    "quality": "Premium",
+    "origin": "USA 🇺🇸",
+    "status": "Disponibile",
+    "badge": "HOT",
+    "image": "immagine3.jpg",
     "variants": [
-      { "size": "1g", "price": 80 },
-      { "size": "5g", "price": 375 },
-      { "size": "10g", "price": 650 },
-      { "size": "25g", "price": 1500 },
-      { "size": "50g", "price": 2750 }
+      { "size": "5 g", "price": 0 },
+      { "size": "10 g", "price": 0 },
+      { "size": "25 g", "price": 0 },
+      { "size": "50 g", "price": 0 },
+      { "size": "100 g", "price": 0 },
+      { "size": "500 g", "price": 0 }
     ]
   },
   {
-    "category": "HASH DIRECT USA 🇺🇸",
-    "name": "GOLDEN HEADS WARRIORS Nine Weeks collab",
-    "image": "https://i.postimg.cc/j5mHkzjm/IMG-2035.png",
+    "name": "Prodotto 4",
+    "category": "Categoria",
+    "rating": "8/10",
+    "quality": "Premium",
+    "origin": "USA 🇺🇸",
+    "status": "Disponibile",
+    "badge": "HOT",
+    "image": "immagine4.jpg",
     "variants": [
-      { "size": "1g", "price": 60 },
-      { "size": "5g", "price": 325 },
-      { "size": "10g", "price": 600 },
-      { "size": "28g", "price": 1540 },
-      { "size": "56", "price": 2800 }
+      { "size": "5 g", "price": 0 },
+      { "size": "10 g", "price": 0 },
+      { "size": "25 g", "price": 0 },
+      { "size": "50 g", "price": 0 },
+      { "size": "100 g", "price": 0 },
+      { "size": "500 g", "price": 0 }
     ]
   },
   {
-    "category": "HASH DIRECT USA 🇺🇸",
-    "name": "GOLDEN HEADS WARRIORS Static Sift Full Melt ",
-    "image": "https://i.postimg.cc/Gmy2M1pT/IMG-1724.jpg",
+    "name": "Prodotto 5",
+    "category": "Categoria",
+    "rating": "8/10",
+    "quality": "Premium",
+    "origin": "USA 🇺🇸",
+    "status": "Disponibile",
+    "badge": "HOT",
+    "image": "immagine5.jpg",
     "variants": [
-      { "size": "1g", "price": 40},
-      { "size": "5g", "price": 180},
-      { "size": "10g", "price": 300 },
-      { "size": "50g", "price": 1450 },
-       { "size": "100g", "price": 2800 }
+      { "size": "5 g", "price": 0 },
+      { "size": "10 g", "price": 0 },
+      { "size": "25 g", "price": 0 },
+      { "size": "50 g", "price": 0 },
+      { "size": "100 g", "price": 0 },
+      { "size": "500 g", "price": 0 }
     ]
   },
   {
-    "category": "HASH DIRECT USA 🇺🇸",
-    "name": "KARMA CARTEL X STATIC LABZ  ",
-    "image": "https://i.postimg.cc/PqLNV08n/IMG-1979.jpg",
+    "name": "Prodotto 6",
+    "category": "Categoria",
+    "rating": "8/10",
+    "quality": "Premium",
+    "origin": "USA 🇺🇸",
+    "status": "Disponibile",
+    "badge": "HOT",
+    "image": "immagine6.jpg",
     "variants": [
-      { "size": "1g", "price": 40 },
-      { "size": "5g", "price": 180 },
-      { "size": "10g", "price": 325 },
-      { "size": "25g", "price": 750}, 
-      { "size": "50g", "price": 1450}   
+      { "size": "5 g", "price": 0 },
+      { "size": "10 g", "price": 0 },
+      { "size": "25 g", "price": 0 },
+      { "size": "50 g", "price": 0 },
+      { "size": "100 g", "price": 0 },
+      { "size": "500 g", "price": 0 }
     ]
   },
   {
-    "category": "HASH DIRECT USA 🇺🇸",
-    "name": "VICE CITY Static Sift",
-    "image": "https://LINK-IMMAGINE.jpg",
+    "name": "Prodotto 7",
+    "category": "Categoria",
+    "rating": "8/10",
+    "quality": "Premium",
+    "origin": "USA 🇺🇸",
+    "status": "Disponibile",
+    "badge": "HOT",
+    "image": "immagine7.jpg",
     "variants": [
-      { "size": "10g", "price": 250 },
-      { "size": "25g", "price": 575 },
-      { "size": "50g", "price": 1100 }
-    ]
- },
-  {
-    "category": "HASH DIRECT USA  🇺🇸",
-    "name": "HUMBOLDT Static Sift Whole Planet",
-    "image": "https://i.postimg.cc/wj1kLCgQ/IMG-3762.jpg",
-    "variants": [
-      { "size": "5g", "price": 190 },
-      { "size": "10g", "price": 350 },
-      { "size": "50g", "price": 1600},
-      { "size": "100g", "price": 3100 }
+      { "size": "5 g", "price": 0 },
+      { "size": "10 g", "price": 0 },
+      { "size": "25 g", "price": 0 },
+      { "size": "50 g", "price": 0 },
+      { "size": "100 g", "price": 0 },
+      { "size": "500 g", "price": 0 }
     ]
   },
   {
-    "category": "HASH DIRECT USA 🇺🇸",
-    "name": "HUMBOLDT Static Sift Premium ",
-    "image": "https://i.postimg.cc/h4Cxs2Cj/IMG-3767.jpg",
+    "name": "Prodotto 8",
+    "category": "Categoria",
+    "rating": "8/10",
+    "quality": "Premium",
+    "origin": "USA 🇺🇸",
+    "status": "Disponibile",
+    "badge": "HOT",
+    "image": "immagine8.jpg",
     "variants": [
-      { "size": "5g", "price": 135 },
-      { "size": "10g", "price": 240 },
-      { "size": "50g", "price": 1150},
-      { "size": "100g", "price": 2150 }
+      { "size": "5 g", "price": 0 },
+      { "size": "10 g", "price": 0 },
+      { "size": "25 g", "price": 0 },
+      { "size": "50 g", "price": 0 },
+      { "size": "100 g", "price": 0 },
+      { "size": "500 g", "price": 0 }
     ]
   },
   {
-    "category": "HASH DIRECT USA 🇺🇸",
-    "name": "SUMMER 6 STAR wpff duo trio collor",
-    "image": "https://i.postimg.cc/t4c2cX25/IMG-3769.jpg",
+    "name": "Prodotto 9",
+    "category": "Categoria",
+    "rating": "8/10",
+    "quality": "Premium",
+    "origin": "USA 🇺🇸",
+    "status": "Disponibile",
+    "badge": "HOT",
+    "image": "immagine9.jpg",
     "variants": [
-      { "size": "5g", "price": 200},
-      { "size": "10g", "price": 380 },
-      { "size": "50g", "price": 1800 },
-      { "size": "100g", "price": 3300 }
+      { "size": "5 g", "price": 0 },
+      { "size": "10 g", "price": 0 },
+      { "size": "25 g", "price": 0 },
+      { "size": "50 g", "price": 0 },
+      { "size": "100 g", "price": 0 },
+      { "size": "500 g", "price": 0 }
     ]
   },
   {
-    "category": "HASH DIRECT USA 🇺🇸",
-    "name": "CALIMELTS  Static Premium new seasion",
-    "image": "https://i.postimg.cc/TY9v7Ys2/IMG-2030.jpg",
+    "name": "Prodotto 10",
+    "category": "Categoria",
+    "rating": "8/10",
+    "quality": "Premium",
+    "origin": "USA 🇺🇸",
+    "status": "Disponibile",
+    "badge": "HOT",
+    "image": "immagine10.jpg",
     "variants": [
-      { "size": "5g", "price": 150 },
-      { "size": "10g", "price": 280 },
-       { "size": "25g", "price": 660 },
-       { "size": "50g", "price": 1225 },
-      { "size": "100g", "price": 2350 },
-       { "size": "500g", "price": 11000 }
+      { "size": "5 g", "price": 0 },
+      { "size": "10 g", "price": 0 },
+      { "size": "25 g", "price": 0 },
+      { "size": "50 g", "price": 0 },
+      { "size": "100 g", "price": 0 },
+      { "size": "500 g", "price": 0 }
     ]
   },
   {
-    "category": "HASH DIRECT USA 🇺🇸",
-    "name": "CALIMELTS  Static Sift new seasion",
-    "image": "https://i.postimg.cc/JnwF79FF/415AB6BE-90C8-4218-B42E-7A278B3565AA.jpg",
+    "name": "Prodotto 11",
+    "category": "Categoria",
+    "rating": "8/10",
+    "quality": "Premium",
+    "origin": "USA 🇺🇸",
+    "status": "Disponibile",
+    "badge": "HOT",
+    "image": "immagine11.jpg",
     "variants": [
-      { "size": "5g", "price": 130},
-      { "size": "10g", "price": 240 },
-       { "size": "25g", "price": 580},
-      { "size": "50g", "price": 1100 },
-      { "size": "100g", "price": 2100 },
-       { "size": "250g", "price": 4880 },
-      { "size": "500g", "price": 9300 }
+      { "size": "5 g", "price": 0 },
+      { "size": "10 g", "price": 0 },
+      { "size": "25 g", "price": 0 },
+      { "size": "50 g", "price": 0 },
+      { "size": "100 g", "price": 0 },
+      { "size": "500 g", "price": 0 }
     ]
   },
   {
-  "name": "Nome prodotto",
-  "category": "Categoria",
-  "rating": "8/10",
-  "quality": "Premium",
-  "origin": "USA 🇺🇸",
-  "status": "Disponibile",
-  "badge": "HOT",
-  "image": "immagine.jpg",
-  "variants": [
-    {
-      "size": "Formato",
-      "price": 0
-    }
-  ]
-},
-  
-  {
-    "category": "CALI FLOWER USA 🇺🇸",
-    "name": " Mids Shelf PB & J RUNTZ",
-    "image": "https://i.postimg.cc/X7LsWK7C/IMG-3558.jpg",
+    "name": "Prodotto 12",
+    "category": "Categoria",
+    "rating": "8/10",
+    "quality": "Premium",
+    "origin": "USA 🇺🇸",
+    "status": "Disponibile",
+    "badge": "HOT",
+    "image": "immagine12.jpg",
     "variants": [
-      { "size": "112g", "price":  675},
-      { "size": "224g", "price": 1235 },
-      { "size": "1lb", "price": 2270 },
-      { "size": "2lb", "price": 4100 },
-      { "size": "5lb", "price": 8700}
+      { "size": "5 g", "price": 0 },
+      { "size": "10 g", "price": 0 },
+      { "size": "25 g", "price": 0 },
+      { "size": "50 g", "price": 0 },
+      { "size": "100 g", "price": 0 },
+      { "size": "500 g", "price": 0 }
     ]
   },
-  
   {
-    "category": "FLOWER SPANISH🇪🇸🇳🇱🇨🇦",
-    "name": "CherryPie🍒",
-    "image": "https://LINK-IMMAGINE.jpg",
+    "name": "Prodotto 13",
+    "category": "Categoria",
+    "rating": "8/10",
+    "quality": "Premium",
+    "origin": "USA 🇺🇸",
+    "status": "Disponibile",
+    "badge": "HOT",
+    "image": "immagine13.jpg",
     "variants": [
-      { "size": "50gr", "price": 250 },
-      { "size": "100", "price": 450 },
-      { "size": "500", "price": 4000 },
-       { "size": "1kg", "price": 3500 }
-           
+      { "size": "5 g", "price": 0 },
+      { "size": "10 g", "price": 0 },
+      { "size": "25 g", "price": 0 },
+      { "size": "50 g", "price": 0 },
+      { "size": "100 g", "price": 0 },
+      { "size": "500 g", "price": 0 }
+    ]
+  },
+  {
+    "name": "Prodotto 14",
+    "category": "Categoria",
+    "rating": "8/10",
+    "quality": "Premium",
+    "origin": "USA 🇺🇸",
+    "status": "Disponibile",
+    "badge": "HOT",
+    "image": "immagine14.jpg",
+    "variants": [
+      { "size": "5 g", "price": 0 },
+      { "size": "10 g", "price": 0 },
+      { "size": "25 g", "price": 0 },
+      { "size": "50 g", "price": 0 },
+      { "size": "100 g", "price": 0 },
+      { "size": "500 g", "price": 0 }
+    ]
+  },
+  {
+    "name": "Prodotto 15",
+    "category": "Categoria",
+    "rating": "8/10",
+    "quality": "Premium",
+    "origin": "USA 🇺🇸",
+    "status": "Disponibile",
+    "badge": "HOT",
+    "image": "immagine15.jpg",
+    "variants": [
+      { "size": "5 g", "price": 0 },
+      { "size": "10 g", "price": 0 },
+      { "size": "25 g", "price": 0 },
+      { "size": "50 g", "price": 0 },
+      { "size": "100 g", "price": 0 },
+      { "size": "500 g", "price": 0 }
     ]
   }
 ]
