@@ -8,7 +8,7 @@ let cart = [];
 const contacts = {
     telegram: "https://t.me/BPFAMPRIVATE_CLUB",
     instagram: "https://www.instagram.com/bpfamofficial?exln=MWZoN2lzb2p3NG8zbA%3D%3D&utm_source=qr",
-    instagram media: "https://www.instagram.com/bpfam_network?mdxt=MWFlbDcwdGc3czNvOA%3D%3D&utm_source=qr",
+    instagram_media: "https://www.instagram.com/bpfam_network?mdxt=MWFlbDcwdGc3czNvOA%3D%3D&utm_source=qr",
     signal: "https://signal.me/#eu/oVw4zH1o2XV7hvoOVNnpQYfUIsUIVJZ-yVfherXcauUzT_aecLxDzL2g7fJsIsxZ",
 };
 
