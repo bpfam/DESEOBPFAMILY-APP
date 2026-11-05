@@ -1465,3 +1465,9 @@ async function copiaTesto(testo) {
     }
 }
 
+function verificaCopiaTesto() {
+    copiaTesto(
+        "DESEO BP FAMILY - Comunicazione copiata"
+    );
+}
+
