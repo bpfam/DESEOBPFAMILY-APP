@@ -3,7 +3,9 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1">
+
 <title>BPFAM | Video Gallery</title>
 
 <style>
@@ -20,51 +22,62 @@ body {
 
 header {
     text-align: center;
-    padding: 35px 15px 25px;
+    padding: 30px 12px 22px;
     border-bottom: 1px solid #4a3913;
 }
 
 header h1 {
     color: #d9b43c;
-    font-size: 34px;
+    font-size: 32px;
     margin: 0;
     letter-spacing: 2px;
 }
 
 header p {
     color: #aaa;
-    font-size: 14px;
+    font-size: 12px;
+    letter-spacing: 1px;
 }
 
 main {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: auto;
-    padding: 22px 15px;
+    padding: 20px 10px;
 }
 
 h2 {
     color: #d9b43c;
-    font-size: 22px;
-    margin-bottom: 22px;
+    font-size: 20px;
+    margin-bottom: 20px;
 }
+
+/* GALLERIA - 3 COLONNE */
 
 .gallery {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 15px;
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    align-items: start;
 }
+
+/* SCHEDA VIDEO */
 
 .video-card {
     background: #111;
     border: 1px solid #53431e;
-    border-radius: 15px;
+    border-radius: 12px;
     overflow: hidden;
     min-width: 0;
 }
 
+/* VIDEO */
+
 .video-player {
-    aspect-ratio: 16 / 9;
+    width: 100%;
+    aspect-ratio: 1 / 1;
     background: #000;
+    overflow: hidden;
 }
 
 .video-player video,
@@ -73,29 +86,38 @@ h2 {
     width: 100%;
     height: 100%;
     border: 0;
+    object-fit: cover;
 }
 
+/* INFORMAZIONI VIDEO */
+
 .video-info {
-    padding: 12px;
+    padding: 8px 6px;
+    text-align: center;
 }
 
 .video-info h3 {
-    font-size: 15px;
+    font-size: 11px;
     color: #d9b43c;
-    margin: 0 0 7px;
+    margin: 0 0 5px;
+    line-height: 1.4;
     overflow-wrap: anywhere;
 }
 
 .video-info p {
     color: #aaa;
-    font-size: 12px;
+    font-size: 10px;
     margin: 0;
+    overflow-wrap: anywhere;
 }
+
+/* MESSAGGI */
 
 .empty {
     color: #aaa;
     text-align: center;
-    padding: 40px 10px;
+    padding: 25px 10px;
+    grid-column: 1 / -1;
 }
 
 footer {
@@ -105,9 +127,41 @@ footer {
     font-size: 12px;
 }
 
-@media (max-width: 480px) {
+/* SCHERMI GRANDI - 4 COLONNE */
+
+@media (min-width: 900px) {
     .gallery {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr));
+        gap: 16px;
+    }
+
+    .video-player {
+        aspect-ratio: 16 / 9;
+    }
+
+    .video-info {
+        padding: 12px;
+    }
+
+    .video-info h3 {
+        font-size: 15px;
+    }
+
+    .video-info p {
+        font-size: 12px;
+    }
+}
+
+/* TELEFONI MOLTO PICCOLI */
+
+@media (max-width: 340px) {
+    .gallery {
+        gap: 6px;
+    }
+
+    .video-info h3 {
+        font-size: 10px;
     }
 }
 </style>
@@ -184,40 +238,56 @@ function videoPlayer(url) {
 }
 
 async function loadGallery() {
-    const gallery = document.getElementById("gallery");
+    const gallery =
+        document.getElementById("gallery");
 
     try {
-        const response = await fetch("media.json", {
-            cache: "no-store"
-        });
+        const response = await fetch(
+            "media.json",
+            { cache: "no-store" }
+        );
 
         if (!response.ok) {
-            throw new Error("Impossibile caricare media.json");
+            throw new Error(
+                "Impossibile caricare media.json"
+            );
         }
 
         const videos = await response.json();
 
         if (!Array.isArray(videos)) {
-            throw new Error("Formato JSON non valido");
+            throw new Error(
+                "Formato JSON non valido"
+            );
         }
 
         gallery.innerHTML = videos.map(item => `
             <article class="video-card">
+
                 <div class="video-player">
                     ${videoPlayer(item.video)}
                 </div>
 
                 <div class="video-info">
-                    <h3>${escapeHTML(item.name || "Video")}</h3>
-                    <p>${escapeHTML(item.category || "BPFAM")}</p>
+                    <h3>
+                        ${escapeHTML(item.name || "Video")}
+                    </h3>
+
+                    <p>
+                        ${escapeHTML(item.category || "BPFAM")}
+                    </p>
                 </div>
+
             </article>
         `).join("") || `
-            <p class="empty">Nessun video disponibile.</p>
+            <p class="empty">
+                Nessun video disponibile.
+            </p>
         `;
 
     } catch (error) {
         console.error(error);
+
         gallery.innerHTML = `
             <p class="empty">
                 Errore nel caricamento dei video.
@@ -231,4 +301,3 @@ loadGallery();
 
 </body>
 </html>
-
