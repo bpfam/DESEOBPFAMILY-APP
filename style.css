@@ -873,76 +873,159 @@ button{
     }
 }
 
+
 /* ========================================
    DESEO BP FAMILY
-   VETRINA COMPATTA - SOLO GRAFICA
+   VETRINA PREMIUM - 2 COLONNE
+   SOLO GRAFICA
    ======================================== */
 
-/* Attiva la griglia solo nella Vetrina */
+/* GRIGLIA PRINCIPALE */
+
 #content:has(> .category-row) {
     display: grid;
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-    gap: 9px;
-    align-items: start;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    align-items: stretch;
+    text-align: left;
 }
 
-/* Titolo e categorie a larghezza intera */
+/* TITOLO E CATEGORIE A LARGHEZZA INTERA */
+
 #content:has(> .category-row) > h2,
 #content:has(> .category-row) > p,
 #content:has(> .category-row) > .category-row {
     grid-column: 1 / -1;
 }
 
-/* Dimensioni delle schede */
+/* SCHEDE */
+
 #content:has(> .category-row) > .product-card {
-    display: block;
+    display: flex;
+    flex-direction: column;
     width: 100%;
     min-width: 0;
     margin: 0;
-    padding: 7px;
+    padding: 10px;
+    background: linear-gradient(155deg, #181818, #080808);
     border: 1px solid #b89532;
-    border-radius: 13px;
+    border-radius: 18px;
     overflow: hidden;
 }
 
-/* Fotografie e video */
+/* FOTO E VIDEO */
+
 #content:has(> .category-row) .product-img,
 #content:has(> .category-row) .product-video {
+    display: block;
     width: 100%;
     height: auto;
     aspect-ratio: 1 / 1;
     object-fit: cover;
-    border-radius: 9px;
-    margin-bottom: 7px;
+    border-radius: 12px;
+    margin-bottom: 10px;
 }
 
-/* Testi compatti */
+/* NOMI */
+
 #content:has(> .category-row) .product-card h3 {
-    font-size: 12px;
+    color: #d4af37;
+    font-size: 14px;
     line-height: 1.4;
     overflow-wrap: anywhere;
+    margin-bottom: 8px;
 }
 
+/* DESCRIZIONI */
+
 #content:has(> .category-row) .product-card p {
-    font-size: 10px;
+    font-size: 12px;
     line-height: 1.5;
+    overflow-wrap: anywhere;
+    margin-bottom: 5px;
+}
+
+/* BADGE */
+
+#content:has(> .category-row) .badge {
+    align-self: flex-start;
+    font-size: 10px;
+}
+
+/* VALUTAZIONE */
+
+#content:has(> .category-row) .product-rating {
+    font-size: 11px;
+    padding: 6px 9px;
+    max-width: 100%;
+    align-self: flex-start;
+}
+
+/* ETICHETTE */
+
+#content:has(> .category-row) .format-label {
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+#content:has(> .category-row) .format-hint {
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+/* CAMPI */
+
+#content:has(> .category-row) .format-select {
+    width: 100%;
+    min-width: 0;
+    padding: 12px 28px 12px 9px;
+    font-size: 13px;
+}
+
+/* RIGA INFORMATIVA */
+
+#content:has(> .category-row) .product-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 13px;
+    margin-top: 12px;
+    margin-bottom: 10px;
     overflow-wrap: anywhere;
 }
 
-/* Evita elementi troppo larghi */
-#content:has(> .category-row) .product-card select,
-#content:has(> .category-row) .product-card input,
-#content:has(> .category-row) .product-card button {
-    max-width: 100%;
+/* PULSANTI - ASPETTO VISIVO */
+
+#content:has(> .category-row) .contact-btn {
+    display: block;
+    width: 100%;
     min-width: 0;
+    padding: 12px 7px;
+    font-size: 12px;
+    line-height: 1.4;
+    border-radius: 12px;
+    overflow-wrap: anywhere;
 }
 
-/* Schermi grandi */
-@media (min-width: 900px) {
+/* CONTENUTI DENTRO LE SCHEDE */
+
+#content:has(> .category-row) .product-card > * {
+    max-width: 100%;
+}
+
+/* SCHERMI PICCOLI */
+
+@media (max-width: 360px) {
     #content:has(> .category-row) {
-        grid-template-columns:
-            repeat(4, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    #content:has(> .category-row) > .product-card {
+        padding: 7px;
+    }
+
+    #content:has(> .category-row) .contact-btn {
+        font-size: 11px;
     }
 }
-
