@@ -1235,7 +1235,7 @@ function showContatti() {
 
             <a
                 class="contact-link"
-                href="${contacts.whatsapp}"
+                href="${contacts.instagram_media}"
                 target="_blank"
                 rel="noopener noreferrer"
             >
