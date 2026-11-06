@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -75,14 +74,13 @@
           <strong>Vetrina</strong>
         </button>
 
-   
-<button
-  class="menu-card"
-  onclick="window.location.href='recensioni/index.html'"
->
-  <span>⭐</span>
-  <strong>Recensioni</strong>
-</button>
+        <button
+          class="menu-card"
+          onclick="openSection('recensioni')"
+        >
+          <span>⭐</span>
+          <strong>Recensioni</strong>
+        </button>
 
         <button
           class="menu-card"
@@ -102,7 +100,7 @@
 
         <button
           class="menu-card"
-          onclick="window.location.href='info/index.html'"
+          onclick="openSection('info')"
         >
           <span>ℹ️</span>
           <strong>Info</strong>
@@ -184,5 +182,6 @@
 
   <!-- JAVASCRIPT -->
   <script src="app.js"></script>
+
 </body>
 </html>
